@@ -85,6 +85,22 @@ jobs:
           path: build/app/outputs/flutter-apk/*.apk
           retention-days: 7
 
+  web:
+    name: Build web (demonstração)
+    needs: analisar-e-testar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: >
+          flutter build web --release --base-href /Bible-Garden/
+          --dart-define=BG_MOD=true --no-web-resources-cdn
+
   ios:
     name: Build iOS (sem assinatura)
     needs: analisar-e-testar

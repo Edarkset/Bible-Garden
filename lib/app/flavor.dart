@@ -12,7 +12,14 @@ enum Flavor { dev, prod }
 /// É uma constante: em `prod`, todo código protegido por `if (isDev)` é
 /// removido do binário pelo compilador. Sem `--flavor`, vale `prod`, para que
 /// um build esquecido nunca saia com as ferramentas de teste.
-const Flavor currentFlavor = appFlavor == 'dev' ? Flavor.dev : Flavor.prod;
+const Flavor currentFlavor = appFlavor == 'dev' || _webDemo
+    ? Flavor.dev
+    : Flavor.prod;
+
+/// O navegador não tem flavors: a demonstração no GitHub Pages liga a
+/// versão mod com `--dart-define=BG_MOD=true`. Também é constante, então
+/// nos builds das lojas (sem essa chave) o código mod some igual.
+const bool _webDemo = bool.fromEnvironment('BG_MOD');
 
 /// Atalho para o teste mais comum.
 const bool isDev = currentFlavor == Flavor.dev;

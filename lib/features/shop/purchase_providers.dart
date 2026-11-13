@@ -6,11 +6,18 @@ import 'package:bible_garden/core/purchases.dart';
 import 'package:bible_garden/data/purchases/in_app_purchase_gateway.dart';
 import 'package:bible_garden/data/purchases/purchase_service.dart';
 import 'package:bible_garden/data/purchases/store_gateway.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Loja do celular. Na versão mod, uma loja falsa que não cobra.
+/// No navegador não há loja de celular: a compra com dinheiro aparece como
+/// indisponível (o orvalho continua funcionando).
 final Provider<StoreGateway> storeGatewayProvider = Provider<StoreGateway>(
-  (ref) => isDev ? FakeStoreGateway() : InAppPurchaseGateway(),
+  (ref) => isDev
+      ? FakeStoreGateway()
+      : kIsWeb
+      ? FakeStoreGateway(isAvailable: false)
+      : InAppPurchaseGateway(),
 );
 
 final Provider<PurchaseService> purchaseServiceProvider =

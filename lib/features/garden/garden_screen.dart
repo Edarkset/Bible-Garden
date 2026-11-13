@@ -8,6 +8,7 @@ import 'package:bible_garden/core/rules.dart';
 import 'package:bible_garden/data/content/content.dart';
 import 'package:bible_garden/data/repositories/garden_repository.dart';
 import 'package:bible_garden/features/common/labels.dart';
+import 'package:bible_garden/features/common/orvalho_badge.dart';
 import 'package:bible_garden/features/garden/garden_state.dart';
 import 'package:bible_garden/features/garden/garden_view.dart';
 import 'package:bible_garden/features/garden/today_card.dart';
@@ -179,12 +180,7 @@ class _GardenScreenState extends ConsumerState<GardenScreen> {
             icon: const Icon(Icons.settings_outlined),
             onPressed: () => context.push('/ajustes'),
           ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: Text(t.gardenOrvalho(balance)),
-            ),
-          ),
+          Center(child: OrvalhoBadge(balance: balance)),
         ],
       ),
       body: SafeArea(

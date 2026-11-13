@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:bible_garden/app/providers.dart';
 import 'package:bible_garden/core/purchases.dart';
@@ -11,7 +10,6 @@ import 'package:drift/drift.dart' show TableInfo;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 /// Tema do app: igual ao celular, claro ou escuro.
@@ -181,11 +179,16 @@ class SettingsScreen extends ConsumerWidget {
             onTap: () async {
               final messenger = ScaffoldMessenger.of(context);
               final json = await exportAllData(ref.read(databaseProvider));
-              final dir = await getTemporaryDirectory();
-              final f = File('${dir.path}/bible-garden-dados.json');
-              await f.writeAsString(json);
+              final file = XFile.fromData(
+                utf8.encode(json),
+                mimeType: 'application/json',
+                name: 'bible-garden-dados.json',
+              );
               await SharePlus.instance.share(
-                ShareParams(files: [XFile(f.path)]),
+                ShareParams(
+                  files: [file],
+                  fileNameOverrides: const ['bible-garden-dados.json'],
+                ),
               );
               messenger.showSnackBar(SnackBar(content: Text(t.setExportDone)));
             },

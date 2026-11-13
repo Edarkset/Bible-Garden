@@ -7,6 +7,7 @@ import 'package:bible_garden/data/db/app_database.dart';
 import 'package:bible_garden/data/repositories/garden_repository.dart';
 import 'package:bible_garden/data/sprites/sprite_manifest.dart';
 import 'package:bible_garden/services/reminders.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show StreamProviderFamily;
 
@@ -50,7 +51,7 @@ final Provider<DateTime Function()> clockProvider =
 
 /// Lembrete diário (substituído nos testes).
 final Provider<Reminders> remindersProvider = Provider<Reminders>(
-  (ref) => LocalReminders(),
+  (ref) => kIsWeb ? const NoReminders() : LocalReminders(),
 );
 
 final bibleRepositoryProvider = Provider<BibleRepository>(

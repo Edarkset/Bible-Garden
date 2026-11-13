@@ -1,5 +1,7 @@
 # Bible Garden
 
+**Ver o app no navegador:** https://edarkset.github.io/Bible-Garden/ (demonstração, versão mod; publicada a cada merge na `main`).
+
 App de leitura bíblica em que cada livro da Bíblia é um pequeno jardim vivo. O jardim cresce com leitura, oração e devocional; juntos, os jardins formam uma floresta.
 
 - Regras do projeto: [`CLAUDE.md`](CLAUDE.md)
