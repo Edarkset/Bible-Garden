@@ -1,0 +1,19 @@
+{
+  "@@locale": "pt",
+  "appTitle": "Bible Garden",
+  "@appTitle": { "description": "Nome do app." },
+  "gardenTitle": "Meu jardim",
+  "@gardenTitle": { "description": "Título da tela do jardim." },
+  "gardenPlaceholder": "Seu jardim vai crescer aqui com a leitura, a oração e o devocional.",
+  "@gardenPlaceholder": { "description": "Texto provisório da tela inicial (M0)." },
+  "devBadge": "MOD",
+  "@devBadge": { "description": "Selo do flavor de testes. Curto." },
+  "devToolsTitle": "Ferramentas da versão mod",
+  "@devToolsTitle": { "description": "Título da tela de testes, só no flavor dev." },
+  "devToolsOpen": "Abrir ferramentas de teste",
+  "@devToolsOpen": { "description": "Botão que abre a tela de testes, só no flavor dev." },
+  "devToolsEmpty": "As ferramentas de teste chegam junto com cada marco.",
+  "@devToolsEmpty": { "description": "Texto provisório da tela de testes." },
+  "bibleCredit": "Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018 — CC BY 4.0 Brasil.",
+  "@bibleCredit": { "description": "Crédito obrigatório da tradução. Não traduzir." }
+}
