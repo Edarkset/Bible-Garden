@@ -222,7 +222,10 @@ class GardenGame extends FlameGame {
     ground.occupied = {for (final p in s.placements) p.tile};
 
     _pond?.raining = s.raining;
-    weather.raining = s.raining;
+    ground.packs = s.packs;
+    weather
+      ..raining = s.raining
+      ..starryNight = s.packs.contains('noite-estrelada');
     for (final b in _beings.values) {
       b.brain.raining = s.raining;
     }

@@ -40,6 +40,7 @@ final class GardenSnapshot {
     this.raining = false,
     this.ebenezerStones = 0,
     this.hasPond = true,
+    this.packs = const {},
   });
 
   final String book;
@@ -55,6 +56,9 @@ final class GardenSnapshot {
   final bool raining;
   final int ebenezerStones;
   final bool hasPond;
+
+  /// Pacotes visuais ativos (comprados ou no provador).
+  final Set<String> packs;
 
   Stage get stage => Stage.values[growth.floor().clamp(0, 6)];
 }

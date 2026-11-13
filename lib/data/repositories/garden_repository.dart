@@ -336,6 +336,18 @@ final class GardenRepository {
         return r;
       });
 
+  /// Animal da loja: chega filhote no jardim do livro escolhido.
+  Future<BuyResult> buyAnimal(String animalId, int price, String garden) =>
+      db.transaction(() async {
+        final r = await buyWithOrvalho('animal:$animalId', price);
+        if (r is BuyOk) await _addAnimal(animalId, garden);
+        return r;
+      });
+
+  /// Pacote pago que a pessoa preferiu liberar com orvalho.
+  Future<BuyResult> unlockPackWithOrvalho(String packId, int price) =>
+      buyWithOrvalho('pacote:$packId', price);
+
   /// Compra de personagem: só depois de liberado pela leitura.
   Future<BuyResult> buyCharacter(String characterId) =>
       db.transaction(() async {

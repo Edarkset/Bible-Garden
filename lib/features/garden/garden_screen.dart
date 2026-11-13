@@ -10,6 +10,7 @@ import 'package:bible_garden/data/repositories/garden_repository.dart';
 import 'package:bible_garden/features/common/labels.dart';
 import 'package:bible_garden/features/garden/garden_state.dart';
 import 'package:bible_garden/features/garden/garden_view.dart';
+import 'package:bible_garden/features/garden/today_card.dart';
 import 'package:bible_garden/features/reading/reader_screen.dart';
 import 'package:bible_garden/game/logic/garden_layout.dart';
 import 'package:bible_garden/l10n/gen/app_localizations.dart';
@@ -168,6 +169,16 @@ class _GardenScreenState extends ConsumerState<GardenScreen> {
       appBar: AppBar(
         title: Text(t.gardenTitle),
         actions: [
+          IconButton(
+            tooltip: t.navCustomize,
+            icon: const Icon(Icons.brush_outlined),
+            onPressed: () => context.push('/personalizar'),
+          ),
+          IconButton(
+            tooltip: t.navSettings,
+            icon: const Icon(Icons.settings_outlined),
+            onPressed: () => context.push('/ajustes'),
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.only(right: 16),
@@ -216,6 +227,8 @@ class _GardenScreenState extends ConsumerState<GardenScreen> {
               ),
             ),
             if (_editing) _tray(t, content),
+            const SizedBox(height: 8),
+            const TodayCard(),
             const SizedBox(height: 8),
             TextButton(
               onPressed: () => context.push('/validacao'),

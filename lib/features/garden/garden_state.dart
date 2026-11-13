@@ -5,6 +5,7 @@ import 'package:bible_garden/core/growth.dart';
 import 'package:bible_garden/data/content/content.dart';
 import 'package:bible_garden/data/repositories/garden_repository.dart';
 import 'package:bible_garden/data/sprites/sprite_manifest.dart';
+import 'package:bible_garden/features/shop/purchase_providers.dart';
 import 'package:bible_garden/game/garden_snapshot.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show StreamProviderFamily;
@@ -31,7 +32,9 @@ Future<GardenSnapshot> buildSnapshot({
   required String book,
   required int chapters,
   bool raining = false,
+  String? previewPack,
 }) async {
+  final owned = await repo.ownedItems();
   final garden = content.livro(book);
   final species = await repo.setting('especie.$book') ?? garden?.arvore;
   final read = await repo.readChapters(book);
@@ -66,6 +69,11 @@ Future<GardenSnapshot> buildSnapshot({
     ],
     raining: raining,
     ebenezerStones: await repo.ebenezerCount(),
+    packs: {
+      for (final i in owned)
+        if (i.startsWith('pacote:')) i.substring(7),
+      ?previewPack,
+    },
   );
 }
 
@@ -90,6 +98,7 @@ final StreamProviderFamily<GardenSnapshot, String> gardenSnapshotProvider =
       final chapters =
           ref.watch(bibleIndexProvider).livro(book)?.capitulos ?? 1;
       final raining = ref.watch(welcomeRainProvider);
+      final preview = ref.watch(packPreviewProvider);
       Future<GardenSnapshot> build() => buildSnapshot(
         repo: repo,
         content: content,
@@ -97,6 +106,7 @@ final StreamProviderFamily<GardenSnapshot, String> gardenSnapshotProvider =
         book: book,
         chapters: chapters,
         raining: raining,
+        previewPack: preview,
       );
       final out = StreamController<GardenSnapshot>();
       var pending = false;

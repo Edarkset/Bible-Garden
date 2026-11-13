@@ -29,6 +29,18 @@ class GroundComponent extends PositionComponent with TapCallbacks {
 
   int ebenezer = 0;
 
+  /// Pacotes visuais: 'cerrado' (grama dourada), 'cascata', 'natal'.
+  Set<String> packs = const {};
+  double _t = 0;
+
+  static final Paint _cerradoA = Paint()..color = const Color(0xFFB9B062);
+  static final Paint _cerradoB = Paint()..color = const Color(0xFFAFA65A);
+  static final Paint _fall = Paint()..color = const Color(0xFF8FD0E8);
+  static final Paint _light = Paint();
+
+  @override
+  void update(double dt) => _t += dt;
+
   @override
   void render(Canvas canvas) {
     const t = GardenLayout.tilePx;
@@ -36,7 +48,13 @@ class GroundComponent extends PositionComponent with TapCallbacks {
       for (var x = 0; x < GardenLayout.size; x++) {
         final tile = (x: x, y: y);
         final r = Rect.fromLTWH(x * t, y * t, t, t);
-        canvas.drawRect(r, (x + y).isEven ? _grassA : _grassB);
+        final cerrado = packs.contains('cerrado');
+        canvas.drawRect(
+          r,
+          (x + y).isEven
+              ? (cerrado ? _cerradoA : _grassA)
+              : (cerrado ? _cerradoB : _grassB),
+        );
         if (GardenLayout.isPath(tile)) {
           canvas.drawRRect(
             RRect.fromRectAndRadius(r.deflate(3), const Radius.circular(4)),
@@ -64,6 +82,30 @@ class GroundComponent extends PositionComponent with TapCallbacks {
       ),
       _edge,
     );
+    if (packs.contains('cascata')) {
+      // cascata caindo pela borda esquerda até o chão
+      for (var i = 0; i < 4; i++) {
+        final y = ((_t * 40 + i * 20) % 60) + 4;
+        canvas.drawRect(Rect.fromLTWH(1, y, 4, 8), _fall);
+      }
+    }
+    if (packs.contains('natal')) {
+      const colors = [Color(0xFFE2556B), Color(0xFFF0C24E), Color(0xFF7CC3D2)];
+      for (var i = 0; i < 24; i++) {
+        final along = i / 24 * 4;
+        final side = along.floor();
+        final f = along - side;
+        final p = switch (side) {
+          0 => Offset(f * size.x, 1),
+          1 => Offset(size.x - 1, f * size.y),
+          2 => Offset(size.x * (1 - f), size.y - 1),
+          _ => Offset(1, size.y * (1 - f)),
+        };
+        final on = ((_t * 2).floor() + i).isEven;
+        _light.color = colors[i % 3].withValues(alpha: on ? 1 : 0.35);
+        canvas.drawCircle(p, 1.6, _light);
+      }
+    }
   }
 
   @override

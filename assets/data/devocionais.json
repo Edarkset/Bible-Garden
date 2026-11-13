@@ -1,0 +1,175 @@
+{
+ "aviso": "Perguntas e aplicações são rascunhos para revisão pastoral. O texto bíblico não fica aqui: é lido da Bíblia Livre pela referência.",
+ "temas": [
+  "luz",
+  "semente",
+  "caminho",
+  "agua",
+  "pao",
+  "pastor",
+  "videira",
+  "estrela"
+ ],
+ "devocionais": [
+  {
+   "id": "luz-1",
+   "tema": "luz",
+   "livro": "GEN",
+   "capitulo": 1,
+   "de": 3,
+   "ate": 3,
+   "pergunta": "Onde você precisa que a luz de Deus chegue hoje?",
+   "aplicacao": "Abra a janela pela manhã e agradeça por um começo novo."
+  },
+  {
+   "id": "luz-2",
+   "tema": "luz",
+   "livro": "PSA",
+   "capitulo": 119,
+   "de": 105,
+   "ate": 105,
+   "pergunta": "Que passo do seu caminho está escuro agora?",
+   "aplicacao": "Leia um capítulo antes de decidir algo importante hoje."
+  },
+  {
+   "id": "semente-1",
+   "tema": "semente",
+   "livro": "MAT",
+   "capitulo": 13,
+   "de": 31,
+   "ate": 32,
+   "pergunta": "Que coisa pequena Deus pode estar fazendo crescer em você?",
+   "aplicacao": "Faça hoje um gesto pequeno de bondade, sem esperar retorno."
+  },
+  {
+   "id": "semente-2",
+   "tema": "semente",
+   "livro": "MRK",
+   "capitulo": 4,
+   "de": 26,
+   "ate": 27,
+   "pergunta": "O que você pode confiar a Deus, mesmo sem ver o crescimento?",
+   "aplicacao": "Escreva um pedido no baú e entregue-o em oração."
+  },
+  {
+   "id": "caminho-1",
+   "tema": "caminho",
+   "livro": "JHN",
+   "capitulo": 14,
+   "de": 6,
+   "ate": 6,
+   "pergunta": "Por qual caminho você tem tentado chegar sozinho?",
+   "aplicacao": "Comece o dia pedindo direção antes de começar as tarefas."
+  },
+  {
+   "id": "caminho-2",
+   "tema": "caminho",
+   "livro": "PRO",
+   "capitulo": 3,
+   "de": 5,
+   "ate": 6,
+   "pergunta": "Em que decisão você tem se apoiado só no próprio entendimento?",
+   "aplicacao": "Converse com alguém de confiança sobre uma escolha que está pendente."
+  },
+  {
+   "id": "agua-1",
+   "tema": "agua",
+   "livro": "PSA",
+   "capitulo": 1,
+   "de": 3,
+   "ate": 3,
+   "pergunta": "De onde vêm as águas que sustentam suas raízes?",
+   "aplicacao": "Separe um horário fixo para a leitura nesta semana."
+  },
+  {
+   "id": "agua-2",
+   "tema": "agua",
+   "livro": "JHN",
+   "capitulo": 4,
+   "de": 14,
+   "ate": 14,
+   "pergunta": "Que sede o mundo não tem conseguido matar em você?",
+   "aplicacao": "Troque um momento de distração por alguns minutos de silêncio."
+  },
+  {
+   "id": "pao-1",
+   "tema": "pao",
+   "livro": "JHN",
+   "capitulo": 6,
+   "de": 35,
+   "ate": 35,
+   "pergunta": "Do que a sua alma tem fome hoje?",
+   "aplicacao": "Antes de uma refeição, faça uma oração de gratidão sem pressa."
+  },
+  {
+   "id": "pao-2",
+   "tema": "pao",
+   "livro": "MAT",
+   "capitulo": 6,
+   "de": 11,
+   "ate": 11,
+   "pergunta": "O que é o \"pão de cada dia\" de que você precisa hoje?",
+   "aplicacao": "Divida algo que você tem com alguém que precisa."
+  },
+  {
+   "id": "pastor-1",
+   "tema": "pastor",
+   "livro": "PSA",
+   "capitulo": 23,
+   "de": 1,
+   "ate": 1,
+   "pergunta": "Em que área você sente que algo falta?",
+   "aplicacao": "Liste três cuidados de Deus que você recebeu esta semana."
+  },
+  {
+   "id": "pastor-2",
+   "tema": "pastor",
+   "livro": "JHN",
+   "capitulo": 10,
+   "de": 11,
+   "ate": 11,
+   "pergunta": "Como é ser cuidado por um pastor que dá a vida?",
+   "aplicacao": "Procure alguém que está sozinho e ofereça companhia."
+  },
+  {
+   "id": "videira-1",
+   "tema": "videira",
+   "livro": "JHN",
+   "capitulo": 15,
+   "de": 5,
+   "ate": 5,
+   "pergunta": "O que você tem tentado fazer longe da videira?",
+   "aplicacao": "Comece uma tarefa difícil de hoje com uma oração curta."
+  },
+  {
+   "id": "videira-2",
+   "tema": "videira",
+   "livro": "GAL",
+   "capitulo": 5,
+   "de": 22,
+   "ate": 23,
+   "pergunta": "Qual fruto do Espírito você mais deseja ver crescer?",
+   "aplicacao": "Escolha um desses frutos e pratique-o de propósito hoje."
+  },
+  {
+   "id": "estrela-1",
+   "tema": "estrela",
+   "livro": "REV",
+   "capitulo": 22,
+   "de": 16,
+   "ate": 16,
+   "pergunta": "O que muda saber que a manhã vem depois da noite?",
+   "aplicacao": "Antes de dormir, lembre um sinal de esperança do seu dia."
+  },
+  {
+   "id": "estrela-2",
+   "tema": "estrela",
+   "livro": "LAM",
+   "capitulo": 3,
+   "de": 22,
+   "ate": 23,
+   "pergunta": "Que misericórdia nova você percebe nesta manhã?",
+   "aplicacao": "Comece o dia agradecendo antes de pegar o celular."
+  }
+ ]
+}

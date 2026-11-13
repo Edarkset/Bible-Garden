@@ -2,6 +2,7 @@ import 'package:bible_garden/app/providers.dart';
 import 'package:bible_garden/data/bible/bible_models.dart';
 import 'package:bible_garden/data/bible/bible_repository.dart';
 import 'package:bible_garden/data/content/content.dart';
+import 'package:bible_garden/data/content/devotionals.dart';
 import 'package:bible_garden/data/db/app_database.dart';
 import 'package:bible_garden/data/db/db_open.dart';
 import 'package:bible_garden/data/sprites/sprite_manifest.dart';
@@ -19,6 +20,7 @@ Future<List<Override>> bootstrap({
     b.loadString('assets/data/conteudo.json'),
     BibleRepository.loadIndex(bundle: b),
     b.loadString('assets/data/sprites_manifest.json'),
+    b.loadString('assets/data/devocionais.json'),
   ]);
   return [
     databaseProvider.overrideWithValue(results[0] as AppDatabase),
@@ -26,6 +28,9 @@ Future<List<Override>> bootstrap({
     bibleIndexProvider.overrideWithValue(results[2] as TranslationIndex),
     spriteManifestProvider.overrideWithValue(
       SpriteManifest.parse(results[3] as String),
+    ),
+    devotionalsProvider.overrideWithValue(
+      Devotional.parseAll(results[4] as String),
     ),
   ];
 }

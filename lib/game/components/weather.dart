@@ -13,6 +13,9 @@ class WeatherLayer extends PositionComponent {
   final math.Random rng;
   bool raining = false;
   bool reducedMotion = false;
+
+  /// Pacote 'noite-estrelada': estrelas e vaga-lumes azulados.
+  bool starryNight = false;
   DayCycle day = const DayCycle(12);
   double _t = 0;
 
@@ -60,6 +63,17 @@ class WeatherLayer extends PositionComponent {
         canvas.drawLine(d, d.translate(-1.5, 6), _drop);
       }
     }
+    if (day.isNight && !raining && starryNight) {
+      for (var i = 0; i < 18; i++) {
+        final s = Offset((i * 37) % size.x, (i * 53) % (size.y * 0.5));
+        final tw = 0.5 + 0.5 * math.sin(_t * 1.5 + i);
+        canvas.drawCircle(
+          s,
+          0.8,
+          Paint()..color = Color.fromRGBO(220, 230, 255, 0.4 + 0.6 * tw),
+        );
+      }
+    }
     if (day.isNight && !raining) {
       for (var i = 0; i < _flies.length; i++) {
         final f = _flies[i];
@@ -67,9 +81,9 @@ class WeatherLayer extends PositionComponent {
             ? f
             : f.translate(math.sin(_t + i) * 6, math.cos(_t * 0.7 + i) * 4);
         _fly.color = Color.fromRGBO(
-          255,
-          242,
-          160,
+          starryNight ? 170 : 255,
+          starryNight ? 210 : 242,
+          starryNight ? 255 : 160,
           0.4 + 0.6 * (0.5 + 0.5 * math.sin(_t * 2 + i)),
         );
         canvas.drawCircle(o, 1.4, _fly);
