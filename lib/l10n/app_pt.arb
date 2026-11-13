@@ -1,19 +1,427 @@
 {
   "@@locale": "pt",
   "appTitle": "Bible Garden",
-  "@appTitle": { "description": "Nome do app." },
+  "@appTitle": {
+    "description": "Nome do app."
+  },
   "gardenTitle": "Meu jardim",
-  "@gardenTitle": { "description": "Título da tela do jardim." },
+  "@gardenTitle": {
+    "description": "Título da tela do jardim."
+  },
   "gardenPlaceholder": "Seu jardim vai crescer aqui com a leitura, a oração e o devocional.",
-  "@gardenPlaceholder": { "description": "Texto provisório da tela inicial (M0)." },
+  "@gardenPlaceholder": {
+    "description": "Texto provisório da tela inicial (M0)."
+  },
   "devBadge": "MOD",
-  "@devBadge": { "description": "Selo do flavor de testes. Curto." },
+  "@devBadge": {
+    "description": "Selo do flavor de testes. Curto."
+  },
   "devToolsTitle": "Ferramentas da versão mod",
-  "@devToolsTitle": { "description": "Título da tela de testes, só no flavor dev." },
+  "@devToolsTitle": {
+    "description": "Título da tela de testes, só no flavor dev."
+  },
   "devToolsOpen": "Abrir ferramentas de teste",
-  "@devToolsOpen": { "description": "Botão que abre a tela de testes, só no flavor dev." },
+  "@devToolsOpen": {
+    "description": "Botão que abre a tela de testes, só no flavor dev."
+  },
   "devToolsEmpty": "As ferramentas de teste chegam junto com cada marco.",
-  "@devToolsEmpty": { "description": "Texto provisório da tela de testes." },
+  "@devToolsEmpty": {
+    "description": "Texto provisório da tela de testes."
+  },
   "bibleCredit": "Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018 — CC BY 4.0 Brasil.",
-  "@bibleCredit": { "description": "Crédito obrigatório da tradução. Não traduzir." }
+  "@bibleCredit": {
+    "description": "Crédito obrigatório da tradução. Não traduzir."
+  },
+  "navGarden": "Jardim",
+  "@navGarden": {
+    "description": "Aba do jardim."
+  },
+  "navRead": "Ler",
+  "@navRead": {
+    "description": "Aba de leitura."
+  },
+  "navPray": "Orar",
+  "@navPray": {
+    "description": "Aba de oração."
+  },
+  "navForest": "Floresta",
+  "@navForest": {
+    "description": "Aba da floresta."
+  },
+  "navShop": "Cuidar",
+  "@navShop": {
+    "description": "Aba da loja (cuidar do jardim)."
+  },
+  "readTitle": "Ler a Bíblia",
+  "@readTitle": {
+    "description": "Título da lista de livros."
+  },
+  "readChaptersOf": "{read} de {total} capítulos",
+  "@readChaptersOf": {
+    "description": "Progresso de um livro.",
+    "placeholders": {
+      "read": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "readNoText": "Esta tradução não traz este livro. Escolha outra tradução quando houver uma com licença.",
+  "@readNoText": {
+    "description": "Livro deuterocanônico sem texto na Bíblia Livre."
+  },
+  "readChapterLabel": "Capítulo {n}",
+  "@readChapterLabel": {
+    "description": "Rótulo de capítulo.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readChapterRead": "Capítulo {n}, lido",
+  "@readChapterRead": {
+    "description": "Rótulo de leitor de tela para capítulo lido.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readMinutes": "~{n} min",
+  "@readMinutes": {
+    "description": "Estimativa de minutos.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readSection": "Canteiro {name}",
+  "@readSection": {
+    "description": "Nome do canteiro (unidade literária).",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "readFinish": "Concluir capítulo",
+  "@readFinish": {
+    "description": "Botão que valida a leitura."
+  },
+  "readPrinted": "Li na minha Bíblia",
+  "@readPrinted": {
+    "description": "Registrar leitura feita na Bíblia impressa."
+  },
+  "readPrintedConfirm": "Você leu {ref} na sua Bíblia impressa? O registro é por confiança.",
+  "@readPrintedConfirm": {
+    "description": "Confirmação da leitura impressa.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "readPrintedTooSoon": "Para registrar outro capítulo lido na Bíblia impressa, espere o tempo de uma leitura com calma.",
+  "@readPrintedTooSoon": {
+    "description": "Limite de ritmo da leitura impressa."
+  },
+  "readConfirm": "Confirmar",
+  "@readConfirm": {
+    "description": "Botão confirmar."
+  },
+  "readCancel": "Cancelar",
+  "@readCancel": {
+    "description": "Botão cancelar."
+  },
+  "readFontBigger": "Aumentar letra",
+  "@readFontBigger": {
+    "description": "Rótulo do botão de fonte maior."
+  },
+  "readFontSmaller": "Diminuir letra",
+  "@readFontSmaller": {
+    "description": "Rótulo do botão de fonte menor."
+  },
+  "readTheme": "Tema de leitura",
+  "@readTheme": {
+    "description": "Rótulo do botão de tema."
+  },
+  "readThemeLight": "Claro",
+  "@readThemeLight": {
+    "description": "Tema claro."
+  },
+  "readThemeSepia": "Sépia",
+  "@readThemeSepia": {
+    "description": "Tema sépia."
+  },
+  "readThemeNight": "Noturno",
+  "@readThemeNight": {
+    "description": "Tema noturno."
+  },
+  "readTranslation": "Tradução",
+  "@readTranslation": {
+    "description": "Seletor de tradução."
+  },
+  "readTranslationPending": "Licença aberta, ainda não importada. Por enquanto você lê na Bíblia Livre.",
+  "@readTranslationPending": {
+    "description": "Tradução aberta não importada."
+  },
+  "readTranslationLicense": "Esta tradução precisa de licença do detentor. Sua preferência foi salva e o texto continua na Bíblia Livre.",
+  "@readTranslationLicense": {
+    "description": "Tradução que exige contrato."
+  },
+  "readPaused": "Leitura pausada. Toque para continuar.",
+  "@readPaused": {
+    "description": "Aviso de pausa por inatividade."
+  },
+  "readRejectFast": "Parece que você passou rápido por alguns trechos, marcados com uma linha dourada ao lado. Que tal voltar a eles com calma? Não há pressa: o jardim espera.",
+  "@readRejectFast": {
+    "description": "Recusa: blocos rápidos demais."
+  },
+  "readRejectTime": "Fique mais um pouco com o texto. O capítulo conta quando o tempo de leitura combina com uma leitura atenta.",
+  "@readRejectTime": {
+    "description": "Recusa: tempo total curto."
+  },
+  "readRejectRhythm": "A rolagem pareceu automática: velocidade constante e nenhuma pausa. Se você estava lendo, role com o dedo no seu próprio ritmo.",
+  "@readRejectRhythm": {
+    "description": "Recusa: ritmo."
+  },
+  "readRejectPresence": "Não percebemos nenhum toque seu durante a leitura. Role o texto com o dedo e o capítulo vai contar normalmente.",
+  "@readRejectPresence": {
+    "description": "Recusa: presença."
+  },
+  "readSensorOn": "Sensor de movimento ligado · desligar",
+  "@readSensorOn": {
+    "description": "Sensor ligado."
+  },
+  "readSensorOff": "Usar sensor de movimento (opcional)",
+  "@readSensorOff": {
+    "description": "Ligar sensor."
+  },
+  "readSensorInfo": "Ele só percebe se o celular está na mão. Nada sai do aparelho.",
+  "@readSensorInfo": {
+    "description": "Explicação do sensor."
+  },
+  "readSimulate": "Simular leitura atenta (mod)",
+  "@readSimulate": {
+    "description": "Botão da versão mod."
+  },
+  "readNote": "Nota",
+  "@readNote": {
+    "description": "Rótulo de nota de rodapé."
+  },
+  "readQuote": "Citação de {ref}",
+  "@readQuote": {
+    "description": "Referência citada no versículo.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "readDone": "{ref} lido com calma.",
+  "@readDone": {
+    "description": "Mensagem de capítulo concluído.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "readSprouted": "Sua semente brotou. É assim que tudo começa.",
+  "@readSprouted": {
+    "description": "Primeiro capítulo de um livro."
+  },
+  "readNewLeaf": "Uma folha nova apareceu.",
+  "@readNewLeaf": {
+    "description": "Capítulo concluído."
+  },
+  "readStageReached": "Sua planta agora é: {stage}.",
+  "@readStageReached": {
+    "description": "Mudança de estágio.",
+    "placeholders": {
+      "stage": {
+        "type": "String"
+      }
+    }
+  },
+  "readOrvalho": "+{n} de orvalho",
+  "@readOrvalho": {
+    "description": "Orvalho ganho.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readCharacterUnlocked": "{name} pode morar no seu jardim. Veja em Cuidar.",
+  "@readCharacterUnlocked": {
+    "description": "Personagem liberado.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "readAnimalArrived": "{name} chegou ao seu jardim.",
+  "@readAnimalArrived": {
+    "description": "Animal do livro chegou.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "readCrownStone": "Você ganhou uma pedra da coroa.",
+  "@readCrownStone": {
+    "description": "Pedra da coroa."
+  },
+  "readBookDone": "Você concluiu {book}. Todos os seres do jardim fazem festa.",
+  "@readBookDone": {
+    "description": "Livro concluído.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      }
+    }
+  },
+  "readNextStage": "Próximo estágio em {n, plural, =1{1 capítulo} other{{n} capítulos}}",
+  "@readNextStage": {
+    "description": "Antecipação.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readHowValidated": "Como sua última leitura foi validada",
+  "@readHowValidated": {
+    "description": "Título da tela de transparência."
+  },
+  "readValidationBody": "Tempo: {min} min · {ppm} palavras por minuto\nBlocos lidos com calma: {ok} de {total}\nTempo parado lendo: {pausas}%\nToques e rolagens: {toques}",
+  "@readValidationBody": {
+    "description": "Resumo da validação.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "ppm": {
+        "type": "int"
+      },
+      "ok": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "pausas": {
+        "type": "int"
+      },
+      "toques": {
+        "type": "int"
+      }
+    }
+  },
+  "readValidationHand": "Celular na mão: {pct}% do tempo",
+  "@readValidationHand": {
+    "description": "Sensor.",
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
+  "readValidationPrivacy": "Tudo isso é calculado e guardado só no seu aparelho.",
+  "@readValidationPrivacy": {
+    "description": "Privacidade da validação."
+  },
+  "readValidationNone": "Ainda não há leitura validada.",
+  "@readValidationNone": {
+    "description": "Sem validação."
+  },
+  "commonBack": "Voltar",
+  "@commonBack": {
+    "description": "Voltar."
+  },
+  "commonClose": "Fechar",
+  "@commonClose": {
+    "description": "Fechar."
+  },
+  "commonError": "Algo não saiu como esperado. Tente de novo.",
+  "@commonError": {
+    "description": "Erro genérico gentil."
+  },
+  "stageSemente": "Semente",
+  "@stageSemente": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageBroto": "Broto",
+  "@stageBroto": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageMuda": "Muda",
+  "@stageMuda": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageArvore": "Árvore",
+  "@stageArvore": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageFrutifera": "Árvore frutífera",
+  "@stageFrutifera": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageFlorida": "Árvore florida",
+  "@stageFlorida": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stagePlena": "Árvore plena",
+  "@stagePlena": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "gardenOrvalho": "{n} de orvalho",
+  "@gardenOrvalho": {
+    "description": "Saldo de orvalho.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "gardenReadNext": "Ler {ref} · ~{min} min",
+  "@gardenReadNext": {
+    "description": "Botão principal.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      },
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "gardenBookDone": "Você leu {book} inteiro. Escolha outro livro em Ler.",
+  "@gardenBookDone": {
+    "description": "Livro completo.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenStage": "{book}: {stage}",
+  "@gardenStage": {
+    "description": "Estágio da planta do livro.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      },
+      "stage": {
+        "type": "String"
+      }
+    }
+  }
 }
