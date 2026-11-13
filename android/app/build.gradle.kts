@@ -28,6 +28,11 @@ android {
         versionName = flutter.versionName
     }
 
+    // Necessário para o nome do app por flavor (resValue).
+    buildFeatures {
+        resValues = true
+    }
+
     // dev = "versão mod" (ferramentas de teste); prod = versão das lojas.
     flavorDimensions += "ambiente"
     productFlavors {
