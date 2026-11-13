@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: "3.50.0"
+
+jobs:
+  analisar-e-testar:
+    name: Análise e testes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Gabarito JavaScript (regras do protótipo)
+        run: node --test docs/referencia/core.test.js
+      - run: flutter pub get
+      - name: Formatação
+        run: dart format --output=none --set-exit-if-changed lib test tool
+      - run: flutter analyze
+      - run: flutter test
+      - name: Arte x manifesto
+        run: dart run tool/check_assets.dart
+
+  android:
+    name: Build Android (dev e prod)
+    needs: analisar-e-testar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter build apk --flavor prod --release
+      - run: flutter build apk --flavor dev --release
+      - name: Versão mod fora do build prod
+        run: >
+          tool/check_prod_clean.sh
+          build/app/outputs/flutter-apk/app-prod-release.apk
+          build/app/outputs/flutter-apk/app-dev-release.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apks
+          path: build/app/outputs/flutter-apk/*.apk
+          retention-days: 7
+
+  ios:
+    name: Build iOS (sem assinatura)
+    needs: analisar-e-testar
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter build ios --flavor prod --release --no-codesign
+      - run: flutter build ios --flavor dev --debug --no-codesign
