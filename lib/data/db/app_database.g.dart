@@ -4,7 +4,7 @@ part of 'app_database.dart';
 
 // ignore_for_file: type=lint
 class $ChapterReadsTable extends ChapterReads
-    with TableInfo<$ChapterReadsTable, ChapterRead> {
+    with TableInfo<$ChapterReadsTable, ChapterReadRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -65,7 +65,7 @@ class $ChapterReadsTable extends ChapterReads
   static const String $name = 'chapter_reads';
   @override
   VerificationContext validateIntegrity(
-    Insertable<ChapterRead> instance, {
+    Insertable<ChapterReadRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -109,9 +109,9 @@ class $ChapterReadsTable extends ChapterReads
   @override
   Set<GeneratedColumn> get $primaryKey => {book, chapter};
   @override
-  ChapterRead map(Map<String, dynamic> data, {String? tablePrefix}) {
+  ChapterReadRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return ChapterRead(
+    return ChapterReadRow(
       book: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}book'],
@@ -137,12 +137,12 @@ class $ChapterReadsTable extends ChapterReads
   }
 }
 
-class ChapterRead extends DataClass implements Insertable<ChapterRead> {
+class ChapterReadRow extends DataClass implements Insertable<ChapterReadRow> {
   final String book;
   final int chapter;
   final DateTime firstReadAt;
   final int timesRead;
-  const ChapterRead({
+  const ChapterReadRow({
     required this.book,
     required this.chapter,
     required this.firstReadAt,
@@ -167,12 +167,12 @@ class ChapterRead extends DataClass implements Insertable<ChapterRead> {
     );
   }
 
-  factory ChapterRead.fromJson(
+  factory ChapterReadRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ChapterRead(
+    return ChapterReadRow(
       book: serializer.fromJson<String>(json['book']),
       chapter: serializer.fromJson<int>(json['chapter']),
       firstReadAt: serializer.fromJson<DateTime>(json['firstReadAt']),
@@ -190,19 +190,19 @@ class ChapterRead extends DataClass implements Insertable<ChapterRead> {
     };
   }
 
-  ChapterRead copyWith({
+  ChapterReadRow copyWith({
     String? book,
     int? chapter,
     DateTime? firstReadAt,
     int? timesRead,
-  }) => ChapterRead(
+  }) => ChapterReadRow(
     book: book ?? this.book,
     chapter: chapter ?? this.chapter,
     firstReadAt: firstReadAt ?? this.firstReadAt,
     timesRead: timesRead ?? this.timesRead,
   );
-  ChapterRead copyWithCompanion(ChapterReadsCompanion data) {
-    return ChapterRead(
+  ChapterReadRow copyWithCompanion(ChapterReadsCompanion data) {
+    return ChapterReadRow(
       book: data.book.present ? data.book.value : this.book,
       chapter: data.chapter.present ? data.chapter.value : this.chapter,
       firstReadAt: data.firstReadAt.present
@@ -214,7 +214,7 @@ class ChapterRead extends DataClass implements Insertable<ChapterRead> {
 
   @override
   String toString() {
-    return (StringBuffer('ChapterRead(')
+    return (StringBuffer('ChapterReadRow(')
           ..write('book: $book, ')
           ..write('chapter: $chapter, ')
           ..write('firstReadAt: $firstReadAt, ')
@@ -228,14 +228,14 @@ class ChapterRead extends DataClass implements Insertable<ChapterRead> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is ChapterRead &&
+      (other is ChapterReadRow &&
           other.book == this.book &&
           other.chapter == this.chapter &&
           other.firstReadAt == this.firstReadAt &&
           other.timesRead == this.timesRead);
 }
 
-class ChapterReadsCompanion extends UpdateCompanion<ChapterRead> {
+class ChapterReadsCompanion extends UpdateCompanion<ChapterReadRow> {
   final Value<String> book;
   final Value<int> chapter;
   final Value<DateTime> firstReadAt;
@@ -257,7 +257,7 @@ class ChapterReadsCompanion extends UpdateCompanion<ChapterRead> {
   }) : book = Value(book),
        chapter = Value(chapter),
        firstReadAt = Value(firstReadAt);
-  static Insertable<ChapterRead> custom({
+  static Insertable<ChapterReadRow> custom({
     Expression<String>? book,
     Expression<int>? chapter,
     Expression<DateTime>? firstReadAt,
@@ -323,230 +323,8 @@ class ChapterReadsCompanion extends UpdateCompanion<ChapterRead> {
   }
 }
 
-class $BookCompletionsTable extends BookCompletions
-    with TableInfo<$BookCompletionsTable, BookCompletion> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $BookCompletionsTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _bookMeta = const VerificationMeta('book');
-  @override
-  late final GeneratedColumn<String> book = GeneratedColumn<String>(
-    'book',
-    aliasedName,
-    false,
-    additionalChecks: GeneratedColumn.checkTextLength(
-      minTextLength: 3,
-      maxTextLength: 3,
-    ),
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _completionsMeta = const VerificationMeta(
-    'completions',
-  );
-  @override
-  late final GeneratedColumn<int> completions = GeneratedColumn<int>(
-    'completions',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultValue: const Constant(0),
-  );
-  @override
-  List<GeneratedColumn> get $columns => [book, completions];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'book_completions';
-  @override
-  VerificationContext validateIntegrity(
-    Insertable<BookCompletion> instance, {
-    bool isInserting = false,
-  }) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('book')) {
-      context.handle(
-        _bookMeta,
-        book.isAcceptableOrUnknown(data['book']!, _bookMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_bookMeta);
-    }
-    if (data.containsKey('completions')) {
-      context.handle(
-        _completionsMeta,
-        completions.isAcceptableOrUnknown(
-          data['completions']!,
-          _completionsMeta,
-        ),
-      );
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {book};
-  @override
-  BookCompletion map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return BookCompletion(
-      book: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}book'],
-      )!,
-      completions: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}completions'],
-      )!,
-    );
-  }
-
-  @override
-  $BookCompletionsTable createAlias(String alias) {
-    return $BookCompletionsTable(attachedDatabase, alias);
-  }
-}
-
-class BookCompletion extends DataClass implements Insertable<BookCompletion> {
-  final String book;
-  final int completions;
-  const BookCompletion({required this.book, required this.completions});
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['book'] = Variable<String>(book);
-    map['completions'] = Variable<int>(completions);
-    return map;
-  }
-
-  BookCompletionsCompanion toCompanion(bool nullToAbsent) {
-    return BookCompletionsCompanion(
-      book: Value(book),
-      completions: Value(completions),
-    );
-  }
-
-  factory BookCompletion.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return BookCompletion(
-      book: serializer.fromJson<String>(json['book']),
-      completions: serializer.fromJson<int>(json['completions']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'book': serializer.toJson<String>(book),
-      'completions': serializer.toJson<int>(completions),
-    };
-  }
-
-  BookCompletion copyWith({String? book, int? completions}) => BookCompletion(
-    book: book ?? this.book,
-    completions: completions ?? this.completions,
-  );
-  BookCompletion copyWithCompanion(BookCompletionsCompanion data) {
-    return BookCompletion(
-      book: data.book.present ? data.book.value : this.book,
-      completions: data.completions.present
-          ? data.completions.value
-          : this.completions,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('BookCompletion(')
-          ..write('book: $book, ')
-          ..write('completions: $completions')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(book, completions);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is BookCompletion &&
-          other.book == this.book &&
-          other.completions == this.completions);
-}
-
-class BookCompletionsCompanion extends UpdateCompanion<BookCompletion> {
-  final Value<String> book;
-  final Value<int> completions;
-  final Value<int> rowid;
-  const BookCompletionsCompanion({
-    this.book = const Value.absent(),
-    this.completions = const Value.absent(),
-    this.rowid = const Value.absent(),
-  });
-  BookCompletionsCompanion.insert({
-    required String book,
-    this.completions = const Value.absent(),
-    this.rowid = const Value.absent(),
-  }) : book = Value(book);
-  static Insertable<BookCompletion> custom({
-    Expression<String>? book,
-    Expression<int>? completions,
-    Expression<int>? rowid,
-  }) {
-    return RawValuesInsertable({
-      if (book != null) 'book': book,
-      if (completions != null) 'completions': completions,
-      if (rowid != null) 'rowid': rowid,
-    });
-  }
-
-  BookCompletionsCompanion copyWith({
-    Value<String>? book,
-    Value<int>? completions,
-    Value<int>? rowid,
-  }) {
-    return BookCompletionsCompanion(
-      book: book ?? this.book,
-      completions: completions ?? this.completions,
-      rowid: rowid ?? this.rowid,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (book.present) {
-      map['book'] = Variable<String>(book.value);
-    }
-    if (completions.present) {
-      map['completions'] = Variable<int>(completions.value);
-    }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('BookCompletionsCompanion(')
-          ..write('book: $book, ')
-          ..write('completions: $completions, ')
-          ..write('rowid: $rowid')
-          ..write(')'))
-        .toString();
-  }
-}
-
 class $ReadingLogTable extends ReadingLog
-    with TableInfo<$ReadingLogTable, ReadingLogData> {
+    with TableInfo<$ReadingLogTable, ReadingLogRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -642,7 +420,7 @@ class $ReadingLogTable extends ReadingLog
   static const String $name = 'reading_log';
   @override
   VerificationContext validateIntegrity(
-    Insertable<ReadingLogData> instance, {
+    Insertable<ReadingLogRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -699,9 +477,9 @@ class $ReadingLogTable extends ReadingLog
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  ReadingLogData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  ReadingLogRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return ReadingLogData(
+    return ReadingLogRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -739,7 +517,7 @@ class $ReadingLogTable extends ReadingLog
   }
 }
 
-class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
+class ReadingLogRow extends DataClass implements Insertable<ReadingLogRow> {
   final int id;
   final String book;
   final int chapter;
@@ -751,7 +529,7 @@ class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
 
   /// Resumo da validação em JSON (blocos, pausas, toques, mão).
   final String details;
-  const ReadingLogData({
+  const ReadingLogRow({
     required this.id,
     required this.book,
     required this.chapter,
@@ -785,12 +563,12 @@ class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
     );
   }
 
-  factory ReadingLogData.fromJson(
+  factory ReadingLogRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ReadingLogData(
+    return ReadingLogRow(
       id: serializer.fromJson<int>(json['id']),
       book: serializer.fromJson<String>(json['book']),
       chapter: serializer.fromJson<int>(json['chapter']),
@@ -814,7 +592,7 @@ class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
     };
   }
 
-  ReadingLogData copyWith({
+  ReadingLogRow copyWith({
     int? id,
     String? book,
     int? chapter,
@@ -822,7 +600,7 @@ class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
     double? minutes,
     String? method,
     String? details,
-  }) => ReadingLogData(
+  }) => ReadingLogRow(
     id: id ?? this.id,
     book: book ?? this.book,
     chapter: chapter ?? this.chapter,
@@ -831,8 +609,8 @@ class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
     method: method ?? this.method,
     details: details ?? this.details,
   );
-  ReadingLogData copyWithCompanion(ReadingLogCompanion data) {
-    return ReadingLogData(
+  ReadingLogRow copyWithCompanion(ReadingLogCompanion data) {
+    return ReadingLogRow(
       id: data.id.present ? data.id.value : this.id,
       book: data.book.present ? data.book.value : this.book,
       chapter: data.chapter.present ? data.chapter.value : this.chapter,
@@ -845,7 +623,7 @@ class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
 
   @override
   String toString() {
-    return (StringBuffer('ReadingLogData(')
+    return (StringBuffer('ReadingLogRow(')
           ..write('id: $id, ')
           ..write('book: $book, ')
           ..write('chapter: $chapter, ')
@@ -863,7 +641,7 @@ class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is ReadingLogData &&
+      (other is ReadingLogRow &&
           other.id == this.id &&
           other.book == this.book &&
           other.chapter == this.chapter &&
@@ -873,7 +651,7 @@ class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
           other.details == this.details);
 }
 
-class ReadingLogCompanion extends UpdateCompanion<ReadingLogData> {
+class ReadingLogCompanion extends UpdateCompanion<ReadingLogRow> {
   final Value<int> id;
   final Value<String> book;
   final Value<int> chapter;
@@ -903,7 +681,7 @@ class ReadingLogCompanion extends UpdateCompanion<ReadingLogData> {
        at = Value(at),
        minutes = Value(minutes),
        method = Value(method);
-  static Insertable<ReadingLogData> custom({
+  static Insertable<ReadingLogRow> custom({
     Expression<int>? id,
     Expression<String>? book,
     Expression<int>? chapter,
@@ -986,7 +764,7 @@ class ReadingLogCompanion extends UpdateCompanion<ReadingLogData> {
 }
 
 class $DayActivitiesTable extends DayActivities
-    with TableInfo<$DayActivitiesTable, DayActivity> {
+    with TableInfo<$DayActivitiesTable, DayRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1066,7 +844,7 @@ class $DayActivitiesTable extends DayActivities
   static const String $name = 'day_activities';
   @override
   VerificationContext validateIntegrity(
-    Insertable<DayActivity> instance, {
+    Insertable<DayRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -1112,9 +890,9 @@ class $DayActivitiesTable extends DayActivities
   @override
   Set<GeneratedColumn> get $primaryKey => {day};
   @override
-  DayActivity map(Map<String, dynamic> data, {String? tablePrefix}) {
+  DayRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return DayActivity(
+    return DayRow(
       day: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}day'],
@@ -1144,7 +922,7 @@ class $DayActivitiesTable extends DayActivities
   }
 }
 
-class DayActivity extends DataClass implements Insertable<DayActivity> {
+class DayRow extends DataClass implements Insertable<DayRow> {
   /// Dia ISO local (aaaa-mm-dd).
   final String day;
   final double readMin;
@@ -1154,7 +932,7 @@ class DayActivity extends DataClass implements Insertable<DayActivity> {
   /// Orvalho já creditado neste dia (a porção é calculada de novo e só a
   /// diferença entra no livro-caixa).
   final int porcaoCreditada;
-  const DayActivity({
+  const DayRow({
     required this.day,
     required this.readMin,
     required this.prayMin,
@@ -1182,12 +960,12 @@ class DayActivity extends DataClass implements Insertable<DayActivity> {
     );
   }
 
-  factory DayActivity.fromJson(
+  factory DayRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return DayActivity(
+    return DayRow(
       day: serializer.fromJson<String>(json['day']),
       readMin: serializer.fromJson<double>(json['readMin']),
       prayMin: serializer.fromJson<double>(json['prayMin']),
@@ -1207,21 +985,21 @@ class DayActivity extends DataClass implements Insertable<DayActivity> {
     };
   }
 
-  DayActivity copyWith({
+  DayRow copyWith({
     String? day,
     double? readMin,
     double? prayMin,
     bool? devocional,
     int? porcaoCreditada,
-  }) => DayActivity(
+  }) => DayRow(
     day: day ?? this.day,
     readMin: readMin ?? this.readMin,
     prayMin: prayMin ?? this.prayMin,
     devocional: devocional ?? this.devocional,
     porcaoCreditada: porcaoCreditada ?? this.porcaoCreditada,
   );
-  DayActivity copyWithCompanion(DayActivitiesCompanion data) {
-    return DayActivity(
+  DayRow copyWithCompanion(DayActivitiesCompanion data) {
+    return DayRow(
       day: data.day.present ? data.day.value : this.day,
       readMin: data.readMin.present ? data.readMin.value : this.readMin,
       prayMin: data.prayMin.present ? data.prayMin.value : this.prayMin,
@@ -1236,7 +1014,7 @@ class DayActivity extends DataClass implements Insertable<DayActivity> {
 
   @override
   String toString() {
-    return (StringBuffer('DayActivity(')
+    return (StringBuffer('DayRow(')
           ..write('day: $day, ')
           ..write('readMin: $readMin, ')
           ..write('prayMin: $prayMin, ')
@@ -1252,7 +1030,7 @@ class DayActivity extends DataClass implements Insertable<DayActivity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is DayActivity &&
+      (other is DayRow &&
           other.day == this.day &&
           other.readMin == this.readMin &&
           other.prayMin == this.prayMin &&
@@ -1260,7 +1038,7 @@ class DayActivity extends DataClass implements Insertable<DayActivity> {
           other.porcaoCreditada == this.porcaoCreditada);
 }
 
-class DayActivitiesCompanion extends UpdateCompanion<DayActivity> {
+class DayActivitiesCompanion extends UpdateCompanion<DayRow> {
   final Value<String> day;
   final Value<double> readMin;
   final Value<double> prayMin;
@@ -1283,7 +1061,7 @@ class DayActivitiesCompanion extends UpdateCompanion<DayActivity> {
     this.porcaoCreditada = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : day = Value(day);
-  static Insertable<DayActivity> custom({
+  static Insertable<DayRow> custom({
     Expression<String>? day,
     Expression<double>? readMin,
     Expression<double>? prayMin,
@@ -1358,7 +1136,7 @@ class DayActivitiesCompanion extends UpdateCompanion<DayActivity> {
 }
 
 class $OrvalhoLedgerTable extends OrvalhoLedger
-    with TableInfo<$OrvalhoLedgerTable, OrvalhoLedgerData> {
+    with TableInfo<$OrvalhoLedgerTable, LedgerRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1421,7 +1199,7 @@ class $OrvalhoLedgerTable extends OrvalhoLedger
   static const String $name = 'orvalho_ledger';
   @override
   VerificationContext validateIntegrity(
-    Insertable<OrvalhoLedgerData> instance, {
+    Insertable<LedgerRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -1462,9 +1240,9 @@ class $OrvalhoLedgerTable extends OrvalhoLedger
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  OrvalhoLedgerData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  LedgerRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return OrvalhoLedgerData(
+    return LedgerRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -1494,8 +1272,7 @@ class $OrvalhoLedgerTable extends OrvalhoLedger
   }
 }
 
-class OrvalhoLedgerData extends DataClass
-    implements Insertable<OrvalhoLedgerData> {
+class LedgerRow extends DataClass implements Insertable<LedgerRow> {
   final int id;
   final DateTime at;
   final int delta;
@@ -1503,7 +1280,7 @@ class OrvalhoLedgerData extends DataClass
   /// porcao | compra | pacote | presente | ajuste_dev
   final String reason;
   final String? ref;
-  const OrvalhoLedgerData({
+  const LedgerRow({
     required this.id,
     required this.at,
     required this.delta,
@@ -1533,12 +1310,12 @@ class OrvalhoLedgerData extends DataClass
     );
   }
 
-  factory OrvalhoLedgerData.fromJson(
+  factory LedgerRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return OrvalhoLedgerData(
+    return LedgerRow(
       id: serializer.fromJson<int>(json['id']),
       at: serializer.fromJson<DateTime>(json['at']),
       delta: serializer.fromJson<int>(json['delta']),
@@ -1558,21 +1335,21 @@ class OrvalhoLedgerData extends DataClass
     };
   }
 
-  OrvalhoLedgerData copyWith({
+  LedgerRow copyWith({
     int? id,
     DateTime? at,
     int? delta,
     String? reason,
     Value<String?> ref = const Value.absent(),
-  }) => OrvalhoLedgerData(
+  }) => LedgerRow(
     id: id ?? this.id,
     at: at ?? this.at,
     delta: delta ?? this.delta,
     reason: reason ?? this.reason,
     ref: ref.present ? ref.value : this.ref,
   );
-  OrvalhoLedgerData copyWithCompanion(OrvalhoLedgerCompanion data) {
-    return OrvalhoLedgerData(
+  LedgerRow copyWithCompanion(OrvalhoLedgerCompanion data) {
+    return LedgerRow(
       id: data.id.present ? data.id.value : this.id,
       at: data.at.present ? data.at.value : this.at,
       delta: data.delta.present ? data.delta.value : this.delta,
@@ -1583,7 +1360,7 @@ class OrvalhoLedgerData extends DataClass
 
   @override
   String toString() {
-    return (StringBuffer('OrvalhoLedgerData(')
+    return (StringBuffer('LedgerRow(')
           ..write('id: $id, ')
           ..write('at: $at, ')
           ..write('delta: $delta, ')
@@ -1598,7 +1375,7 @@ class OrvalhoLedgerData extends DataClass
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is OrvalhoLedgerData &&
+      (other is LedgerRow &&
           other.id == this.id &&
           other.at == this.at &&
           other.delta == this.delta &&
@@ -1606,7 +1383,7 @@ class OrvalhoLedgerData extends DataClass
           other.ref == this.ref);
 }
 
-class OrvalhoLedgerCompanion extends UpdateCompanion<OrvalhoLedgerData> {
+class OrvalhoLedgerCompanion extends UpdateCompanion<LedgerRow> {
   final Value<int> id;
   final Value<DateTime> at;
   final Value<int> delta;
@@ -1628,7 +1405,7 @@ class OrvalhoLedgerCompanion extends UpdateCompanion<OrvalhoLedgerData> {
   }) : at = Value(at),
        delta = Value(delta),
        reason = Value(reason);
-  static Insertable<OrvalhoLedgerData> custom({
+  static Insertable<LedgerRow> custom({
     Expression<int>? id,
     Expression<DateTime>? at,
     Expression<int>? delta,
@@ -1695,7 +1472,7 @@ class OrvalhoLedgerCompanion extends UpdateCompanion<OrvalhoLedgerData> {
 }
 
 class $OwnedItemsTable extends OwnedItems
-    with TableInfo<$OwnedItemsTable, OwnedItem> {
+    with TableInfo<$OwnedItemsTable, OwnedItemRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1738,7 +1515,7 @@ class $OwnedItemsTable extends OwnedItems
   static const String $name = 'owned_items';
   @override
   VerificationContext validateIntegrity(
-    Insertable<OwnedItem> instance, {
+    Insertable<OwnedItemRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -1773,9 +1550,9 @@ class $OwnedItemsTable extends OwnedItems
   @override
   Set<GeneratedColumn> get $primaryKey => {itemId};
   @override
-  OwnedItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+  OwnedItemRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return OwnedItem(
+    return OwnedItemRow(
       itemId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}item_id'],
@@ -1797,13 +1574,13 @@ class $OwnedItemsTable extends OwnedItems
   }
 }
 
-class OwnedItem extends DataClass implements Insertable<OwnedItem> {
+class OwnedItemRow extends DataClass implements Insertable<OwnedItemRow> {
   final String itemId;
   final DateTime acquiredAt;
 
   /// orvalho | gratis | pacote
   final String source;
-  const OwnedItem({
+  const OwnedItemRow({
     required this.itemId,
     required this.acquiredAt,
     required this.source,
@@ -1825,12 +1602,12 @@ class OwnedItem extends DataClass implements Insertable<OwnedItem> {
     );
   }
 
-  factory OwnedItem.fromJson(
+  factory OwnedItemRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return OwnedItem(
+    return OwnedItemRow(
       itemId: serializer.fromJson<String>(json['itemId']),
       acquiredAt: serializer.fromJson<DateTime>(json['acquiredAt']),
       source: serializer.fromJson<String>(json['source']),
@@ -1846,14 +1623,17 @@ class OwnedItem extends DataClass implements Insertable<OwnedItem> {
     };
   }
 
-  OwnedItem copyWith({String? itemId, DateTime? acquiredAt, String? source}) =>
-      OwnedItem(
-        itemId: itemId ?? this.itemId,
-        acquiredAt: acquiredAt ?? this.acquiredAt,
-        source: source ?? this.source,
-      );
-  OwnedItem copyWithCompanion(OwnedItemsCompanion data) {
-    return OwnedItem(
+  OwnedItemRow copyWith({
+    String? itemId,
+    DateTime? acquiredAt,
+    String? source,
+  }) => OwnedItemRow(
+    itemId: itemId ?? this.itemId,
+    acquiredAt: acquiredAt ?? this.acquiredAt,
+    source: source ?? this.source,
+  );
+  OwnedItemRow copyWithCompanion(OwnedItemsCompanion data) {
+    return OwnedItemRow(
       itemId: data.itemId.present ? data.itemId.value : this.itemId,
       acquiredAt: data.acquiredAt.present
           ? data.acquiredAt.value
@@ -1864,7 +1644,7 @@ class OwnedItem extends DataClass implements Insertable<OwnedItem> {
 
   @override
   String toString() {
-    return (StringBuffer('OwnedItem(')
+    return (StringBuffer('OwnedItemRow(')
           ..write('itemId: $itemId, ')
           ..write('acquiredAt: $acquiredAt, ')
           ..write('source: $source')
@@ -1877,13 +1657,13 @@ class OwnedItem extends DataClass implements Insertable<OwnedItem> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is OwnedItem &&
+      (other is OwnedItemRow &&
           other.itemId == this.itemId &&
           other.acquiredAt == this.acquiredAt &&
           other.source == this.source);
 }
 
-class OwnedItemsCompanion extends UpdateCompanion<OwnedItem> {
+class OwnedItemsCompanion extends UpdateCompanion<OwnedItemRow> {
   final Value<String> itemId;
   final Value<DateTime> acquiredAt;
   final Value<String> source;
@@ -1902,7 +1682,7 @@ class OwnedItemsCompanion extends UpdateCompanion<OwnedItem> {
   }) : itemId = Value(itemId),
        acquiredAt = Value(acquiredAt),
        source = Value(source);
-  static Insertable<OwnedItem> custom({
+  static Insertable<OwnedItemRow> custom({
     Expression<String>? itemId,
     Expression<DateTime>? acquiredAt,
     Expression<String>? source,
@@ -1961,7 +1741,7 @@ class OwnedItemsCompanion extends UpdateCompanion<OwnedItem> {
 }
 
 class $PlacementsTable extends Placements
-    with TableInfo<$PlacementsTable, Placement> {
+    with TableInfo<$PlacementsTable, PlacementRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -2024,7 +1804,7 @@ class $PlacementsTable extends Placements
   static const String $name = 'placements';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Placement> instance, {
+    Insertable<PlacementRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -2064,9 +1844,9 @@ class $PlacementsTable extends Placements
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Placement map(Map<String, dynamic> data, {String? tablePrefix}) {
+  PlacementRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Placement(
+    return PlacementRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -2096,13 +1876,13 @@ class $PlacementsTable extends Placements
   }
 }
 
-class Placement extends DataClass implements Insertable<Placement> {
+class PlacementRow extends DataClass implements Insertable<PlacementRow> {
   final int id;
   final String book;
   final String itemId;
   final int x;
   final int y;
-  const Placement({
+  const PlacementRow({
     required this.id,
     required this.book,
     required this.itemId,
@@ -2130,12 +1910,12 @@ class Placement extends DataClass implements Insertable<Placement> {
     );
   }
 
-  factory Placement.fromJson(
+  factory PlacementRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Placement(
+    return PlacementRow(
       id: serializer.fromJson<int>(json['id']),
       book: serializer.fromJson<String>(json['book']),
       itemId: serializer.fromJson<String>(json['itemId']),
@@ -2155,16 +1935,21 @@ class Placement extends DataClass implements Insertable<Placement> {
     };
   }
 
-  Placement copyWith({int? id, String? book, String? itemId, int? x, int? y}) =>
-      Placement(
-        id: id ?? this.id,
-        book: book ?? this.book,
-        itemId: itemId ?? this.itemId,
-        x: x ?? this.x,
-        y: y ?? this.y,
-      );
-  Placement copyWithCompanion(PlacementsCompanion data) {
-    return Placement(
+  PlacementRow copyWith({
+    int? id,
+    String? book,
+    String? itemId,
+    int? x,
+    int? y,
+  }) => PlacementRow(
+    id: id ?? this.id,
+    book: book ?? this.book,
+    itemId: itemId ?? this.itemId,
+    x: x ?? this.x,
+    y: y ?? this.y,
+  );
+  PlacementRow copyWithCompanion(PlacementsCompanion data) {
+    return PlacementRow(
       id: data.id.present ? data.id.value : this.id,
       book: data.book.present ? data.book.value : this.book,
       itemId: data.itemId.present ? data.itemId.value : this.itemId,
@@ -2175,7 +1960,7 @@ class Placement extends DataClass implements Insertable<Placement> {
 
   @override
   String toString() {
-    return (StringBuffer('Placement(')
+    return (StringBuffer('PlacementRow(')
           ..write('id: $id, ')
           ..write('book: $book, ')
           ..write('itemId: $itemId, ')
@@ -2190,7 +1975,7 @@ class Placement extends DataClass implements Insertable<Placement> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Placement &&
+      (other is PlacementRow &&
           other.id == this.id &&
           other.book == this.book &&
           other.itemId == this.itemId &&
@@ -2198,7 +1983,7 @@ class Placement extends DataClass implements Insertable<Placement> {
           other.y == this.y);
 }
 
-class PlacementsCompanion extends UpdateCompanion<Placement> {
+class PlacementsCompanion extends UpdateCompanion<PlacementRow> {
   final Value<int> id;
   final Value<String> book;
   final Value<String> itemId;
@@ -2221,7 +2006,7 @@ class PlacementsCompanion extends UpdateCompanion<Placement> {
        itemId = Value(itemId),
        x = Value(x),
        y = Value(y);
-  static Insertable<Placement> custom({
+  static Insertable<PlacementRow> custom({
     Expression<int>? id,
     Expression<String>? book,
     Expression<String>? itemId,
@@ -2287,7 +2072,7 @@ class PlacementsCompanion extends UpdateCompanion<Placement> {
   }
 }
 
-class $AnimalsTable extends Animals with TableInfo<$AnimalsTable, Animal> {
+class $AnimalsTable extends Animals with TableInfo<$AnimalsTable, AnimalRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -2348,7 +2133,7 @@ class $AnimalsTable extends Animals with TableInfo<$AnimalsTable, Animal> {
   static const String $name = 'animals';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Animal> instance, {
+    Insertable<AnimalRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -2394,9 +2179,9 @@ class $AnimalsTable extends Animals with TableInfo<$AnimalsTable, Animal> {
   @override
   Set<GeneratedColumn> get $primaryKey => {animalId, garden};
   @override
-  Animal map(Map<String, dynamic> data, {String? tablePrefix}) {
+  AnimalRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Animal(
+    return AnimalRow(
       animalId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}animal_id'],
@@ -2422,14 +2207,14 @@ class $AnimalsTable extends Animals with TableInfo<$AnimalsTable, Animal> {
   }
 }
 
-class Animal extends DataClass implements Insertable<Animal> {
+class AnimalRow extends DataClass implements Insertable<AnimalRow> {
   final String animalId;
 
   /// Livro do jardim, ou 'COMP' para o companheiro.
   final String garden;
   final DateTime arrivedAt;
   final int porcoesAtArrival;
-  const Animal({
+  const AnimalRow({
     required this.animalId,
     required this.garden,
     required this.arrivedAt,
@@ -2454,12 +2239,12 @@ class Animal extends DataClass implements Insertable<Animal> {
     );
   }
 
-  factory Animal.fromJson(
+  factory AnimalRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Animal(
+    return AnimalRow(
       animalId: serializer.fromJson<String>(json['animalId']),
       garden: serializer.fromJson<String>(json['garden']),
       arrivedAt: serializer.fromJson<DateTime>(json['arrivedAt']),
@@ -2477,19 +2262,19 @@ class Animal extends DataClass implements Insertable<Animal> {
     };
   }
 
-  Animal copyWith({
+  AnimalRow copyWith({
     String? animalId,
     String? garden,
     DateTime? arrivedAt,
     int? porcoesAtArrival,
-  }) => Animal(
+  }) => AnimalRow(
     animalId: animalId ?? this.animalId,
     garden: garden ?? this.garden,
     arrivedAt: arrivedAt ?? this.arrivedAt,
     porcoesAtArrival: porcoesAtArrival ?? this.porcoesAtArrival,
   );
-  Animal copyWithCompanion(AnimalsCompanion data) {
-    return Animal(
+  AnimalRow copyWithCompanion(AnimalsCompanion data) {
+    return AnimalRow(
       animalId: data.animalId.present ? data.animalId.value : this.animalId,
       garden: data.garden.present ? data.garden.value : this.garden,
       arrivedAt: data.arrivedAt.present ? data.arrivedAt.value : this.arrivedAt,
@@ -2501,7 +2286,7 @@ class Animal extends DataClass implements Insertable<Animal> {
 
   @override
   String toString() {
-    return (StringBuffer('Animal(')
+    return (StringBuffer('AnimalRow(')
           ..write('animalId: $animalId, ')
           ..write('garden: $garden, ')
           ..write('arrivedAt: $arrivedAt, ')
@@ -2516,14 +2301,14 @@ class Animal extends DataClass implements Insertable<Animal> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Animal &&
+      (other is AnimalRow &&
           other.animalId == this.animalId &&
           other.garden == this.garden &&
           other.arrivedAt == this.arrivedAt &&
           other.porcoesAtArrival == this.porcoesAtArrival);
 }
 
-class AnimalsCompanion extends UpdateCompanion<Animal> {
+class AnimalsCompanion extends UpdateCompanion<AnimalRow> {
   final Value<String> animalId;
   final Value<String> garden;
   final Value<DateTime> arrivedAt;
@@ -2546,7 +2331,7 @@ class AnimalsCompanion extends UpdateCompanion<Animal> {
        garden = Value(garden),
        arrivedAt = Value(arrivedAt),
        porcoesAtArrival = Value(porcoesAtArrival);
-  static Insertable<Animal> custom({
+  static Insertable<AnimalRow> custom({
     Expression<String>? animalId,
     Expression<String>? garden,
     Expression<DateTime>? arrivedAt,
@@ -2613,7 +2398,7 @@ class AnimalsCompanion extends UpdateCompanion<Animal> {
 }
 
 class $CharactersTable extends Characters
-    with TableInfo<$CharactersTable, Character> {
+    with TableInfo<$CharactersTable, CharacterRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -2660,7 +2445,7 @@ class $CharactersTable extends Characters
   static const String $name = 'characters';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Character> instance, {
+    Insertable<CharacterRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -2694,9 +2479,9 @@ class $CharactersTable extends Characters
   @override
   Set<GeneratedColumn> get $primaryKey => {characterId};
   @override
-  Character map(Map<String, dynamic> data, {String? tablePrefix}) {
+  CharacterRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Character(
+    return CharacterRow(
       characterId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}character_id'],
@@ -2718,11 +2503,15 @@ class $CharactersTable extends Characters
   }
 }
 
-class Character extends DataClass implements Insertable<Character> {
+class CharacterRow extends DataClass implements Insertable<CharacterRow> {
   final String characterId;
   final DateTime? unlockedAt;
   final DateTime? boughtAt;
-  const Character({required this.characterId, this.unlockedAt, this.boughtAt});
+  const CharacterRow({
+    required this.characterId,
+    this.unlockedAt,
+    this.boughtAt,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -2748,12 +2537,12 @@ class Character extends DataClass implements Insertable<Character> {
     );
   }
 
-  factory Character.fromJson(
+  factory CharacterRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Character(
+    return CharacterRow(
       characterId: serializer.fromJson<String>(json['characterId']),
       unlockedAt: serializer.fromJson<DateTime?>(json['unlockedAt']),
       boughtAt: serializer.fromJson<DateTime?>(json['boughtAt']),
@@ -2769,17 +2558,17 @@ class Character extends DataClass implements Insertable<Character> {
     };
   }
 
-  Character copyWith({
+  CharacterRow copyWith({
     String? characterId,
     Value<DateTime?> unlockedAt = const Value.absent(),
     Value<DateTime?> boughtAt = const Value.absent(),
-  }) => Character(
+  }) => CharacterRow(
     characterId: characterId ?? this.characterId,
     unlockedAt: unlockedAt.present ? unlockedAt.value : this.unlockedAt,
     boughtAt: boughtAt.present ? boughtAt.value : this.boughtAt,
   );
-  Character copyWithCompanion(CharactersCompanion data) {
-    return Character(
+  CharacterRow copyWithCompanion(CharactersCompanion data) {
+    return CharacterRow(
       characterId: data.characterId.present
           ? data.characterId.value
           : this.characterId,
@@ -2792,7 +2581,7 @@ class Character extends DataClass implements Insertable<Character> {
 
   @override
   String toString() {
-    return (StringBuffer('Character(')
+    return (StringBuffer('CharacterRow(')
           ..write('characterId: $characterId, ')
           ..write('unlockedAt: $unlockedAt, ')
           ..write('boughtAt: $boughtAt')
@@ -2805,13 +2594,13 @@ class Character extends DataClass implements Insertable<Character> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Character &&
+      (other is CharacterRow &&
           other.characterId == this.characterId &&
           other.unlockedAt == this.unlockedAt &&
           other.boughtAt == this.boughtAt);
 }
 
-class CharactersCompanion extends UpdateCompanion<Character> {
+class CharactersCompanion extends UpdateCompanion<CharacterRow> {
   final Value<String> characterId;
   final Value<DateTime?> unlockedAt;
   final Value<DateTime?> boughtAt;
@@ -2828,7 +2617,7 @@ class CharactersCompanion extends UpdateCompanion<Character> {
     this.boughtAt = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : characterId = Value(characterId);
-  static Insertable<Character> custom({
+  static Insertable<CharacterRow> custom({
     Expression<String>? characterId,
     Expression<DateTime>? unlockedAt,
     Expression<DateTime>? boughtAt,
@@ -2886,7 +2675,7 @@ class CharactersCompanion extends UpdateCompanion<Character> {
   }
 }
 
-class $PrayersTable extends Prayers with TableInfo<$PrayersTable, Prayer> {
+class $PrayersTable extends Prayers with TableInfo<$PrayersTable, PrayerRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -2945,7 +2734,7 @@ class $PrayersTable extends Prayers with TableInfo<$PrayersTable, Prayer> {
   static const String $name = 'prayers';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Prayer> instance, {
+    Insertable<PrayerRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -2980,9 +2769,9 @@ class $PrayersTable extends Prayers with TableInfo<$PrayersTable, Prayer> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Prayer map(Map<String, dynamic> data, {String? tablePrefix}) {
+  PrayerRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Prayer(
+    return PrayerRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -3008,12 +2797,12 @@ class $PrayersTable extends Prayers with TableInfo<$PrayersTable, Prayer> {
   }
 }
 
-class Prayer extends DataClass implements Insertable<Prayer> {
+class PrayerRow extends DataClass implements Insertable<PrayerRow> {
   final int id;
   final DateTime at;
   final int minutes;
   final bool guided;
-  const Prayer({
+  const PrayerRow({
     required this.id,
     required this.at,
     required this.minutes,
@@ -3038,12 +2827,12 @@ class Prayer extends DataClass implements Insertable<Prayer> {
     );
   }
 
-  factory Prayer.fromJson(
+  factory PrayerRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Prayer(
+    return PrayerRow(
       id: serializer.fromJson<int>(json['id']),
       at: serializer.fromJson<DateTime>(json['at']),
       minutes: serializer.fromJson<int>(json['minutes']),
@@ -3061,15 +2850,15 @@ class Prayer extends DataClass implements Insertable<Prayer> {
     };
   }
 
-  Prayer copyWith({int? id, DateTime? at, int? minutes, bool? guided}) =>
-      Prayer(
+  PrayerRow copyWith({int? id, DateTime? at, int? minutes, bool? guided}) =>
+      PrayerRow(
         id: id ?? this.id,
         at: at ?? this.at,
         minutes: minutes ?? this.minutes,
         guided: guided ?? this.guided,
       );
-  Prayer copyWithCompanion(PrayersCompanion data) {
-    return Prayer(
+  PrayerRow copyWithCompanion(PrayersCompanion data) {
+    return PrayerRow(
       id: data.id.present ? data.id.value : this.id,
       at: data.at.present ? data.at.value : this.at,
       minutes: data.minutes.present ? data.minutes.value : this.minutes,
@@ -3079,7 +2868,7 @@ class Prayer extends DataClass implements Insertable<Prayer> {
 
   @override
   String toString() {
-    return (StringBuffer('Prayer(')
+    return (StringBuffer('PrayerRow(')
           ..write('id: $id, ')
           ..write('at: $at, ')
           ..write('minutes: $minutes, ')
@@ -3093,14 +2882,14 @@ class Prayer extends DataClass implements Insertable<Prayer> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Prayer &&
+      (other is PrayerRow &&
           other.id == this.id &&
           other.at == this.at &&
           other.minutes == this.minutes &&
           other.guided == this.guided);
 }
 
-class PrayersCompanion extends UpdateCompanion<Prayer> {
+class PrayersCompanion extends UpdateCompanion<PrayerRow> {
   final Value<int> id;
   final Value<DateTime> at;
   final Value<int> minutes;
@@ -3119,7 +2908,7 @@ class PrayersCompanion extends UpdateCompanion<Prayer> {
   }) : at = Value(at),
        minutes = Value(minutes),
        guided = Value(guided);
-  static Insertable<Prayer> custom({
+  static Insertable<PrayerRow> custom({
     Expression<int>? id,
     Expression<DateTime>? at,
     Expression<int>? minutes,
@@ -3178,7 +2967,7 @@ class PrayersCompanion extends UpdateCompanion<Prayer> {
 }
 
 class $PrayerRequestsTable extends PrayerRequests
-    with TableInfo<$PrayerRequestsTable, PrayerRequest> {
+    with TableInfo<$PrayerRequestsTable, PrayerRequestRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -3253,7 +3042,7 @@ class $PrayerRequestsTable extends PrayerRequests
   static const String $name = 'prayer_requests';
   @override
   VerificationContext validateIntegrity(
-    Insertable<PrayerRequest> instance, {
+    Insertable<PrayerRequestRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -3298,9 +3087,9 @@ class $PrayerRequestsTable extends PrayerRequests
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  PrayerRequest map(Map<String, dynamic> data, {String? tablePrefix}) {
+  PrayerRequestRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return PrayerRequest(
+    return PrayerRequestRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -3330,13 +3119,14 @@ class $PrayerRequestsTable extends PrayerRequests
   }
 }
 
-class PrayerRequest extends DataClass implements Insertable<PrayerRequest> {
+class PrayerRequestRow extends DataClass
+    implements Insertable<PrayerRequestRow> {
   final int id;
   final String body;
   final DateTime createdAt;
   final DateTime? answeredAt;
   final String? ebenezerNote;
-  const PrayerRequest({
+  const PrayerRequestRow({
     required this.id,
     required this.body,
     required this.createdAt,
@@ -3372,12 +3162,12 @@ class PrayerRequest extends DataClass implements Insertable<PrayerRequest> {
     );
   }
 
-  factory PrayerRequest.fromJson(
+  factory PrayerRequestRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return PrayerRequest(
+    return PrayerRequestRow(
       id: serializer.fromJson<int>(json['id']),
       body: serializer.fromJson<String>(json['body']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
@@ -3397,21 +3187,21 @@ class PrayerRequest extends DataClass implements Insertable<PrayerRequest> {
     };
   }
 
-  PrayerRequest copyWith({
+  PrayerRequestRow copyWith({
     int? id,
     String? body,
     DateTime? createdAt,
     Value<DateTime?> answeredAt = const Value.absent(),
     Value<String?> ebenezerNote = const Value.absent(),
-  }) => PrayerRequest(
+  }) => PrayerRequestRow(
     id: id ?? this.id,
     body: body ?? this.body,
     createdAt: createdAt ?? this.createdAt,
     answeredAt: answeredAt.present ? answeredAt.value : this.answeredAt,
     ebenezerNote: ebenezerNote.present ? ebenezerNote.value : this.ebenezerNote,
   );
-  PrayerRequest copyWithCompanion(PrayerRequestsCompanion data) {
-    return PrayerRequest(
+  PrayerRequestRow copyWithCompanion(PrayerRequestsCompanion data) {
+    return PrayerRequestRow(
       id: data.id.present ? data.id.value : this.id,
       body: data.body.present ? data.body.value : this.body,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
@@ -3426,7 +3216,7 @@ class PrayerRequest extends DataClass implements Insertable<PrayerRequest> {
 
   @override
   String toString() {
-    return (StringBuffer('PrayerRequest(')
+    return (StringBuffer('PrayerRequestRow(')
           ..write('id: $id, ')
           ..write('body: $body, ')
           ..write('createdAt: $createdAt, ')
@@ -3442,7 +3232,7 @@ class PrayerRequest extends DataClass implements Insertable<PrayerRequest> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is PrayerRequest &&
+      (other is PrayerRequestRow &&
           other.id == this.id &&
           other.body == this.body &&
           other.createdAt == this.createdAt &&
@@ -3450,7 +3240,7 @@ class PrayerRequest extends DataClass implements Insertable<PrayerRequest> {
           other.ebenezerNote == this.ebenezerNote);
 }
 
-class PrayerRequestsCompanion extends UpdateCompanion<PrayerRequest> {
+class PrayerRequestsCompanion extends UpdateCompanion<PrayerRequestRow> {
   final Value<int> id;
   final Value<String> body;
   final Value<DateTime> createdAt;
@@ -3471,7 +3261,7 @@ class PrayerRequestsCompanion extends UpdateCompanion<PrayerRequest> {
     this.ebenezerNote = const Value.absent(),
   }) : body = Value(body),
        createdAt = Value(createdAt);
-  static Insertable<PrayerRequest> custom({
+  static Insertable<PrayerRequestRow> custom({
     Expression<int>? id,
     Expression<String>? body,
     Expression<DateTime>? createdAt,
@@ -3538,7 +3328,7 @@ class PrayerRequestsCompanion extends UpdateCompanion<PrayerRequest> {
 }
 
 class $JournalEntriesTable extends JournalEntries
-    with TableInfo<$JournalEntriesTable, JournalEntry> {
+    with TableInfo<$JournalEntriesTable, JournalRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -3611,7 +3401,7 @@ class $JournalEntriesTable extends JournalEntries
   static const String $name = 'journal_entries';
   @override
   VerificationContext validateIntegrity(
-    Insertable<JournalEntry> instance, {
+    Insertable<JournalRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -3658,9 +3448,9 @@ class $JournalEntriesTable extends JournalEntries
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  JournalEntry map(Map<String, dynamic> data, {String? tablePrefix}) {
+  JournalRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return JournalEntry(
+    return JournalRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -3690,13 +3480,13 @@ class $JournalEntriesTable extends JournalEntries
   }
 }
 
-class JournalEntry extends DataClass implements Insertable<JournalEntry> {
+class JournalRow extends DataClass implements Insertable<JournalRow> {
   final int id;
   final String day;
   final String? devotionalId;
   final String body;
   final DateTime createdAt;
-  const JournalEntry({
+  const JournalRow({
     required this.id,
     required this.day,
     this.devotionalId,
@@ -3728,12 +3518,12 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
     );
   }
 
-  factory JournalEntry.fromJson(
+  factory JournalRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return JournalEntry(
+    return JournalRow(
       id: serializer.fromJson<int>(json['id']),
       day: serializer.fromJson<String>(json['day']),
       devotionalId: serializer.fromJson<String?>(json['devotionalId']),
@@ -3753,21 +3543,21 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
     };
   }
 
-  JournalEntry copyWith({
+  JournalRow copyWith({
     int? id,
     String? day,
     Value<String?> devotionalId = const Value.absent(),
     String? body,
     DateTime? createdAt,
-  }) => JournalEntry(
+  }) => JournalRow(
     id: id ?? this.id,
     day: day ?? this.day,
     devotionalId: devotionalId.present ? devotionalId.value : this.devotionalId,
     body: body ?? this.body,
     createdAt: createdAt ?? this.createdAt,
   );
-  JournalEntry copyWithCompanion(JournalEntriesCompanion data) {
-    return JournalEntry(
+  JournalRow copyWithCompanion(JournalEntriesCompanion data) {
+    return JournalRow(
       id: data.id.present ? data.id.value : this.id,
       day: data.day.present ? data.day.value : this.day,
       devotionalId: data.devotionalId.present
@@ -3780,7 +3570,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
 
   @override
   String toString() {
-    return (StringBuffer('JournalEntry(')
+    return (StringBuffer('JournalRow(')
           ..write('id: $id, ')
           ..write('day: $day, ')
           ..write('devotionalId: $devotionalId, ')
@@ -3795,7 +3585,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is JournalEntry &&
+      (other is JournalRow &&
           other.id == this.id &&
           other.day == this.day &&
           other.devotionalId == this.devotionalId &&
@@ -3803,7 +3593,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
           other.createdAt == this.createdAt);
 }
 
-class JournalEntriesCompanion extends UpdateCompanion<JournalEntry> {
+class JournalEntriesCompanion extends UpdateCompanion<JournalRow> {
   final Value<int> id;
   final Value<String> day;
   final Value<String?> devotionalId;
@@ -3825,7 +3615,7 @@ class JournalEntriesCompanion extends UpdateCompanion<JournalEntry> {
   }) : day = Value(day),
        body = Value(body),
        createdAt = Value(createdAt);
-  static Insertable<JournalEntry> custom({
+  static Insertable<JournalRow> custom({
     Expression<int>? id,
     Expression<String>? day,
     Expression<String>? devotionalId,
@@ -3892,7 +3682,7 @@ class JournalEntriesCompanion extends UpdateCompanion<JournalEntry> {
 }
 
 class $CrownStonesTable extends CrownStones
-    with TableInfo<$CrownStonesTable, CrownStone> {
+    with TableInfo<$CrownStonesTable, CrownStoneRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -3933,7 +3723,7 @@ class $CrownStonesTable extends CrownStones
   static const String $name = 'crown_stones';
   @override
   VerificationContext validateIntegrity(
-    Insertable<CrownStone> instance, {
+    Insertable<CrownStoneRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -3962,9 +3752,9 @@ class $CrownStonesTable extends CrownStones
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  CrownStone map(Map<String, dynamic> data, {String? tablePrefix}) {
+  CrownStoneRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return CrownStone(
+    return CrownStoneRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -3986,12 +3776,16 @@ class $CrownStonesTable extends CrownStones
   }
 }
 
-class CrownStone extends DataClass implements Insertable<CrownStone> {
+class CrownStoneRow extends DataClass implements Insertable<CrownStoneRow> {
   /// Ex.: 'canteiro:GEN:1', 'livro:RUT', 'bioma:Evangelhos', 'biblia'.
   final String id;
   final int count;
   final DateTime at;
-  const CrownStone({required this.id, required this.count, required this.at});
+  const CrownStoneRow({
+    required this.id,
+    required this.count,
+    required this.at,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -4009,12 +3803,12 @@ class CrownStone extends DataClass implements Insertable<CrownStone> {
     );
   }
 
-  factory CrownStone.fromJson(
+  factory CrownStoneRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return CrownStone(
+    return CrownStoneRow(
       id: serializer.fromJson<String>(json['id']),
       count: serializer.fromJson<int>(json['count']),
       at: serializer.fromJson<DateTime>(json['at']),
@@ -4030,13 +3824,14 @@ class CrownStone extends DataClass implements Insertable<CrownStone> {
     };
   }
 
-  CrownStone copyWith({String? id, int? count, DateTime? at}) => CrownStone(
-    id: id ?? this.id,
-    count: count ?? this.count,
-    at: at ?? this.at,
-  );
-  CrownStone copyWithCompanion(CrownStonesCompanion data) {
-    return CrownStone(
+  CrownStoneRow copyWith({String? id, int? count, DateTime? at}) =>
+      CrownStoneRow(
+        id: id ?? this.id,
+        count: count ?? this.count,
+        at: at ?? this.at,
+      );
+  CrownStoneRow copyWithCompanion(CrownStonesCompanion data) {
+    return CrownStoneRow(
       id: data.id.present ? data.id.value : this.id,
       count: data.count.present ? data.count.value : this.count,
       at: data.at.present ? data.at.value : this.at,
@@ -4045,7 +3840,7 @@ class CrownStone extends DataClass implements Insertable<CrownStone> {
 
   @override
   String toString() {
-    return (StringBuffer('CrownStone(')
+    return (StringBuffer('CrownStoneRow(')
           ..write('id: $id, ')
           ..write('count: $count, ')
           ..write('at: $at')
@@ -4058,13 +3853,13 @@ class CrownStone extends DataClass implements Insertable<CrownStone> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is CrownStone &&
+      (other is CrownStoneRow &&
           other.id == this.id &&
           other.count == this.count &&
           other.at == this.at);
 }
 
-class CrownStonesCompanion extends UpdateCompanion<CrownStone> {
+class CrownStonesCompanion extends UpdateCompanion<CrownStoneRow> {
   final Value<String> id;
   final Value<int> count;
   final Value<DateTime> at;
@@ -4083,7 +3878,7 @@ class CrownStonesCompanion extends UpdateCompanion<CrownStone> {
   }) : id = Value(id),
        count = Value(count),
        at = Value(at);
-  static Insertable<CrownStone> custom({
+  static Insertable<CrownStoneRow> custom({
     Expression<String>? id,
     Expression<int>? count,
     Expression<DateTime>? at,
@@ -4142,7 +3937,7 @@ class CrownStonesCompanion extends UpdateCompanion<CrownStone> {
 }
 
 class $StorePurchasesTable extends StorePurchases
-    with TableInfo<$StorePurchasesTable, StorePurchase> {
+    with TableInfo<$StorePurchasesTable, StorePurchaseRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -4225,7 +4020,7 @@ class $StorePurchasesTable extends StorePurchases
   static const String $name = 'store_purchases';
   @override
   VerificationContext validateIntegrity(
-    Insertable<StorePurchase> instance, {
+    Insertable<StorePurchaseRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -4284,9 +4079,9 @@ class $StorePurchasesTable extends StorePurchases
   @override
   Set<GeneratedColumn> get $primaryKey => {transactionId};
   @override
-  StorePurchase map(Map<String, dynamic> data, {String? tablePrefix}) {
+  StorePurchaseRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return StorePurchase(
+    return StorePurchaseRow(
       transactionId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}transaction_id'],
@@ -4320,7 +4115,8 @@ class $StorePurchasesTable extends StorePurchases
   }
 }
 
-class StorePurchase extends DataClass implements Insertable<StorePurchase> {
+class StorePurchaseRow extends DataClass
+    implements Insertable<StorePurchaseRow> {
   final String transactionId;
   final String productId;
   final int priceCents;
@@ -4329,7 +4125,7 @@ class StorePurchase extends DataClass implements Insertable<StorePurchase> {
 
   /// pendente | entregue | reembolsada
   final String status;
-  const StorePurchase({
+  const StorePurchaseRow({
     required this.transactionId,
     required this.productId,
     required this.priceCents,
@@ -4360,12 +4156,12 @@ class StorePurchase extends DataClass implements Insertable<StorePurchase> {
     );
   }
 
-  factory StorePurchase.fromJson(
+  factory StorePurchaseRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return StorePurchase(
+    return StorePurchaseRow(
       transactionId: serializer.fromJson<String>(json['transactionId']),
       productId: serializer.fromJson<String>(json['productId']),
       priceCents: serializer.fromJson<int>(json['priceCents']),
@@ -4387,14 +4183,14 @@ class StorePurchase extends DataClass implements Insertable<StorePurchase> {
     };
   }
 
-  StorePurchase copyWith({
+  StorePurchaseRow copyWith({
     String? transactionId,
     String? productId,
     int? priceCents,
     String? currency,
     DateTime? at,
     String? status,
-  }) => StorePurchase(
+  }) => StorePurchaseRow(
     transactionId: transactionId ?? this.transactionId,
     productId: productId ?? this.productId,
     priceCents: priceCents ?? this.priceCents,
@@ -4402,8 +4198,8 @@ class StorePurchase extends DataClass implements Insertable<StorePurchase> {
     at: at ?? this.at,
     status: status ?? this.status,
   );
-  StorePurchase copyWithCompanion(StorePurchasesCompanion data) {
-    return StorePurchase(
+  StorePurchaseRow copyWithCompanion(StorePurchasesCompanion data) {
+    return StorePurchaseRow(
       transactionId: data.transactionId.present
           ? data.transactionId.value
           : this.transactionId,
@@ -4419,7 +4215,7 @@ class StorePurchase extends DataClass implements Insertable<StorePurchase> {
 
   @override
   String toString() {
-    return (StringBuffer('StorePurchase(')
+    return (StringBuffer('StorePurchaseRow(')
           ..write('transactionId: $transactionId, ')
           ..write('productId: $productId, ')
           ..write('priceCents: $priceCents, ')
@@ -4436,7 +4232,7 @@ class StorePurchase extends DataClass implements Insertable<StorePurchase> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is StorePurchase &&
+      (other is StorePurchaseRow &&
           other.transactionId == this.transactionId &&
           other.productId == this.productId &&
           other.priceCents == this.priceCents &&
@@ -4445,7 +4241,7 @@ class StorePurchase extends DataClass implements Insertable<StorePurchase> {
           other.status == this.status);
 }
 
-class StorePurchasesCompanion extends UpdateCompanion<StorePurchase> {
+class StorePurchasesCompanion extends UpdateCompanion<StorePurchaseRow> {
   final Value<String> transactionId;
   final Value<String> productId;
   final Value<int> priceCents;
@@ -4476,7 +4272,7 @@ class StorePurchasesCompanion extends UpdateCompanion<StorePurchase> {
        currency = Value(currency),
        at = Value(at),
        status = Value(status);
-  static Insertable<StorePurchase> custom({
+  static Insertable<StorePurchaseRow> custom({
     Expression<String>? transactionId,
     Expression<String>? productId,
     Expression<int>? priceCents,
@@ -4558,7 +4354,8 @@ class StorePurchasesCompanion extends UpdateCompanion<StorePurchase> {
   }
 }
 
-class $SettingsTable extends Settings with TableInfo<$SettingsTable, Setting> {
+class $SettingsTable extends Settings
+    with TableInfo<$SettingsTable, SettingRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -4590,7 +4387,7 @@ class $SettingsTable extends Settings with TableInfo<$SettingsTable, Setting> {
   static const String $name = 'settings';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Setting> instance, {
+    Insertable<SettingRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -4617,9 +4414,9 @@ class $SettingsTable extends Settings with TableInfo<$SettingsTable, Setting> {
   @override
   Set<GeneratedColumn> get $primaryKey => {key};
   @override
-  Setting map(Map<String, dynamic> data, {String? tablePrefix}) {
+  SettingRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Setting(
+    return SettingRow(
       key: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}key'],
@@ -4637,10 +4434,10 @@ class $SettingsTable extends Settings with TableInfo<$SettingsTable, Setting> {
   }
 }
 
-class Setting extends DataClass implements Insertable<Setting> {
+class SettingRow extends DataClass implements Insertable<SettingRow> {
   final String key;
   final String value;
-  const Setting({required this.key, required this.value});
+  const SettingRow({required this.key, required this.value});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -4653,12 +4450,12 @@ class Setting extends DataClass implements Insertable<Setting> {
     return SettingsCompanion(key: Value(key), value: Value(value));
   }
 
-  factory Setting.fromJson(
+  factory SettingRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Setting(
+    return SettingRow(
       key: serializer.fromJson<String>(json['key']),
       value: serializer.fromJson<String>(json['value']),
     );
@@ -4672,10 +4469,10 @@ class Setting extends DataClass implements Insertable<Setting> {
     };
   }
 
-  Setting copyWith({String? key, String? value}) =>
-      Setting(key: key ?? this.key, value: value ?? this.value);
-  Setting copyWithCompanion(SettingsCompanion data) {
-    return Setting(
+  SettingRow copyWith({String? key, String? value}) =>
+      SettingRow(key: key ?? this.key, value: value ?? this.value);
+  SettingRow copyWithCompanion(SettingsCompanion data) {
+    return SettingRow(
       key: data.key.present ? data.key.value : this.key,
       value: data.value.present ? data.value.value : this.value,
     );
@@ -4683,7 +4480,7 @@ class Setting extends DataClass implements Insertable<Setting> {
 
   @override
   String toString() {
-    return (StringBuffer('Setting(')
+    return (StringBuffer('SettingRow(')
           ..write('key: $key, ')
           ..write('value: $value')
           ..write(')'))
@@ -4695,10 +4492,12 @@ class Setting extends DataClass implements Insertable<Setting> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Setting && other.key == this.key && other.value == this.value);
+      (other is SettingRow &&
+          other.key == this.key &&
+          other.value == this.value);
 }
 
-class SettingsCompanion extends UpdateCompanion<Setting> {
+class SettingsCompanion extends UpdateCompanion<SettingRow> {
   final Value<String> key;
   final Value<String> value;
   final Value<int> rowid;
@@ -4713,7 +4512,7 @@ class SettingsCompanion extends UpdateCompanion<Setting> {
     this.rowid = const Value.absent(),
   }) : key = Value(key),
        value = Value(value);
-  static Insertable<Setting> custom({
+  static Insertable<SettingRow> custom({
     Expression<String>? key,
     Expression<String>? value,
     Expression<int>? rowid,
@@ -4767,9 +4566,6 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $ChapterReadsTable chapterReads = $ChapterReadsTable(this);
-  late final $BookCompletionsTable bookCompletions = $BookCompletionsTable(
-    this,
-  );
   late final $ReadingLogTable readingLog = $ReadingLogTable(this);
   late final $DayActivitiesTable dayActivities = $DayActivitiesTable(this);
   late final $OrvalhoLedgerTable orvalhoLedger = $OrvalhoLedgerTable(this);
@@ -4789,7 +4585,6 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [
     chapterReads,
-    bookCompletions,
     readingLog,
     dayActivities,
     orvalhoLedger,
@@ -4915,17 +4710,17 @@ class $$ChapterReadsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $ChapterReadsTable,
-          ChapterRead,
+          ChapterReadRow,
           $$ChapterReadsTableFilterComposer,
           $$ChapterReadsTableOrderingComposer,
           $$ChapterReadsTableAnnotationComposer,
           $$ChapterReadsTableCreateCompanionBuilder,
           $$ChapterReadsTableUpdateCompanionBuilder,
           (
-            ChapterRead,
-            BaseReferences<_$AppDatabase, $ChapterReadsTable, ChapterRead>,
+            ChapterReadRow,
+            BaseReferences<_$AppDatabase, $ChapterReadsTable, ChapterReadRow>,
           ),
-          ChapterRead,
+          ChapterReadRow,
           PrefetchHooks Function()
         > {
   $$ChapterReadsTableTableManager(_$AppDatabase db, $ChapterReadsTable table)
@@ -4970,11 +4765,11 @@ class $$ChapterReadsTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$ChapterReadsTable, ChapterRead>(table),
+                  e.readTable<$ChapterReadsTable, ChapterReadRow>(table),
                   BaseReferences<
                     _$AppDatabase,
                     $ChapterReadsTable,
-                    ChapterRead
+                    ChapterReadRow
                   >(db, table, e),
                 ),
               )
@@ -4988,177 +4783,17 @@ typedef $$ChapterReadsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $ChapterReadsTable,
-      ChapterRead,
+      ChapterReadRow,
       $$ChapterReadsTableFilterComposer,
       $$ChapterReadsTableOrderingComposer,
       $$ChapterReadsTableAnnotationComposer,
       $$ChapterReadsTableCreateCompanionBuilder,
       $$ChapterReadsTableUpdateCompanionBuilder,
       (
-        ChapterRead,
-        BaseReferences<_$AppDatabase, $ChapterReadsTable, ChapterRead>,
+        ChapterReadRow,
+        BaseReferences<_$AppDatabase, $ChapterReadsTable, ChapterReadRow>,
       ),
-      ChapterRead,
-      PrefetchHooks Function()
-    >;
-typedef $$BookCompletionsTableCreateCompanionBuilder =
-    BookCompletionsCompanion Function({
-      required String book,
-      Value<int> completions,
-      Value<int> rowid,
-    });
-typedef $$BookCompletionsTableUpdateCompanionBuilder =
-    BookCompletionsCompanion Function({
-      Value<String> book,
-      Value<int> completions,
-      Value<int> rowid,
-    });
-
-class $$BookCompletionsTableFilterComposer
-    extends Composer<_$AppDatabase, $BookCompletionsTable> {
-  $$BookCompletionsTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnFilters<String> get book => $composableBuilder(
-    column: $table.book,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get completions => $composableBuilder(
-    column: $table.completions,
-    builder: (column) => ColumnFilters(column),
-  );
-}
-
-class $$BookCompletionsTableOrderingComposer
-    extends Composer<_$AppDatabase, $BookCompletionsTable> {
-  $$BookCompletionsTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnOrderings<String> get book => $composableBuilder(
-    column: $table.book,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get completions => $composableBuilder(
-    column: $table.completions,
-    builder: (column) => ColumnOrderings(column),
-  );
-}
-
-class $$BookCompletionsTableAnnotationComposer
-    extends Composer<_$AppDatabase, $BookCompletionsTable> {
-  $$BookCompletionsTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  GeneratedColumn<String> get book =>
-      $composableBuilder(column: $table.book, builder: (column) => column);
-
-  GeneratedColumn<int> get completions => $composableBuilder(
-    column: $table.completions,
-    builder: (column) => column,
-  );
-}
-
-class $$BookCompletionsTableTableManager
-    extends
-        RootTableManager<
-          _$AppDatabase,
-          $BookCompletionsTable,
-          BookCompletion,
-          $$BookCompletionsTableFilterComposer,
-          $$BookCompletionsTableOrderingComposer,
-          $$BookCompletionsTableAnnotationComposer,
-          $$BookCompletionsTableCreateCompanionBuilder,
-          $$BookCompletionsTableUpdateCompanionBuilder,
-          (
-            BookCompletion,
-            BaseReferences<
-              _$AppDatabase,
-              $BookCompletionsTable,
-              BookCompletion
-            >,
-          ),
-          BookCompletion,
-          PrefetchHooks Function()
-        > {
-  $$BookCompletionsTableTableManager(
-    _$AppDatabase db,
-    $BookCompletionsTable table,
-  ) : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$BookCompletionsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$BookCompletionsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$BookCompletionsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<String> book = const Value.absent(),
-                Value<int> completions = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
-              }) => BookCompletionsCompanion(
-                book: book,
-                completions: completions,
-                rowid: rowid,
-              ),
-          createCompanionCallback:
-              ({
-                required String book,
-                Value<int> completions = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
-              }) => BookCompletionsCompanion.insert(
-                book: book,
-                completions: completions,
-                rowid: rowid,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable<$BookCompletionsTable, BookCompletion>(table),
-                  BaseReferences<
-                    _$AppDatabase,
-                    $BookCompletionsTable,
-                    BookCompletion
-                  >(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: null,
-        ),
-      );
-}
-
-typedef $$BookCompletionsTableProcessedTableManager =
-    ProcessedTableManager<
-      _$AppDatabase,
-      $BookCompletionsTable,
-      BookCompletion,
-      $$BookCompletionsTableFilterComposer,
-      $$BookCompletionsTableOrderingComposer,
-      $$BookCompletionsTableAnnotationComposer,
-      $$BookCompletionsTableCreateCompanionBuilder,
-      $$BookCompletionsTableUpdateCompanionBuilder,
-      (
-        BookCompletion,
-        BaseReferences<_$AppDatabase, $BookCompletionsTable, BookCompletion>,
-      ),
-      BookCompletion,
+      ChapterReadRow,
       PrefetchHooks Function()
     >;
 typedef $$ReadingLogTableCreateCompanionBuilder = ReadingLogCompanion Function({
@@ -5306,17 +4941,17 @@ class $$ReadingLogTableTableManager
         RootTableManager<
           _$AppDatabase,
           $ReadingLogTable,
-          ReadingLogData,
+          ReadingLogRow,
           $$ReadingLogTableFilterComposer,
           $$ReadingLogTableOrderingComposer,
           $$ReadingLogTableAnnotationComposer,
           $$ReadingLogTableCreateCompanionBuilder,
           $$ReadingLogTableUpdateCompanionBuilder,
           (
-            ReadingLogData,
-            BaseReferences<_$AppDatabase, $ReadingLogTable, ReadingLogData>,
+            ReadingLogRow,
+            BaseReferences<_$AppDatabase, $ReadingLogTable, ReadingLogRow>,
           ),
-          ReadingLogData,
+          ReadingLogRow,
           PrefetchHooks Function()
         > {
   $$ReadingLogTableTableManager(_$AppDatabase db, $ReadingLogTable table)
@@ -5369,11 +5004,11 @@ class $$ReadingLogTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$ReadingLogTable, ReadingLogData>(table),
+                  e.readTable<$ReadingLogTable, ReadingLogRow>(table),
                   BaseReferences<
                     _$AppDatabase,
                     $ReadingLogTable,
-                    ReadingLogData
+                    ReadingLogRow
                   >(db, table, e),
                 ),
               )
@@ -5387,17 +5022,17 @@ typedef $$ReadingLogTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $ReadingLogTable,
-      ReadingLogData,
+      ReadingLogRow,
       $$ReadingLogTableFilterComposer,
       $$ReadingLogTableOrderingComposer,
       $$ReadingLogTableAnnotationComposer,
       $$ReadingLogTableCreateCompanionBuilder,
       $$ReadingLogTableUpdateCompanionBuilder,
       (
-        ReadingLogData,
-        BaseReferences<_$AppDatabase, $ReadingLogTable, ReadingLogData>,
+        ReadingLogRow,
+        BaseReferences<_$AppDatabase, $ReadingLogTable, ReadingLogRow>,
       ),
-      ReadingLogData,
+      ReadingLogRow,
       PrefetchHooks Function()
     >;
 typedef $$DayActivitiesTableCreateCompanionBuilder =
@@ -5523,17 +5158,14 @@ class $$DayActivitiesTableTableManager
         RootTableManager<
           _$AppDatabase,
           $DayActivitiesTable,
-          DayActivity,
+          DayRow,
           $$DayActivitiesTableFilterComposer,
           $$DayActivitiesTableOrderingComposer,
           $$DayActivitiesTableAnnotationComposer,
           $$DayActivitiesTableCreateCompanionBuilder,
           $$DayActivitiesTableUpdateCompanionBuilder,
-          (
-            DayActivity,
-            BaseReferences<_$AppDatabase, $DayActivitiesTable, DayActivity>,
-          ),
-          DayActivity,
+          (DayRow, BaseReferences<_$AppDatabase, $DayActivitiesTable, DayRow>),
+          DayRow,
           PrefetchHooks Function()
         > {
   $$DayActivitiesTableTableManager(_$AppDatabase db, $DayActivitiesTable table)
@@ -5582,12 +5214,12 @@ class $$DayActivitiesTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$DayActivitiesTable, DayActivity>(table),
-                  BaseReferences<
-                    _$AppDatabase,
-                    $DayActivitiesTable,
-                    DayActivity
-                  >(db, table, e),
+                  e.readTable<$DayActivitiesTable, DayRow>(table),
+                  BaseReferences<_$AppDatabase, $DayActivitiesTable, DayRow>(
+                    db,
+                    table,
+                    e,
+                  ),
                 ),
               )
               .toList(),
@@ -5600,17 +5232,14 @@ typedef $$DayActivitiesTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $DayActivitiesTable,
-      DayActivity,
+      DayRow,
       $$DayActivitiesTableFilterComposer,
       $$DayActivitiesTableOrderingComposer,
       $$DayActivitiesTableAnnotationComposer,
       $$DayActivitiesTableCreateCompanionBuilder,
       $$DayActivitiesTableUpdateCompanionBuilder,
-      (
-        DayActivity,
-        BaseReferences<_$AppDatabase, $DayActivitiesTable, DayActivity>,
-      ),
-      DayActivity,
+      (DayRow, BaseReferences<_$AppDatabase, $DayActivitiesTable, DayRow>),
+      DayRow,
       PrefetchHooks Function()
     >;
 typedef $$OrvalhoLedgerTableCreateCompanionBuilder =
@@ -5730,21 +5359,17 @@ class $$OrvalhoLedgerTableTableManager
         RootTableManager<
           _$AppDatabase,
           $OrvalhoLedgerTable,
-          OrvalhoLedgerData,
+          LedgerRow,
           $$OrvalhoLedgerTableFilterComposer,
           $$OrvalhoLedgerTableOrderingComposer,
           $$OrvalhoLedgerTableAnnotationComposer,
           $$OrvalhoLedgerTableCreateCompanionBuilder,
           $$OrvalhoLedgerTableUpdateCompanionBuilder,
           (
-            OrvalhoLedgerData,
-            BaseReferences<
-              _$AppDatabase,
-              $OrvalhoLedgerTable,
-              OrvalhoLedgerData
-            >,
+            LedgerRow,
+            BaseReferences<_$AppDatabase, $OrvalhoLedgerTable, LedgerRow>,
           ),
-          OrvalhoLedgerData,
+          LedgerRow,
           PrefetchHooks Function()
         > {
   $$OrvalhoLedgerTableTableManager(_$AppDatabase db, $OrvalhoLedgerTable table)
@@ -5789,12 +5414,12 @@ class $$OrvalhoLedgerTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$OrvalhoLedgerTable, OrvalhoLedgerData>(table),
-                  BaseReferences<
-                    _$AppDatabase,
-                    $OrvalhoLedgerTable,
-                    OrvalhoLedgerData
-                  >(db, table, e),
+                  e.readTable<$OrvalhoLedgerTable, LedgerRow>(table),
+                  BaseReferences<_$AppDatabase, $OrvalhoLedgerTable, LedgerRow>(
+                    db,
+                    table,
+                    e,
+                  ),
                 ),
               )
               .toList(),
@@ -5807,17 +5432,17 @@ typedef $$OrvalhoLedgerTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $OrvalhoLedgerTable,
-      OrvalhoLedgerData,
+      LedgerRow,
       $$OrvalhoLedgerTableFilterComposer,
       $$OrvalhoLedgerTableOrderingComposer,
       $$OrvalhoLedgerTableAnnotationComposer,
       $$OrvalhoLedgerTableCreateCompanionBuilder,
       $$OrvalhoLedgerTableUpdateCompanionBuilder,
       (
-        OrvalhoLedgerData,
-        BaseReferences<_$AppDatabase, $OrvalhoLedgerTable, OrvalhoLedgerData>,
+        LedgerRow,
+        BaseReferences<_$AppDatabase, $OrvalhoLedgerTable, LedgerRow>,
       ),
-      OrvalhoLedgerData,
+      LedgerRow,
       PrefetchHooks Function()
     >;
 typedef $$OwnedItemsTableCreateCompanionBuilder = OwnedItemsCompanion Function({
@@ -5909,17 +5534,17 @@ class $$OwnedItemsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $OwnedItemsTable,
-          OwnedItem,
+          OwnedItemRow,
           $$OwnedItemsTableFilterComposer,
           $$OwnedItemsTableOrderingComposer,
           $$OwnedItemsTableAnnotationComposer,
           $$OwnedItemsTableCreateCompanionBuilder,
           $$OwnedItemsTableUpdateCompanionBuilder,
           (
-            OwnedItem,
-            BaseReferences<_$AppDatabase, $OwnedItemsTable, OwnedItem>,
+            OwnedItemRow,
+            BaseReferences<_$AppDatabase, $OwnedItemsTable, OwnedItemRow>,
           ),
-          OwnedItem,
+          OwnedItemRow,
           PrefetchHooks Function()
         > {
   $$OwnedItemsTableTableManager(_$AppDatabase db, $OwnedItemsTable table)
@@ -5960,8 +5585,8 @@ class $$OwnedItemsTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$OwnedItemsTable, OwnedItem>(table),
-                  BaseReferences<_$AppDatabase, $OwnedItemsTable, OwnedItem>(
+                  e.readTable<$OwnedItemsTable, OwnedItemRow>(table),
+                  BaseReferences<_$AppDatabase, $OwnedItemsTable, OwnedItemRow>(
                     db,
                     table,
                     e,
@@ -5978,14 +5603,17 @@ typedef $$OwnedItemsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $OwnedItemsTable,
-      OwnedItem,
+      OwnedItemRow,
       $$OwnedItemsTableFilterComposer,
       $$OwnedItemsTableOrderingComposer,
       $$OwnedItemsTableAnnotationComposer,
       $$OwnedItemsTableCreateCompanionBuilder,
       $$OwnedItemsTableUpdateCompanionBuilder,
-      (OwnedItem, BaseReferences<_$AppDatabase, $OwnedItemsTable, OwnedItem>),
-      OwnedItem,
+      (
+        OwnedItemRow,
+        BaseReferences<_$AppDatabase, $OwnedItemsTable, OwnedItemRow>,
+      ),
+      OwnedItemRow,
       PrefetchHooks Function()
     >;
 typedef $$PlacementsTableCreateCompanionBuilder = PlacementsCompanion Function({
@@ -6103,17 +5731,17 @@ class $$PlacementsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $PlacementsTable,
-          Placement,
+          PlacementRow,
           $$PlacementsTableFilterComposer,
           $$PlacementsTableOrderingComposer,
           $$PlacementsTableAnnotationComposer,
           $$PlacementsTableCreateCompanionBuilder,
           $$PlacementsTableUpdateCompanionBuilder,
           (
-            Placement,
-            BaseReferences<_$AppDatabase, $PlacementsTable, Placement>,
+            PlacementRow,
+            BaseReferences<_$AppDatabase, $PlacementsTable, PlacementRow>,
           ),
-          Placement,
+          PlacementRow,
           PrefetchHooks Function()
         > {
   $$PlacementsTableTableManager(_$AppDatabase db, $PlacementsTable table)
@@ -6158,8 +5786,8 @@ class $$PlacementsTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$PlacementsTable, Placement>(table),
-                  BaseReferences<_$AppDatabase, $PlacementsTable, Placement>(
+                  e.readTable<$PlacementsTable, PlacementRow>(table),
+                  BaseReferences<_$AppDatabase, $PlacementsTable, PlacementRow>(
                     db,
                     table,
                     e,
@@ -6176,14 +5804,17 @@ typedef $$PlacementsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $PlacementsTable,
-      Placement,
+      PlacementRow,
       $$PlacementsTableFilterComposer,
       $$PlacementsTableOrderingComposer,
       $$PlacementsTableAnnotationComposer,
       $$PlacementsTableCreateCompanionBuilder,
       $$PlacementsTableUpdateCompanionBuilder,
-      (Placement, BaseReferences<_$AppDatabase, $PlacementsTable, Placement>),
-      Placement,
+      (
+        PlacementRow,
+        BaseReferences<_$AppDatabase, $PlacementsTable, PlacementRow>,
+      ),
+      PlacementRow,
       PrefetchHooks Function()
     >;
 typedef $$AnimalsTableCreateCompanionBuilder = AnimalsCompanion Function({
@@ -6290,14 +5921,14 @@ class $$AnimalsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $AnimalsTable,
-          Animal,
+          AnimalRow,
           $$AnimalsTableFilterComposer,
           $$AnimalsTableOrderingComposer,
           $$AnimalsTableAnnotationComposer,
           $$AnimalsTableCreateCompanionBuilder,
           $$AnimalsTableUpdateCompanionBuilder,
-          (Animal, BaseReferences<_$AppDatabase, $AnimalsTable, Animal>),
-          Animal,
+          (AnimalRow, BaseReferences<_$AppDatabase, $AnimalsTable, AnimalRow>),
+          AnimalRow,
           PrefetchHooks Function()
         > {
   $$AnimalsTableTableManager(_$AppDatabase db, $AnimalsTable table)
@@ -6342,8 +5973,8 @@ class $$AnimalsTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$AnimalsTable, Animal>(table),
-                  BaseReferences<_$AppDatabase, $AnimalsTable, Animal>(
+                  e.readTable<$AnimalsTable, AnimalRow>(table),
+                  BaseReferences<_$AppDatabase, $AnimalsTable, AnimalRow>(
                     db,
                     table,
                     e,
@@ -6360,14 +5991,14 @@ typedef $$AnimalsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $AnimalsTable,
-      Animal,
+      AnimalRow,
       $$AnimalsTableFilterComposer,
       $$AnimalsTableOrderingComposer,
       $$AnimalsTableAnnotationComposer,
       $$AnimalsTableCreateCompanionBuilder,
       $$AnimalsTableUpdateCompanionBuilder,
-      (Animal, BaseReferences<_$AppDatabase, $AnimalsTable, Animal>),
-      Animal,
+      (AnimalRow, BaseReferences<_$AppDatabase, $AnimalsTable, AnimalRow>),
+      AnimalRow,
       PrefetchHooks Function()
     >;
 typedef $$CharactersTableCreateCompanionBuilder = CharactersCompanion Function({
@@ -6461,17 +6092,17 @@ class $$CharactersTableTableManager
         RootTableManager<
           _$AppDatabase,
           $CharactersTable,
-          Character,
+          CharacterRow,
           $$CharactersTableFilterComposer,
           $$CharactersTableOrderingComposer,
           $$CharactersTableAnnotationComposer,
           $$CharactersTableCreateCompanionBuilder,
           $$CharactersTableUpdateCompanionBuilder,
           (
-            Character,
-            BaseReferences<_$AppDatabase, $CharactersTable, Character>,
+            CharacterRow,
+            BaseReferences<_$AppDatabase, $CharactersTable, CharacterRow>,
           ),
-          Character,
+          CharacterRow,
           PrefetchHooks Function()
         > {
   $$CharactersTableTableManager(_$AppDatabase db, $CharactersTable table)
@@ -6512,8 +6143,8 @@ class $$CharactersTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$CharactersTable, Character>(table),
-                  BaseReferences<_$AppDatabase, $CharactersTable, Character>(
+                  e.readTable<$CharactersTable, CharacterRow>(table),
+                  BaseReferences<_$AppDatabase, $CharactersTable, CharacterRow>(
                     db,
                     table,
                     e,
@@ -6530,14 +6161,17 @@ typedef $$CharactersTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $CharactersTable,
-      Character,
+      CharacterRow,
       $$CharactersTableFilterComposer,
       $$CharactersTableOrderingComposer,
       $$CharactersTableAnnotationComposer,
       $$CharactersTableCreateCompanionBuilder,
       $$CharactersTableUpdateCompanionBuilder,
-      (Character, BaseReferences<_$AppDatabase, $CharactersTable, Character>),
-      Character,
+      (
+        CharacterRow,
+        BaseReferences<_$AppDatabase, $CharactersTable, CharacterRow>,
+      ),
+      CharacterRow,
       PrefetchHooks Function()
     >;
 typedef $$PrayersTableCreateCompanionBuilder = PrayersCompanion Function({
@@ -6640,14 +6274,14 @@ class $$PrayersTableTableManager
         RootTableManager<
           _$AppDatabase,
           $PrayersTable,
-          Prayer,
+          PrayerRow,
           $$PrayersTableFilterComposer,
           $$PrayersTableOrderingComposer,
           $$PrayersTableAnnotationComposer,
           $$PrayersTableCreateCompanionBuilder,
           $$PrayersTableUpdateCompanionBuilder,
-          (Prayer, BaseReferences<_$AppDatabase, $PrayersTable, Prayer>),
-          Prayer,
+          (PrayerRow, BaseReferences<_$AppDatabase, $PrayersTable, PrayerRow>),
+          PrayerRow,
           PrefetchHooks Function()
         > {
   $$PrayersTableTableManager(_$AppDatabase db, $PrayersTable table)
@@ -6688,8 +6322,8 @@ class $$PrayersTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$PrayersTable, Prayer>(table),
-                  BaseReferences<_$AppDatabase, $PrayersTable, Prayer>(
+                  e.readTable<$PrayersTable, PrayerRow>(table),
+                  BaseReferences<_$AppDatabase, $PrayersTable, PrayerRow>(
                     db,
                     table,
                     e,
@@ -6706,14 +6340,14 @@ typedef $$PrayersTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $PrayersTable,
-      Prayer,
+      PrayerRow,
       $$PrayersTableFilterComposer,
       $$PrayersTableOrderingComposer,
       $$PrayersTableAnnotationComposer,
       $$PrayersTableCreateCompanionBuilder,
       $$PrayersTableUpdateCompanionBuilder,
-      (Prayer, BaseReferences<_$AppDatabase, $PrayersTable, Prayer>),
-      Prayer,
+      (PrayerRow, BaseReferences<_$AppDatabase, $PrayersTable, PrayerRow>),
+      PrayerRow,
       PrefetchHooks Function()
     >;
 typedef $$PrayerRequestsTableCreateCompanionBuilder =
@@ -6837,17 +6471,21 @@ class $$PrayerRequestsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $PrayerRequestsTable,
-          PrayerRequest,
+          PrayerRequestRow,
           $$PrayerRequestsTableFilterComposer,
           $$PrayerRequestsTableOrderingComposer,
           $$PrayerRequestsTableAnnotationComposer,
           $$PrayerRequestsTableCreateCompanionBuilder,
           $$PrayerRequestsTableUpdateCompanionBuilder,
           (
-            PrayerRequest,
-            BaseReferences<_$AppDatabase, $PrayerRequestsTable, PrayerRequest>,
+            PrayerRequestRow,
+            BaseReferences<
+              _$AppDatabase,
+              $PrayerRequestsTable,
+              PrayerRequestRow
+            >,
           ),
-          PrayerRequest,
+          PrayerRequestRow,
           PrefetchHooks Function()
         > {
   $$PrayerRequestsTableTableManager(
@@ -6894,11 +6532,11 @@ class $$PrayerRequestsTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$PrayerRequestsTable, PrayerRequest>(table),
+                  e.readTable<$PrayerRequestsTable, PrayerRequestRow>(table),
                   BaseReferences<
                     _$AppDatabase,
                     $PrayerRequestsTable,
-                    PrayerRequest
+                    PrayerRequestRow
                   >(db, table, e),
                 ),
               )
@@ -6912,17 +6550,17 @@ typedef $$PrayerRequestsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $PrayerRequestsTable,
-      PrayerRequest,
+      PrayerRequestRow,
       $$PrayerRequestsTableFilterComposer,
       $$PrayerRequestsTableOrderingComposer,
       $$PrayerRequestsTableAnnotationComposer,
       $$PrayerRequestsTableCreateCompanionBuilder,
       $$PrayerRequestsTableUpdateCompanionBuilder,
       (
-        PrayerRequest,
-        BaseReferences<_$AppDatabase, $PrayerRequestsTable, PrayerRequest>,
+        PrayerRequestRow,
+        BaseReferences<_$AppDatabase, $PrayerRequestsTable, PrayerRequestRow>,
       ),
-      PrayerRequest,
+      PrayerRequestRow,
       PrefetchHooks Function()
     >;
 typedef $$JournalEntriesTableCreateCompanionBuilder =
@@ -7044,17 +6682,17 @@ class $$JournalEntriesTableTableManager
         RootTableManager<
           _$AppDatabase,
           $JournalEntriesTable,
-          JournalEntry,
+          JournalRow,
           $$JournalEntriesTableFilterComposer,
           $$JournalEntriesTableOrderingComposer,
           $$JournalEntriesTableAnnotationComposer,
           $$JournalEntriesTableCreateCompanionBuilder,
           $$JournalEntriesTableUpdateCompanionBuilder,
           (
-            JournalEntry,
-            BaseReferences<_$AppDatabase, $JournalEntriesTable, JournalEntry>,
+            JournalRow,
+            BaseReferences<_$AppDatabase, $JournalEntriesTable, JournalRow>,
           ),
-          JournalEntry,
+          JournalRow,
           PrefetchHooks Function()
         > {
   $$JournalEntriesTableTableManager(
@@ -7101,11 +6739,11 @@ class $$JournalEntriesTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$JournalEntriesTable, JournalEntry>(table),
+                  e.readTable<$JournalEntriesTable, JournalRow>(table),
                   BaseReferences<
                     _$AppDatabase,
                     $JournalEntriesTable,
-                    JournalEntry
+                    JournalRow
                   >(db, table, e),
                 ),
               )
@@ -7119,17 +6757,17 @@ typedef $$JournalEntriesTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $JournalEntriesTable,
-      JournalEntry,
+      JournalRow,
       $$JournalEntriesTableFilterComposer,
       $$JournalEntriesTableOrderingComposer,
       $$JournalEntriesTableAnnotationComposer,
       $$JournalEntriesTableCreateCompanionBuilder,
       $$JournalEntriesTableUpdateCompanionBuilder,
       (
-        JournalEntry,
-        BaseReferences<_$AppDatabase, $JournalEntriesTable, JournalEntry>,
+        JournalRow,
+        BaseReferences<_$AppDatabase, $JournalEntriesTable, JournalRow>,
       ),
-      JournalEntry,
+      JournalRow,
       PrefetchHooks Function()
     >;
 typedef $$CrownStonesTableCreateCompanionBuilder =
@@ -7221,17 +6859,17 @@ class $$CrownStonesTableTableManager
         RootTableManager<
           _$AppDatabase,
           $CrownStonesTable,
-          CrownStone,
+          CrownStoneRow,
           $$CrownStonesTableFilterComposer,
           $$CrownStonesTableOrderingComposer,
           $$CrownStonesTableAnnotationComposer,
           $$CrownStonesTableCreateCompanionBuilder,
           $$CrownStonesTableUpdateCompanionBuilder,
           (
-            CrownStone,
-            BaseReferences<_$AppDatabase, $CrownStonesTable, CrownStone>,
+            CrownStoneRow,
+            BaseReferences<_$AppDatabase, $CrownStonesTable, CrownStoneRow>,
           ),
-          CrownStone,
+          CrownStoneRow,
           PrefetchHooks Function()
         > {
   $$CrownStonesTableTableManager(_$AppDatabase db, $CrownStonesTable table)
@@ -7272,12 +6910,12 @@ class $$CrownStonesTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$CrownStonesTable, CrownStone>(table),
-                  BaseReferences<_$AppDatabase, $CrownStonesTable, CrownStone>(
-                    db,
-                    table,
-                    e,
-                  ),
+                  e.readTable<$CrownStonesTable, CrownStoneRow>(table),
+                  BaseReferences<
+                    _$AppDatabase,
+                    $CrownStonesTable,
+                    CrownStoneRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
@@ -7290,17 +6928,17 @@ typedef $$CrownStonesTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $CrownStonesTable,
-      CrownStone,
+      CrownStoneRow,
       $$CrownStonesTableFilterComposer,
       $$CrownStonesTableOrderingComposer,
       $$CrownStonesTableAnnotationComposer,
       $$CrownStonesTableCreateCompanionBuilder,
       $$CrownStonesTableUpdateCompanionBuilder,
       (
-        CrownStone,
-        BaseReferences<_$AppDatabase, $CrownStonesTable, CrownStone>,
+        CrownStoneRow,
+        BaseReferences<_$AppDatabase, $CrownStonesTable, CrownStoneRow>,
       ),
-      CrownStone,
+      CrownStoneRow,
       PrefetchHooks Function()
     >;
 typedef $$StorePurchasesTableCreateCompanionBuilder =
@@ -7441,17 +7079,21 @@ class $$StorePurchasesTableTableManager
         RootTableManager<
           _$AppDatabase,
           $StorePurchasesTable,
-          StorePurchase,
+          StorePurchaseRow,
           $$StorePurchasesTableFilterComposer,
           $$StorePurchasesTableOrderingComposer,
           $$StorePurchasesTableAnnotationComposer,
           $$StorePurchasesTableCreateCompanionBuilder,
           $$StorePurchasesTableUpdateCompanionBuilder,
           (
-            StorePurchase,
-            BaseReferences<_$AppDatabase, $StorePurchasesTable, StorePurchase>,
+            StorePurchaseRow,
+            BaseReferences<
+              _$AppDatabase,
+              $StorePurchasesTable,
+              StorePurchaseRow
+            >,
           ),
-          StorePurchase,
+          StorePurchaseRow,
           PrefetchHooks Function()
         > {
   $$StorePurchasesTableTableManager(
@@ -7506,11 +7148,11 @@ class $$StorePurchasesTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$StorePurchasesTable, StorePurchase>(table),
+                  e.readTable<$StorePurchasesTable, StorePurchaseRow>(table),
                   BaseReferences<
                     _$AppDatabase,
                     $StorePurchasesTable,
-                    StorePurchase
+                    StorePurchaseRow
                   >(db, table, e),
                 ),
               )
@@ -7524,17 +7166,17 @@ typedef $$StorePurchasesTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $StorePurchasesTable,
-      StorePurchase,
+      StorePurchaseRow,
       $$StorePurchasesTableFilterComposer,
       $$StorePurchasesTableOrderingComposer,
       $$StorePurchasesTableAnnotationComposer,
       $$StorePurchasesTableCreateCompanionBuilder,
       $$StorePurchasesTableUpdateCompanionBuilder,
       (
-        StorePurchase,
-        BaseReferences<_$AppDatabase, $StorePurchasesTable, StorePurchase>,
+        StorePurchaseRow,
+        BaseReferences<_$AppDatabase, $StorePurchasesTable, StorePurchaseRow>,
       ),
-      StorePurchase,
+      StorePurchaseRow,
       PrefetchHooks Function()
     >;
 typedef $$SettingsTableCreateCompanionBuilder = SettingsCompanion Function({
@@ -7609,14 +7251,17 @@ class $$SettingsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $SettingsTable,
-          Setting,
+          SettingRow,
           $$SettingsTableFilterComposer,
           $$SettingsTableOrderingComposer,
           $$SettingsTableAnnotationComposer,
           $$SettingsTableCreateCompanionBuilder,
           $$SettingsTableUpdateCompanionBuilder,
-          (Setting, BaseReferences<_$AppDatabase, $SettingsTable, Setting>),
-          Setting,
+          (
+            SettingRow,
+            BaseReferences<_$AppDatabase, $SettingsTable, SettingRow>,
+          ),
+          SettingRow,
           PrefetchHooks Function()
         > {
   $$SettingsTableTableManager(_$AppDatabase db, $SettingsTable table)
@@ -7643,8 +7288,8 @@ class $$SettingsTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$SettingsTable, Setting>(table),
-                  BaseReferences<_$AppDatabase, $SettingsTable, Setting>(
+                  e.readTable<$SettingsTable, SettingRow>(table),
+                  BaseReferences<_$AppDatabase, $SettingsTable, SettingRow>(
                     db,
                     table,
                     e,
@@ -7661,14 +7306,14 @@ typedef $$SettingsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $SettingsTable,
-      Setting,
+      SettingRow,
       $$SettingsTableFilterComposer,
       $$SettingsTableOrderingComposer,
       $$SettingsTableAnnotationComposer,
       $$SettingsTableCreateCompanionBuilder,
       $$SettingsTableUpdateCompanionBuilder,
-      (Setting, BaseReferences<_$AppDatabase, $SettingsTable, Setting>),
-      Setting,
+      (SettingRow, BaseReferences<_$AppDatabase, $SettingsTable, SettingRow>),
+      SettingRow,
       PrefetchHooks Function()
     >;
 
@@ -7677,8 +7322,6 @@ class $AppDatabaseManager {
   $AppDatabaseManager(this._db);
   $$ChapterReadsTableTableManager get chapterReads =>
       $$ChapterReadsTableTableManager(_db, _db.chapterReads);
-  $$BookCompletionsTableTableManager get bookCompletions =>
-      $$BookCompletionsTableTableManager(_db, _db.bookCompletions);
   $$ReadingLogTableTableManager get readingLog =>
       $$ReadingLogTableTableManager(_db, _db.readingLog);
   $$DayActivitiesTableTableManager get dayActivities =>

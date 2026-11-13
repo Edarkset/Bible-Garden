@@ -7,7 +7,6 @@ part 'app_database.g.dart';
 @DriftDatabase(
   tables: [
     ChapterReads,
-    BookCompletions,
     ReadingLog,
     DayActivities,
     OrvalhoLedger,

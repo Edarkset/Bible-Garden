@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 /// Capítulos lidos e validados (um registro por capítulo).
+@DataClassName('ChapterReadRow')
 class ChapterReads extends Table {
   TextColumn get book => text().withLength(min: 3, max: 3)();
   IntColumn get chapter => integer()();
@@ -11,16 +12,8 @@ class ChapterReads extends Table {
   Set<Column<Object>> get primaryKey => {book, chapter};
 }
 
-/// Leituras completas de cada livro (para as variantes florada e dourada).
-class BookCompletions extends Table {
-  TextColumn get book => text().withLength(min: 3, max: 3)();
-  IntColumn get completions => integer().withDefault(const Constant(0))();
-
-  @override
-  Set<Column<Object>> get primaryKey => {book};
-}
-
 /// Cada leitura aceita, com o resumo da validação (tela de transparência).
+@DataClassName('ReadingLogRow')
 class ReadingLog extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get book => text()();
@@ -36,6 +29,7 @@ class ReadingLog extends Table {
 }
 
 /// O que aconteceu em cada dia (para a porção de orvalho e o ritmo).
+@DataClassName('DayRow')
 class DayActivities extends Table {
   /// Dia ISO local (aaaa-mm-dd).
   TextColumn get day => text()();
@@ -52,6 +46,7 @@ class DayActivities extends Table {
 }
 
 /// Livro-caixa do orvalho. O saldo é a soma; nada é apagado.
+@DataClassName('LedgerRow')
 class OrvalhoLedger extends Table {
   IntColumn get id => integer().autoIncrement()();
   DateTimeColumn get at => dateTime()();
@@ -63,6 +58,7 @@ class OrvalhoLedger extends Table {
 }
 
 /// Itens da loja que a pessoa tem.
+@DataClassName('OwnedItemRow')
 class OwnedItems extends Table {
   TextColumn get itemId => text()();
   DateTimeColumn get acquiredAt => dateTime()();
@@ -75,6 +71,7 @@ class OwnedItems extends Table {
 }
 
 /// Onde cada item está no jardim de um livro (ladrilhos 12 × 12).
+@DataClassName('PlacementRow')
 class Placements extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get book => text()();
@@ -85,6 +82,7 @@ class Placements extends Table {
 
 /// Animais que chegaram ao jardim. A idade vem das porções recebidas desde
 /// a chegada.
+@DataClassName('AnimalRow')
 class Animals extends Table {
   TextColumn get animalId => text()();
 
@@ -98,6 +96,7 @@ class Animals extends Table {
 }
 
 /// Personagens bíblicos: liberados pela leitura, comprados com orvalho.
+@DataClassName('CharacterRow')
 class Characters extends Table {
   TextColumn get characterId => text()();
   DateTimeColumn get unlockedAt => dateTime().nullable()();
@@ -108,6 +107,7 @@ class Characters extends Table {
 }
 
 /// Orações concluídas (só o ato, nunca o conteúdo).
+@DataClassName('PrayerRow')
 class Prayers extends Table {
   IntColumn get id => integer().autoIncrement()();
   DateTimeColumn get at => dateTime()();
@@ -116,6 +116,7 @@ class Prayers extends Table {
 }
 
 /// Pedidos de oração. "Foi respondida" ergue uma pedra de Ebenézer.
+@DataClassName('PrayerRequestRow')
 class PrayerRequests extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get body => text()();
@@ -125,6 +126,7 @@ class PrayerRequests extends Table {
 }
 
 /// Baú do diário: anotações do devocional.
+@DataClassName('JournalRow')
 class JournalEntries extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get day => text()();
@@ -134,6 +136,7 @@ class JournalEntries extends Table {
 }
 
 /// Pedras da coroa (marcos de leitura; nunca vendidas).
+@DataClassName('CrownStoneRow')
 class CrownStones extends Table {
   /// Ex.: 'canteiro:GEN:1', 'livro:RUT', 'bioma:Evangelhos', 'biblia'.
   TextColumn get id => text()();
@@ -145,6 +148,7 @@ class CrownStones extends Table {
 }
 
 /// Compras com dinheiro (pacotes de orvalho e pacotes visuais).
+@DataClassName('StorePurchaseRow')
 class StorePurchases extends Table {
   TextColumn get transactionId => text()();
   TextColumn get productId => text()();
@@ -160,6 +164,7 @@ class StorePurchases extends Table {
 }
 
 /// Preferências simples (chave e valor em texto).
+@DataClassName('SettingRow')
 class Settings extends Table {
   TextColumn get key => text()();
   TextColumn get value => text()();
