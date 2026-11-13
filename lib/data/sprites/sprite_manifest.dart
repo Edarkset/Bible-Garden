@@ -34,6 +34,35 @@ final class SpriteAnimation {
   final bool isStatic;
 }
 
+/// Folha de objetos de um personagem: aparecer e em uso.
+final class PropSheet {
+  const new({
+    required this.file,
+    required this.cols,
+    required this.rows,
+    required this.cell,
+    required this.animations,
+  });
+
+  factory fromJson(Map<String, Object?> json) => PropSheet(
+    file: json['file']! as String,
+    cols: json['cols']! as int,
+    rows: json['rows']! as int,
+    cell: json['cell']! as int,
+    animations: {
+      for (final k in const ['appear', 'in_use'])
+        if (json[k] != null)
+          k: SpriteAnimation.fromJson(k, json[k]! as Map<String, Object?>),
+    },
+  );
+
+  final String file;
+  final int cols;
+  final int rows;
+  final int cell;
+  final Map<String, SpriteAnimation> animations;
+}
+
 /// Uma folha de sprite descrita em `assets/data/sprites_manifest.json`.
 ///
 /// A chave única é [code] (A001, PL001, H01...). O campo [id] se repete em
@@ -54,6 +83,8 @@ final class SpriteSheet {
     this.facing,
     this.animations = const {},
     this.hasFruit = false,
+    this.props,
+    this.portrait,
   });
 
   factory fromJson(Map<String, Object?> json) {
@@ -79,6 +110,10 @@ final class SpriteSheet {
           ),
       },
       hasFruit: json['fruit'] as bool? ?? false,
+      props: json['props'] == null
+          ? null
+          : PropSheet.fromJson(json['props']! as Map<String, Object?>),
+      portrait: json['portrait'] as String?,
     );
   }
 
@@ -104,6 +139,12 @@ final class SpriteSheet {
   final String? facing;
   final Map<String, SpriteAnimation> animations;
   final bool hasFruit;
+
+  /// Folha de objetos do personagem (a arca de Noé, o cajado...).
+  final PropSheet? props;
+
+  /// Retrato de busto (herbário e loja), relativo a `assets/`.
+  final String? portrait;
 
   /// Caminho do asset dentro do app.
   String get assetPath => 'assets/$file';

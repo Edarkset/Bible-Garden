@@ -35,6 +35,11 @@ jobs:
       - run: flutter test
       - name: Arte x manifesto
         run: dart run tool/check_assets.dart
+      - name: Código gerado e conteúdo em dia
+        run: |
+          dart run build_runner build -d
+          dart run tool/gerar_conteudo.dart
+          git diff --exit-code -- lib assets/data
 
   android:
     name: Build Android (dev e prod)

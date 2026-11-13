@@ -1,0 +1,4584 @@
+{
+ "versao": 1,
+ "fonte": "docs/arte/03-anexo-de-dados.md",
+ "canone73": [
+  "GEN",
+  "EXO",
+  "LEV",
+  "NUM",
+  "DEU",
+  "JOS",
+  "JDG",
+  "RUT",
+  "1SA",
+  "2SA",
+  "1KI",
+  "2KI",
+  "1CH",
+  "2CH",
+  "EZR",
+  "NEH",
+  "TOB",
+  "JDT",
+  "EST",
+  "1MA",
+  "2MA",
+  "JOB",
+  "PSA",
+  "PRO",
+  "ECC",
+  "SNG",
+  "WIS",
+  "SIR",
+  "ISA",
+  "JER",
+  "LAM",
+  "BAR",
+  "EZK",
+  "DAN",
+  "HOS",
+  "JOL",
+  "AMO",
+  "OBA",
+  "JON",
+  "MIC",
+  "NAM",
+  "HAB",
+  "ZEP",
+  "HAG",
+  "ZEC",
+  "MAL",
+  "MAT",
+  "MRK",
+  "LUK",
+  "JHN",
+  "ACT",
+  "ROM",
+  "1CO",
+  "2CO",
+  "GAL",
+  "EPH",
+  "PHP",
+  "COL",
+  "1TH",
+  "2TH",
+  "1TI",
+  "2TI",
+  "TIT",
+  "PHM",
+  "HEB",
+  "JAS",
+  "1PE",
+  "2PE",
+  "1JN",
+  "2JN",
+  "3JN",
+  "JUD",
+  "REV"
+ ],
+ "deuterocanonicos": [
+  "TOB",
+  "JDT",
+  "1MA",
+  "2MA",
+  "WIS",
+  "SIR",
+  "BAR"
+ ],
+ "livros": [
+  {
+   "id": "GEN",
+   "nome": "Gênesis",
+   "bioma": "Pentateuco",
+   "deuterocanonico": false,
+   "arvore": "oliveira",
+   "animal": "pomba",
+   "animalRef": "Gn 8:11",
+   "personagem": "noe",
+   "preco": 600
+  },
+  {
+   "id": "EXO",
+   "nome": "Êxodo",
+   "bioma": "Pentateuco",
+   "deuterocanonico": false,
+   "arvore": "acacia",
+   "animal": "codorniz",
+   "animalRef": "Êx 16:13",
+   "personagem": "moises",
+   "preco": 600
+  },
+  {
+   "id": "LEV",
+   "nome": "Levítico",
+   "bioma": "Pentateuco",
+   "deuterocanonico": false,
+   "arvore": "salgueiro",
+   "animal": "rolinha",
+   "animalRef": "Lv 12:8",
+   "personagem": "arao",
+   "preco": 600
+  },
+  {
+   "id": "NUM",
+   "nome": "Números",
+   "bioma": "Pentateuco",
+   "deuterocanonico": false,
+   "arvore": "aloes",
+   "animal": "jumenta",
+   "animalRef": "Nm 22:28",
+   "personagem": "balaao",
+   "preco": 400
+  },
+  {
+   "id": "DEU",
+   "nome": "Deuteronômio",
+   "bioma": "Pentateuco",
+   "deuterocanonico": false,
+   "arvore": "romazeira",
+   "animal": "aguia",
+   "animalRef": "Dt 32:11",
+   "personagem": "moises-idoso",
+   "preco": 600
+  },
+  {
+   "id": "JOS",
+   "nome": "Josué",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "terebinto",
+   "animal": "garca",
+   "animalRef": "temático: travessia do Jordão",
+   "personagem": "josue",
+   "preco": 600
+  },
+  {
+   "id": "JDG",
+   "nome": "Juízes",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "espinheiro",
+   "animal": "ovelha",
+   "animalRef": "Jz 6:37 (velo de Gideão)",
+   "personagem": "gideao",
+   "preco": 600
+  },
+  {
+   "id": "RUT",
+   "nome": "Rute",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "cevada",
+   "animal": "ratinho",
+   "animalRef": "temático: colheita",
+   "personagem": "rute",
+   "preco": 400
+  },
+  {
+   "id": "1SA",
+   "nome": "1 Samuel",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "tamargueira",
+   "animal": "perdiz",
+   "animalRef": "1 Sm 26:20",
+   "personagem": "samuel",
+   "preco": 600
+  },
+  {
+   "id": "2SA",
+   "nome": "2 Samuel",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "balsameira",
+   "animal": "mula",
+   "animalRef": "2 Sm 18:9",
+   "personagem": "davi-rei",
+   "preco": 400
+  },
+  {
+   "id": "1KI",
+   "nome": "1 Reis",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "zimbro",
+   "animal": "pavao",
+   "animalRef": "1 Rs 10:22",
+   "personagem": "salomao",
+   "preco": 600
+  },
+  {
+   "id": "2KI",
+   "nome": "2 Reis",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "figueira",
+   "animal": "cavalo",
+   "animalRef": "2 Rs 2:11",
+   "personagem": "elias",
+   "preco": 600
+  },
+  {
+   "id": "1CH",
+   "nome": "1 Crônicas",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "oliveira",
+   "animal": "gazela",
+   "animalRef": "1 Cr 12:8",
+   "personagem": "jabez",
+   "preco": 600
+  },
+  {
+   "id": "2CH",
+   "nome": "2 Crônicas",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "sandalo",
+   "animal": "macaco",
+   "animalRef": "2 Cr 9:21",
+   "personagem": "josafa",
+   "preco": 600
+  },
+  {
+   "id": "EZR",
+   "nome": "Esdras",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "cedro-libano",
+   "animal": "camelos",
+   "animalRef": "Ed 2:67",
+   "personagem": "esdras",
+   "preco": 600
+  },
+  {
+   "id": "NEH",
+   "nome": "Neemias",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "oliveira-brava",
+   "animal": "raposa",
+   "animalRef": "Ne 4:3",
+   "personagem": "neemias",
+   "preco": 600
+  },
+  {
+   "id": "TOB",
+   "nome": "Tobias",
+   "bioma": "Históricos",
+   "deuterocanonico": true,
+   "arvore": "salgueiro",
+   "animal": "cao",
+   "animalRef": "Tb 6:2",
+   "personagem": "tobias",
+   "preco": 400
+  },
+  {
+   "id": "JDT",
+   "nome": "Judite",
+   "bioma": "Históricos",
+   "deuterocanonico": true,
+   "arvore": "oliveira",
+   "animal": "cabra-montes",
+   "animalRef": "temático: montes de Betúlia",
+   "personagem": "judite",
+   "preco": 600
+  },
+  {
+   "id": "EST",
+   "nome": "Ester",
+   "bioma": "Históricos",
+   "deuterocanonico": false,
+   "arvore": "murta",
+   "animal": "dromedario",
+   "animalRef": "Et 8:10",
+   "personagem": "ester",
+   "preco": 400
+  },
+  {
+   "id": "1MA",
+   "nome": "1 Macabeus",
+   "bioma": "Históricos",
+   "deuterocanonico": true,
+   "arvore": "palmeira-vitoria",
+   "animal": "elefante",
+   "animalRef": "1 Mc 6:30",
+   "personagem": "judas-macabeu",
+   "preco": 600
+  },
+  {
+   "id": "2MA",
+   "nome": "2 Macabeus",
+   "bioma": "Históricos",
+   "deuterocanonico": true,
+   "arvore": "cipreste",
+   "animal": "rolinha",
+   "animalRef": "temático: o templo",
+   "personagem": "neemias-fogo",
+   "preco": 600
+  },
+  {
+   "id": "JOB",
+   "nome": "Jó",
+   "bioma": "Sabedoria e Poesia",
+   "deuterocanonico": false,
+   "arvore": "carvalho-toco",
+   "animal": "avestruz",
+   "animalRef": "Jó 39:13",
+   "personagem": "jo",
+   "preco": 400
+  },
+  {
+   "id": "PSA",
+   "nome": "Salmos",
+   "bioma": "Sabedoria e Poesia",
+   "deuterocanonico": false,
+   "arvore": "tamareira",
+   "animal": "pardais",
+   "animalRef": "Sl 84:3",
+   "personagem": "davi-pastor",
+   "preco": 600
+  },
+  {
+   "id": "PRO",
+   "nome": "Provérbios",
+   "bioma": "Sabedoria e Poesia",
+   "deuterocanonico": false,
+   "arvore": "macieira",
+   "animal": "formiga",
+   "animalRef": "Pv 6:6",
+   "personagem": "salomao-pv",
+   "preco": 600
+  },
+  {
+   "id": "ECC",
+   "nome": "Eclesiastes",
+   "bioma": "Sabedoria e Poesia",
+   "deuterocanonico": false,
+   "arvore": "pomar-variado",
+   "animal": "cao",
+   "animalRef": "Ec 9:4",
+   "personagem": "pregador",
+   "preco": 600
+  },
+  {
+   "id": "SNG",
+   "nome": "Cantares",
+   "bioma": "Sabedoria e Poesia",
+   "deuterocanonico": false,
+   "arvore": "lirio-vales",
+   "animal": "raposa",
+   "animalRef": "Ct 2:15 (raposinhas)",
+   "personagem": "sulamita",
+   "preco": 400
+  },
+  {
+   "id": "WIS",
+   "nome": "Sabedoria",
+   "bioma": "Sabedoria e Poesia",
+   "deuterocanonico": true,
+   "arvore": "lirio-vales",
+   "animal": "coruja-torres",
+   "animalRef": "temático: sabedoria",
+   "personagem": "salomao-sb",
+   "preco": 400
+  },
+  {
+   "id": "SIR",
+   "nome": "Eclesiástico",
+   "bioma": "Sabedoria e Poesia",
+   "deuterocanonico": true,
+   "arvore": "roseira-jerico",
+   "animal": "abelhas",
+   "animalRef": "Eclo 11:3",
+   "personagem": "ben-sira",
+   "preco": 600
+  },
+  {
+   "id": "ISA",
+   "nome": "Isaías",
+   "bioma": "Profetas Maiores",
+   "deuterocanonico": false,
+   "arvore": "cipreste",
+   "animal": "leopardo-cabrito",
+   "animalRef": "Is 11:6",
+   "personagem": "isaias",
+   "preco": 400
+  },
+  {
+   "id": "JER",
+   "nome": "Jeremias",
+   "bioma": "Profetas Maiores",
+   "deuterocanonico": false,
+   "arvore": "amendoeira",
+   "animal": "cegonha",
+   "animalRef": "Jr 8:7",
+   "personagem": "jeremias",
+   "preco": 600
+  },
+  {
+   "id": "LAM",
+   "nome": "Lamentações",
+   "bioma": "Profetas Maiores",
+   "deuterocanonico": false,
+   "arvore": "ipomeia",
+   "animal": "rolinha",
+   "animalRef": "temático: lamento e esperança",
+   "personagem": "jeremias-lm",
+   "preco": 600
+  },
+  {
+   "id": "BAR",
+   "nome": "Baruc",
+   "bioma": "Profetas Maiores",
+   "deuterocanonico": true,
+   "arvore": "arvore-aromatica",
+   "animal": "gato",
+   "animalRef": "Br 6:21",
+   "personagem": "baruc",
+   "preco": 600
+  },
+  {
+   "id": "EZK",
+   "nome": "Ezequiel",
+   "bioma": "Profetas Maiores",
+   "deuterocanonico": false,
+   "arvore": "cedro-monte",
+   "animal": "tilapia",
+   "animalRef": "Ez 47:9-10",
+   "personagem": "ezequiel",
+   "preco": 600
+  },
+  {
+   "id": "DAN",
+   "nome": "Daniel",
+   "bioma": "Profetas Maiores",
+   "deuterocanonico": false,
+   "arvore": "arvore-grande-daniel",
+   "animal": "leoes",
+   "animalRef": "Dn 6",
+   "personagem": "daniel",
+   "preco": 600
+  },
+  {
+   "id": "HOS",
+   "nome": "Oseias",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "lirios-campo",
+   "animal": "novilha",
+   "animalRef": "Os 10:11",
+   "personagem": "oseias",
+   "preco": 400
+  },
+  {
+   "id": "JOL",
+   "nome": "Joel",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "romazeira",
+   "animal": "gafanhoto",
+   "animalRef": "Jl 2:25",
+   "personagem": "joel",
+   "preco": 600
+  },
+  {
+   "id": "AMO",
+   "nome": "Amós",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "sicomoro",
+   "animal": "ovelha",
+   "animalRef": "Am 1:1",
+   "personagem": "amos",
+   "preco": 400
+  },
+  {
+   "id": "OBA",
+   "nome": "Obadias",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "flor-rocha",
+   "animal": "aguia",
+   "animalRef": "Ob 1:4",
+   "personagem": "obadias",
+   "preco": 400
+  },
+  {
+   "id": "JON",
+   "nome": "Jonas",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "mamoneira",
+   "animal": "grande-peixe",
+   "animalRef": "Jn 1:17",
+   "personagem": "jonas",
+   "preco": 400
+  },
+  {
+   "id": "MIC",
+   "nome": "Miqueias",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "videira",
+   "animal": "ovelha",
+   "animalRef": "Mq 7:14",
+   "personagem": "miqueias",
+   "preco": 600
+  },
+  {
+   "id": "NAM",
+   "nome": "Naum",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "flor-carmelo",
+   "animal": "leoa-filhotes",
+   "animalRef": "Na 2:12",
+   "personagem": "naum",
+   "preco": 400
+  },
+  {
+   "id": "HAB",
+   "nome": "Habacuque",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "figueira",
+   "animal": "corca",
+   "animalRef": "Hc 3:19",
+   "personagem": "habacuque",
+   "preco": 600
+  },
+  {
+   "id": "ZEP",
+   "nome": "Sofonias",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "margarida",
+   "animal": "pelicano",
+   "animalRef": "Sf 2:14",
+   "personagem": "sofonias",
+   "preco": 400
+  },
+  {
+   "id": "HAG",
+   "nome": "Ageu",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "oliveira",
+   "animal": "joao-de-barro",
+   "animalRef": "temático: reconstruir a casa",
+   "personagem": "ageu",
+   "preco": 600
+  },
+  {
+   "id": "ZEC",
+   "nome": "Zacarias",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "oliveira",
+   "animal": "jumentinho",
+   "animalRef": "Zc 9:9",
+   "personagem": "zacarias",
+   "preco": 600
+  },
+  {
+   "id": "MAL",
+   "nome": "Malaquias",
+   "bioma": "Os Doze",
+   "deuterocanonico": false,
+   "arvore": "girassol",
+   "animal": "bezerro",
+   "animalRef": "Ml 4:2",
+   "personagem": "malaquias",
+   "preco": 600
+  },
+  {
+   "id": "MAT",
+   "nome": "Mateus",
+   "bioma": "Evangelhos",
+   "deuterocanonico": false,
+   "arvore": "mostardeira",
+   "animal": "galinha-pintinhos",
+   "animalRef": "Mt 23:37",
+   "personagem": "pedro",
+   "preco": 400
+  },
+  {
+   "id": "MRK",
+   "nome": "Marcos",
+   "bioma": "Evangelhos",
+   "deuterocanonico": false,
+   "arvore": "figueira",
+   "animal": "galo",
+   "animalRef": "Mc 14:72",
+   "personagem": "viuva",
+   "preco": 600
+  },
+  {
+   "id": "LUK",
+   "nome": "Lucas",
+   "bioma": "Evangelhos",
+   "deuterocanonico": false,
+   "arvore": "sicomoro",
+   "animal": "ovelha",
+   "animalRef": "Lc 15:4 (ovelha perdida)",
+   "personagem": "zaqueu",
+   "preco": 400
+  },
+  {
+   "id": "JHN",
+   "nome": "João",
+   "bioma": "Evangelhos",
+   "deuterocanonico": false,
+   "arvore": "videira",
+   "animal": "cordeiro",
+   "animalRef": "Jo 1:29",
+   "personagem": "menino-paes",
+   "preco": 600
+  },
+  {
+   "id": "ACT",
+   "nome": "Atos",
+   "bioma": "Atos",
+   "deuterocanonico": false,
+   "arvore": "oliveira",
+   "animal": "gaivota",
+   "animalRef": "temático: viagens por mar",
+   "personagem": "lidia",
+   "preco": 600
+  },
+  {
+   "id": "ROM",
+   "nome": "Romanos",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "oliveira-brava",
+   "animal": "pombo-correio",
+   "animalRef": "temático: cartas",
+   "personagem": "febe",
+   "preco": 400
+  },
+  {
+   "id": "1CO",
+   "nome": "1 Coríntios",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "trigo",
+   "animal": "cabra",
+   "animalRef": "1 Co 9:7",
+   "personagem": "paulo-apolo",
+   "preco": 600
+  },
+  {
+   "id": "2CO",
+   "nome": "2 Coríntios",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "jasmim",
+   "animal": "borboletas",
+   "animalRef": "2 Co 5:17 (temático)",
+   "personagem": "paulo-cesto",
+   "preco": 600
+  },
+  {
+   "id": "GAL",
+   "nome": "Gálatas",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "arvore-frutos-espirito",
+   "animal": "cotovia",
+   "animalRef": "temático: fruto e alegria",
+   "personagem": "paulo-letras",
+   "preco": 600
+  },
+  {
+   "id": "EPH",
+   "nome": "Efésios",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "terebinto",
+   "animal": "tartaruga",
+   "animalRef": "temático: armadura",
+   "personagem": "menino-armadura",
+   "preco": 400
+  },
+  {
+   "id": "PHP",
+   "nome": "Filipenses",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "lavanda",
+   "animal": "pintassilgo",
+   "animalRef": "temático: alegria",
+   "personagem": "paulo-silas",
+   "preco": 400
+  },
+  {
+   "id": "COL",
+   "nome": "Colossenses",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "araucaria",
+   "animal": "toupeira",
+   "animalRef": "temático: raízes",
+   "personagem": "epafras",
+   "preco": 400
+  },
+  {
+   "id": "1TH",
+   "nome": "1 Tessalonicenses",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "lirio-pascoa",
+   "animal": "coruja-torres",
+   "animalRef": "temático: vigiar",
+   "personagem": "timoteo-carta",
+   "preco": 400
+  },
+  {
+   "id": "2TH",
+   "nome": "2 Tessalonicenses",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "feijao-trepador",
+   "animal": "caracol",
+   "animalRef": "temático: perseverança",
+   "personagem": "paulo-tendas",
+   "preco": 600
+  },
+  {
+   "id": "1TI",
+   "nome": "1 Timóteo",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "pau-ferro",
+   "animal": "boi",
+   "animalRef": "1 Tm 5:18",
+   "personagem": "timoteo",
+   "preco": 400
+  },
+  {
+   "id": "2TI",
+   "nome": "2 Timóteo",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "cafeeiro",
+   "animal": "lebre",
+   "animalRef": "temático: completar a carreira",
+   "personagem": "loide-eunice",
+   "preco": 400
+  },
+  {
+   "id": "TIT",
+   "nome": "Tito",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "pitangueira",
+   "animal": "cabra-creta",
+   "animalRef": "temático: Creta",
+   "personagem": "tito",
+   "preco": 400
+  },
+  {
+   "id": "PHM",
+   "nome": "Filemom",
+   "bioma": "Cartas de Paulo",
+   "deuterocanonico": false,
+   "arvore": "hortela",
+   "animal": "andorinha",
+   "animalRef": "temático: voltar para casa",
+   "personagem": "onesimo",
+   "preco": 600
+  },
+  {
+   "id": "HEB",
+   "nome": "Hebreus",
+   "bioma": "Cartas Gerais",
+   "deuterocanonico": false,
+   "arvore": "cedro-libano",
+   "animal": "carneiro",
+   "animalRef": "Hb 11:17",
+   "personagem": "abel",
+   "preco": 400
+  },
+  {
+   "id": "JAS",
+   "nome": "Tiago",
+   "bioma": "Cartas Gerais",
+   "deuterocanonico": false,
+   "arvore": "espigas-chuva",
+   "animal": "cavalo",
+   "animalRef": "Tg 3:3",
+   "personagem": "lavrador",
+   "preco": 400
+  },
+  {
+   "id": "1PE",
+   "nome": "1 Pedro",
+   "bioma": "Cartas Gerais",
+   "deuterocanonico": false,
+   "arvore": "flor-campo",
+   "animal": "ovelha",
+   "animalRef": "1 Pe 2:25",
+   "personagem": "pedro-rede",
+   "preco": 600
+  },
+  {
+   "id": "2PE",
+   "nome": "2 Pedro",
+   "bioma": "Cartas Gerais",
+   "deuterocanonico": false,
+   "arvore": "dama-da-noite",
+   "animal": "vaga-lume",
+   "animalRef": "temático: luz na escuridão",
+   "personagem": "pedro-idoso",
+   "preco": 400
+  },
+  {
+   "id": "1JN",
+   "nome": "1 João",
+   "bioma": "Cartas Gerais",
+   "deuterocanonico": false,
+   "arvore": "hibisco",
+   "animal": "pomba",
+   "animalRef": "temático: amor",
+   "personagem": "joao-idoso",
+   "preco": 600
+  },
+  {
+   "id": "2JN",
+   "nome": "2 João",
+   "bioma": "Cartas Gerais",
+   "deuterocanonico": false,
+   "arvore": "violeta",
+   "animal": "patinhos",
+   "animalRef": "temático: andar na verdade",
+   "personagem": "senhora-eleita",
+   "preco": 400
+  },
+  {
+   "id": "3JN",
+   "nome": "3 João",
+   "bioma": "Cartas Gerais",
+   "deuterocanonico": false,
+   "arvore": "calendula",
+   "animal": "beija-flor",
+   "animalRef": "temático: hospitalidade",
+   "personagem": "gaio",
+   "preco": 600
+  },
+  {
+   "id": "JUD",
+   "nome": "Judas",
+   "bioma": "Cartas Gerais",
+   "deuterocanonico": false,
+   "arvore": "sempre-viva",
+   "animal": "tatu-bola",
+   "animalRef": "temático: guardados",
+   "personagem": "enoque",
+   "preco": 400
+  },
+  {
+   "id": "REV",
+   "nome": "Apocalipse",
+   "bioma": "Apocalipse",
+   "deuterocanonico": false,
+   "arvore": "arvore-vida",
+   "animal": "leao-cordeiro",
+   "animalRef": "Ap 5:5-6",
+   "personagem": "joao-patmos",
+   "preco": 600
+  }
+ ],
+ "personagens": [
+  {
+   "id": "noe",
+   "nome": "Noé",
+   "livro": "GEN",
+   "libera": "Gn 6–8",
+   "gracinha": "constrói a arquinha, sobe nela e solta a pomba",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "GEN",
+   "liberaCapitulos": [
+    6,
+    7,
+    8
+   ]
+  },
+  {
+   "id": "moises",
+   "nome": "Moisés",
+   "livro": "EXO",
+   "libera": "Êx 14",
+   "gracinha": "ergue o cajado e o laguinho se abre",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "EXO",
+   "liberaCapitulos": [
+    14
+   ]
+  },
+  {
+   "id": "arao",
+   "nome": "Arão",
+   "livro": "LEV",
+   "libera": "Lv 8",
+   "gracinha": "acende o incenso e a fumaça vira folhinhas",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "LEV",
+   "liberaCapitulos": [
+    8
+   ]
+  },
+  {
+   "id": "balaao",
+   "nome": "Balaão e a jumenta",
+   "livro": "NUM",
+   "libera": "Nm 22",
+   "gracinha": "a jumenta para e 'conversa' com ele",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "NUM",
+   "liberaCapitulos": [
+    22
+   ]
+  },
+  {
+   "id": "moises-idoso",
+   "nome": "Moisés (idoso)",
+   "livro": "DEU",
+   "libera": "Dt 34",
+   "gracinha": "sobe na pedra e contempla a terra prometida",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "DEU",
+   "liberaCapitulos": [
+    34
+   ]
+  },
+  {
+   "id": "josue",
+   "nome": "Josué",
+   "livro": "JOS",
+   "libera": "Js 6",
+   "gracinha": "marcha com a trombeta e a muralhinha cai",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "JOS",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "gideao",
+   "nome": "Gideão",
+   "livro": "JDG",
+   "libera": "Jz 6",
+   "gracinha": "o velo de lã amanhece cheio de orvalho",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "JDG",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "rute",
+   "nome": "Rute",
+   "livro": "RUT",
+   "libera": "Rt 2",
+   "gracinha": "respiga e divide com um passarinho",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "RUT",
+   "liberaCapitulos": [
+    2
+   ]
+  },
+  {
+   "id": "samuel",
+   "nome": "Samuel (menino)",
+   "livro": "1SA",
+   "libera": "1 Sm 3",
+   "gracinha": "acorda três vezes e por fim escuta",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "1SA",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "davi-rei",
+   "nome": "Davi (rei)",
+   "livro": "2SA",
+   "libera": "2 Sm 6",
+   "gracinha": "dança com todas as forças",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "2SA",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "salomao",
+   "nome": "Salomão",
+   "livro": "1KI",
+   "libera": "1 Rs 10",
+   "gracinha": "estuda a natureza e o pavão abre a cauda",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "1KI",
+   "liberaCapitulos": [
+    10
+   ]
+  },
+  {
+   "id": "elias",
+   "nome": "Elias",
+   "livro": "2KI",
+   "libera": "2 Rs 2",
+   "gracinha": "a carruagem de fogo dá uma volta no jardim",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "2KI",
+   "liberaCapitulos": [
+    2
+   ]
+  },
+  {
+   "id": "jabez",
+   "nome": "Jabez",
+   "livro": "1CH",
+   "libera": "1 Cr 4:10",
+   "gracinha": "ora e a cerquinha do terreno aumenta",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "1CH",
+   "liberaCapitulos": [
+    4
+   ]
+  },
+  {
+   "id": "josafa",
+   "nome": "Josafá",
+   "livro": "2CH",
+   "libera": "2 Cr 20:21",
+   "gracinha": "rege um coralzinho e as flores se abrem",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "2CH",
+   "liberaCapitulos": [
+    20
+   ]
+  },
+  {
+   "id": "esdras",
+   "nome": "Esdras",
+   "livro": "EZR",
+   "libera": "Ed 7",
+   "gracinha": "desenrola um pergaminho comprido",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "EZR",
+   "liberaCapitulos": [
+    7
+   ]
+  },
+  {
+   "id": "neemias",
+   "nome": "Neemias",
+   "livro": "NEH",
+   "libera": "Ne 2–4",
+   "gracinha": "assenta tijolos e ergue um murinho",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "NEH",
+   "liberaCapitulos": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "ester",
+   "nome": "Ester",
+   "livro": "EST",
+   "libera": "Et 5",
+   "gracinha": "põe a coroa e faz uma reverência",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "EST",
+   "liberaCapitulos": [
+    5
+   ]
+  },
+  {
+   "id": "jo",
+   "nome": "Jó",
+   "livro": "JOB",
+   "libera": "Jó 42",
+   "gracinha": "recebe tudo em dobro e abraça um cordeiro",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "JOB",
+   "liberaCapitulos": [
+    42
+   ]
+  },
+  {
+   "id": "davi-pastor",
+   "nome": "Davi (pastor)",
+   "livro": "PSA",
+   "libera": "Sl 23",
+   "gracinha": "toca harpa e acerta uma pinha com a funda",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "PSA",
+   "liberaCapitulos": [
+    23
+   ]
+  },
+  {
+   "id": "salomao-pv",
+   "nome": "Salomão (Provérbios)",
+   "livro": "PRO",
+   "libera": "Pv 6:6",
+   "gracinha": "observa as formigas",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "PRO",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "pregador",
+   "nome": "O Pregador",
+   "livro": "ECC",
+   "libera": "Ec 3",
+   "gracinha": "vira a ampulheta: tudo tem seu tempo",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "ECC",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "sulamita",
+   "nome": "A Sulamita",
+   "livro": "SNG",
+   "libera": "Ct 2",
+   "gracinha": "colhe flores e gira feliz",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "SNG",
+   "liberaCapitulos": [
+    2
+   ]
+  },
+  {
+   "id": "isaias",
+   "nome": "Isaías",
+   "livro": "ISA",
+   "libera": "Is 6:8",
+   "gracinha": "levanta a mão: eis-me aqui",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "ISA",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "jeremias",
+   "nome": "Jeremias",
+   "livro": "JER",
+   "libera": "Jr 18",
+   "gracinha": "modela e refaz um vaso no torno",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "JER",
+   "liberaCapitulos": [
+    18
+   ]
+  },
+  {
+   "id": "jeremias-lm",
+   "nome": "Jeremias (Lamentações)",
+   "livro": "LAM",
+   "libera": "Lm 3:22-23",
+   "gracinha": "abre a janela ao nascer do sol",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "LAM",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "ezequiel",
+   "nome": "Ezequiel",
+   "livro": "EZK",
+   "libera": "Ez 47",
+   "gracinha": "entra no rio: tornozelos, joelhos, cintura",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "EZK",
+   "liberaCapitulos": [
+    47
+   ]
+  },
+  {
+   "id": "daniel",
+   "nome": "Daniel",
+   "livro": "DAN",
+   "libera": "Dn 6",
+   "gracinha": "ora na janela e o leão deita no colo",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "DAN",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "oseias",
+   "nome": "Oseias",
+   "livro": "HOS",
+   "libera": "Os 10:12",
+   "gracinha": "semeia e os brotos nascem atrás dele",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "HOS",
+   "liberaCapitulos": [
+    10
+   ]
+  },
+  {
+   "id": "joel",
+   "nome": "Joel",
+   "livro": "JOL",
+   "libera": "Jl 2:1",
+   "gracinha": "toca o shofar e o vento ondula a grama",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "JOL",
+   "liberaCapitulos": [
+    2
+   ]
+  },
+  {
+   "id": "amos",
+   "nome": "Amós",
+   "livro": "AMO",
+   "libera": "Am 8:1",
+   "gracinha": "colhe figos e oferece um",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "AMO",
+   "liberaCapitulos": [
+    8
+   ]
+  },
+  {
+   "id": "obadias",
+   "nome": "Obadias",
+   "livro": "OBA",
+   "libera": "Ob 1:4",
+   "gracinha": "aponta o ninho e a águia pousa no cajado",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "OBA",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "jonas",
+   "nome": "Jonas",
+   "livro": "JON",
+   "libera": "Jn 2–4",
+   "gracinha": "sai do peixe encharcado e se abana na sombra",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "JON",
+   "liberaCapitulos": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "miqueias",
+   "nome": "Miqueias",
+   "livro": "MIC",
+   "libera": "Mq 4:3",
+   "gracinha": "transforma a espada em arado",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "MIC",
+   "liberaCapitulos": [
+    4
+   ]
+  },
+  {
+   "id": "naum",
+   "nome": "Naum",
+   "livro": "NAM",
+   "libera": "Na 1:15",
+   "gracinha": "corre no monte com boas notícias",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "NAM",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "habacuque",
+   "nome": "Habacuque",
+   "livro": "HAB",
+   "libera": "Hc 2:1-2",
+   "gracinha": "sobe na torre e escreve na tábua",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "HAB",
+   "liberaCapitulos": [
+    2
+   ]
+  },
+  {
+   "id": "sofonias",
+   "nome": "Sofonias",
+   "livro": "ZEP",
+   "libera": "Sf 3:17",
+   "gracinha": "canta e os passarinhos acompanham",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "ZEP",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "ageu",
+   "nome": "Ageu",
+   "livro": "HAG",
+   "libera": "Ag 1:8",
+   "gracinha": "traz madeira e monta uma estrutura",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "HAG",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "zacarias",
+   "nome": "Zacarias",
+   "livro": "ZEC",
+   "libera": "Zc 4",
+   "gracinha": "acende o candelabro entre as oliveiras",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "ZEC",
+   "liberaCapitulos": [
+    4
+   ]
+  },
+  {
+   "id": "malaquias",
+   "nome": "Malaquias",
+   "livro": "MAL",
+   "libera": "Ml 3:10",
+   "gracinha": "leva o dízimo e caem bênçãos do céu",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "MAL",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "pedro",
+   "nome": "Pedro",
+   "livro": "MAT",
+   "libera": "Mt 14:29",
+   "gracinha": "anda sobre o laguinho, afunda e volta rindo",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "MAT",
+   "liberaCapitulos": [
+    14
+   ]
+  },
+  {
+   "id": "viuva",
+   "nome": "A viúva das duas moedas",
+   "livro": "MRK",
+   "libera": "Mc 12:42",
+   "gracinha": "oferta as duas moedinhas que brilham",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "MRK",
+   "liberaCapitulos": [
+    12
+   ]
+  },
+  {
+   "id": "zaqueu",
+   "nome": "Zaqueu",
+   "livro": "LUK",
+   "libera": "Lc 19",
+   "gracinha": "sobe na figueira-brava e desce correndo",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "LUK",
+   "liberaCapitulos": [
+    19
+   ]
+  },
+  {
+   "id": "menino-paes",
+   "nome": "O menino dos pães e peixes",
+   "livro": "JHN",
+   "libera": "Jo 6:9",
+   "gracinha": "divide o lanche e a cesta continua cheia",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "JHN",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "lidia",
+   "nome": "Lídia",
+   "livro": "ACT",
+   "libera": "At 16:14",
+   "gracinha": "estende os tecidos roxos ao vento",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "ACT",
+   "liberaCapitulos": [
+    16
+   ]
+  },
+  {
+   "id": "febe",
+   "nome": "Febe",
+   "livro": "ROM",
+   "libera": "Rm 16:1",
+   "gracinha": "leva a carta de Paulo",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "ROM",
+   "liberaCapitulos": [
+    16
+   ]
+  },
+  {
+   "id": "paulo-apolo",
+   "nome": "Paulo e Apolo",
+   "livro": "1CO",
+   "libera": "1 Co 3:6",
+   "gracinha": "um planta, o outro rega e o broto cresce",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "1CO",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "paulo-cesto",
+   "nome": "Paulo (no cesto)",
+   "livro": "2CO",
+   "libera": "2 Co 11:33",
+   "gracinha": "desce o muro num cesto",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "2CO",
+   "liberaCapitulos": [
+    11
+   ]
+  },
+  {
+   "id": "paulo-letras",
+   "nome": "Paulo (letras grandes)",
+   "livro": "GAL",
+   "libera": "Gl 6:11",
+   "gracinha": "escreve com letras enormes",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "GAL",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "menino-armadura",
+   "nome": "O menino da armadura",
+   "livro": "EPH",
+   "libera": "Ef 6:13-17",
+   "gracinha": "veste a armadura grande demais e faz pose",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "EPH",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "paulo-silas",
+   "nome": "Paulo e Silas",
+   "livro": "PHP",
+   "libera": "At 16:25 · Fp",
+   "gracinha": "cantam e as correntes caem",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "ACT",
+   "liberaCapitulos": [
+    16
+   ]
+  },
+  {
+   "id": "epafras",
+   "nome": "Epafras",
+   "livro": "COL",
+   "libera": "Cl 4:12",
+   "gracinha": "ora e luzinhas vão para os jardins vizinhos",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "COL",
+   "liberaCapitulos": [
+    4
+   ]
+  },
+  {
+   "id": "timoteo-carta",
+   "nome": "Timóteo (mensageiro)",
+   "livro": "1TH",
+   "libera": "1 Ts 3:6",
+   "gracinha": "chega correndo com boas notícias",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "1TH",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "paulo-tendas",
+   "nome": "Paulo (fazedor de tendas)",
+   "livro": "2TH",
+   "libera": "2 Ts 3:8 · At 18:3",
+   "gracinha": "costura e arma uma tenda",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "2TH",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "timoteo",
+   "nome": "Timóteo (jovem pastor)",
+   "livro": "1TI",
+   "libera": "1 Tm 4:12",
+   "gracinha": "lê para os animais que se sentam para ouvir",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "1TI",
+   "liberaCapitulos": [
+    4
+   ]
+  },
+  {
+   "id": "loide-eunice",
+   "nome": "Lóide e Eunice",
+   "livro": "2TI",
+   "libera": "2 Tm 1:5",
+   "gracinha": "avó e mãe ensinam o menino",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "2TI",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "tito",
+   "nome": "Tito",
+   "livro": "TIT",
+   "libera": "Tt 1:5",
+   "gracinha": "planta mudas em fila perfeita",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "TIT",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "onesimo",
+   "nome": "Onésimo",
+   "livro": "PHM",
+   "libera": "Fm 1:10-16",
+   "gracinha": "bate à porta e é recebido com um abraço",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "PHM",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "abel",
+   "nome": "Abel",
+   "livro": "HEB",
+   "libera": "Hb 11:4",
+   "gracinha": "escolhe o melhor cordeirinho e o abraça",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "HEB",
+   "liberaCapitulos": [
+    11
+   ]
+  },
+  {
+   "id": "lavrador",
+   "nome": "O lavrador paciente",
+   "livro": "JAS",
+   "libera": "Tg 5:7",
+   "gracinha": "espera a chuva e o campo fica verde",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "JAS",
+   "liberaCapitulos": [
+    5
+   ]
+  },
+  {
+   "id": "pedro-rede",
+   "nome": "Pedro (rede cheia)",
+   "livro": "1PE",
+   "libera": "Jo 21:6 · 1 Pe",
+   "gracinha": "puxa a rede cheia e solta os peixinhos",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "JHN",
+   "liberaCapitulos": [
+    21
+   ]
+  },
+  {
+   "id": "pedro-idoso",
+   "nome": "Pedro (idoso)",
+   "livro": "2PE",
+   "libera": "2 Pe 1:19",
+   "gracinha": "aponta a estrela da manhã",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "2PE",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "joao-idoso",
+   "nome": "João (idoso)",
+   "livro": "1JN",
+   "libera": "1 Jo 3:1",
+   "gracinha": "abraça as criancinhas",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "1JN",
+   "liberaCapitulos": [
+    3
+   ]
+  },
+  {
+   "id": "senhora-eleita",
+   "nome": "A senhora eleita",
+   "livro": "2JN",
+   "libera": "2 Jo 1:4",
+   "gracinha": "caminha de mãos dadas com os filhos",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "2JN",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "gaio",
+   "nome": "Gaio",
+   "livro": "3JN",
+   "libera": "3 Jo 1:5",
+   "gracinha": "põe a mesa e recebe um viajante",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "3JN",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "enoque",
+   "nome": "Enoque",
+   "livro": "JUD",
+   "libera": "Jd 14 · Hb 11:5",
+   "gracinha": "caminha e some numa luz suave",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "JUD",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "joao-patmos",
+   "nome": "João em Patmos",
+   "livro": "REV",
+   "libera": "Ap 1:9 · 21",
+   "gracinha": "escreve e contempla a cidade de luz",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "REV",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "tobias",
+   "nome": "Tobias",
+   "livro": "TOB",
+   "libera": "Tb 6",
+   "gracinha": "pega um peixe com o cachorro latindo",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "TOB",
+   "liberaCapitulos": [
+    6
+   ]
+  },
+  {
+   "id": "judite",
+   "nome": "Judite",
+   "livro": "JDT",
+   "libera": "Jt 8",
+   "gracinha": "ora e caminha confiante",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "JDT",
+   "liberaCapitulos": [
+    8
+   ]
+  },
+  {
+   "id": "judas-macabeu",
+   "nome": "Judas Macabeu",
+   "livro": "1MA",
+   "libera": "1 Mc 4:50",
+   "gracinha": "reacende o candelabro do templo",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "1MA",
+   "liberaCapitulos": [
+    4
+   ]
+  },
+  {
+   "id": "neemias-fogo",
+   "nome": "Neemias (o fogo escondido)",
+   "livro": "2MA",
+   "libera": "2 Mc 1:19-22",
+   "gracinha": "tira do poço o líquido que acende ao sol",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "2MA",
+   "liberaCapitulos": [
+    1
+   ]
+  },
+  {
+   "id": "salomao-sb",
+   "nome": "Salomão (Sabedoria)",
+   "livro": "WIS",
+   "libera": "Sb 9",
+   "gracinha": "pede sabedoria e uma luz desce",
+   "temObjeto": true,
+   "preco": 400,
+   "liberaLivro": "WIS",
+   "liberaCapitulos": [
+    9
+   ]
+  },
+  {
+   "id": "ben-sira",
+   "nome": "Ben Sira",
+   "livro": "SIR",
+   "libera": "Eclo 51",
+   "gracinha": "ensina jovens debaixo da árvore",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "SIR",
+   "liberaCapitulos": [
+    51
+   ]
+  },
+  {
+   "id": "baruc",
+   "nome": "Baruc",
+   "livro": "BAR",
+   "libera": "Jr 36:4 · Br 1",
+   "gracinha": "escreve tão rápido que a tinta acaba",
+   "temObjeto": true,
+   "preco": 600,
+   "liberaLivro": "JER",
+   "liberaCapitulos": [
+    36
+   ]
+  }
+ ],
+ "animais": [
+  {
+   "id": "ovelha",
+   "nome": "Ovelha",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "companheira inicial",
+   "companheiroInicial": true,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "JDG",
+    "AMO",
+    "MIC",
+    "LUK",
+    "1PE"
+   ],
+   "ref": "Sl 23 · Jo 10:11"
+  },
+  {
+   "id": "capivara",
+   "nome": "Capivara",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "companheira inicial",
+   "companheiroInicial": true,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "Sl 104:24"
+  },
+  {
+   "id": "beija-flor",
+   "nome": "Beija-flor",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "companheiro inicial",
+   "companheiroInicial": true,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "3JN"
+   ],
+   "ref": "Mt 6:26"
+  },
+  {
+   "id": "borboletas",
+   "nome": "Borboletas",
+   "modelo": "A-I",
+   "origem": "bíblica",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 80,
+   "cresce": false,
+   "livros": [
+    "2CO"
+   ],
+   "ref": "2 Co 5:17"
+  },
+  {
+   "id": "abelhas",
+   "nome": "Abelhas",
+   "modelo": "A-I",
+   "origem": "bíblica",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 80,
+   "cresce": false,
+   "livros": [
+    "SIR"
+   ],
+   "ref": "Sl 19:10"
+  },
+  {
+   "id": "sanhaco",
+   "nome": "Sanhaço",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "Mt 10:29"
+  },
+  {
+   "id": "cordeiro",
+   "nome": "Cordeiro",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [
+    "JHN"
+   ],
+   "ref": "Jo 1:29"
+  },
+  {
+   "id": "tatu-bola",
+   "nome": "Tatu-bola",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [
+    "JUD"
+   ],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "pomba",
+   "nome": "Pomba",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [
+    "GEN",
+    "1JN"
+   ],
+   "ref": "Gn 8:11 · Mt 3:16"
+  },
+  {
+   "id": "coruja",
+   "nome": "Coruja-buraqueira",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "garca",
+   "nome": "Garça",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [
+    "JOS"
+   ],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "tucano",
+   "nome": "Tucano",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "raposinha",
+   "nome": "Raposinha-do-campo",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "pacote Companheiros Novos",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "Ct 2:15"
+  },
+  {
+   "id": "sabia",
+   "nome": "Sabiá-laranjeira",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "bem-te-vi",
+   "nome": "Bem-te-vi",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "joao-de-barro",
+   "nome": "João-de-barro",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [
+    "HAG"
+   ],
+   "ref": "1 Co 3:10 (temática)"
+  },
+  {
+   "id": "saira",
+   "nome": "Saíra-sete-cores",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "arara-azul",
+   "nome": "Arara-azul",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "mico-leao",
+   "nome": "Mico-leão-dourado",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "pacote Mata Atlântica",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "lobo-guara",
+   "nome": "Lobo-guará",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "pacote Cerrado",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "seriema",
+   "nome": "Seriema",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "pacote Cerrado",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "tamandua",
+   "nome": "Tamanduá-bandeira",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "preguica",
+   "nome": "Preguiça",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "liberado com orvalho",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "boto",
+   "nome": "Boto-cor-de-rosa",
+   "modelo": "A-A",
+   "origem": "brasileira",
+   "disponibilidade": "pacote Amazônia",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "borboleta-azul",
+   "nome": "Borboleta-azul (morfo)",
+   "modelo": "A-I",
+   "origem": "brasileira",
+   "disponibilidade": "pacote Amazônia",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "peixe-boi",
+   "nome": "Peixe-boi",
+   "modelo": "A-A",
+   "origem": "brasileira",
+   "disponibilidade": "pacote Amazônia",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "vaga-lume",
+   "nome": "Vaga-lume",
+   "modelo": "A-I",
+   "origem": "ambiente",
+   "disponibilidade": "aparece à noite",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "2PE"
+   ],
+   "ref": "noite"
+  },
+  {
+   "id": "libelula",
+   "nome": "Libélula",
+   "modelo": "A-I",
+   "origem": "ambiente",
+   "disponibilidade": "aparece no lago",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [],
+   "ref": "lago"
+  },
+  {
+   "id": "joaninha",
+   "nome": "Joaninha",
+   "modelo": "A-I",
+   "origem": "ambiente",
+   "disponibilidade": "aparece nas flores",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [],
+   "ref": "flores"
+  },
+  {
+   "id": "caracol",
+   "nome": "Caracol",
+   "modelo": "A-I",
+   "origem": "ambiente",
+   "disponibilidade": "aparece depois da chuva",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "2TH"
+   ],
+   "ref": "chuva"
+  },
+  {
+   "id": "sapinho",
+   "nome": "Sapinho",
+   "modelo": "A-A",
+   "origem": "ambiente",
+   "disponibilidade": "aparece no lago",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "lago"
+  },
+  {
+   "id": "formiga",
+   "nome": "Formigas",
+   "modelo": "A-I",
+   "origem": "ambiente",
+   "disponibilidade": "aparece no terrário de Provérbios",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "PRO"
+   ],
+   "ref": "Pv 6:6"
+  },
+  {
+   "id": "peixinhos",
+   "nome": "Peixinhos",
+   "modelo": "A-A",
+   "origem": "ambiente",
+   "disponibilidade": "aparece no lago",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "Jo 21:6"
+  },
+  {
+   "id": "patinhos",
+   "nome": "Patinhos",
+   "modelo": "A-A",
+   "origem": "ambiente",
+   "disponibilidade": "aparece no lago",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "2JN"
+   ],
+   "ref": "lago"
+  },
+  {
+   "id": "aguia",
+   "nome": "Águia",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "marco: concluir um bioma",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "DEU",
+    "OBA"
+   ],
+   "ref": "Is 40:31"
+  },
+  {
+   "id": "corca",
+   "nome": "Corça",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "marco",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "HAB"
+   ],
+   "ref": "Sl 42:1 · Hc 3:19"
+  },
+  {
+   "id": "pardais",
+   "nome": "Pardais",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "marco",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "PSA"
+   ],
+   "ref": "Mt 10:29"
+  },
+  {
+   "id": "leoes",
+   "nome": "Leões sonolentos",
+   "modelo": "A-G",
+   "origem": "bíblica",
+   "disponibilidade": "cena de Daniel",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "DAN"
+   ],
+   "ref": "Dn 6"
+  },
+  {
+   "id": "corvos",
+   "nome": "Corvos",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "cena de Elias",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "1 Rs 17:6"
+  },
+  {
+   "id": "grande-peixe",
+   "nome": "Grande peixe",
+   "modelo": "A-A",
+   "origem": "bíblica",
+   "disponibilidade": "cena de Jonas",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "JON"
+   ],
+   "ref": "Jn 1:17"
+  },
+  {
+   "id": "camelos",
+   "nome": "Camelos",
+   "modelo": "A-G",
+   "origem": "bíblica",
+   "disponibilidade": "cena de Rebeca",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "EZR"
+   ],
+   "ref": "Gn 24"
+  },
+  {
+   "id": "jumentinho",
+   "nome": "Jumentinho",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "cena de Ramos",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "ZEC"
+   ],
+   "ref": "Mt 21:7"
+  },
+  {
+   "id": "galo",
+   "nome": "Galo",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "cena de Pedro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "MRK"
+   ],
+   "ref": "Mc 14:72"
+  },
+  {
+   "id": "pares-arca",
+   "nome": "Pares da arca",
+   "modelo": "A-G",
+   "origem": "bíblica",
+   "disponibilidade": "cena de Noé",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [],
+   "ref": "Gn 7:9"
+  },
+  {
+   "id": "bezerro",
+   "nome": "Bezerro saltitante",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "cena de Malaquias",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "MAL"
+   ],
+   "ref": "Ml 4:2"
+  },
+  {
+   "id": "cabritinhos",
+   "nome": "Cabritinhos",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "fauna bíblica",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "Ct 4:1"
+  },
+  {
+   "id": "codorniz",
+   "nome": "Codorniz",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "EXO"
+   ],
+   "ref": "Êx 16:13"
+  },
+  {
+   "id": "rolinha",
+   "nome": "Rolinha",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "LEV",
+    "LAM",
+    "2MA"
+   ],
+   "ref": "Lv 12:8 · Ct 2:12"
+  },
+  {
+   "id": "jumenta",
+   "nome": "Jumenta",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "NUM"
+   ],
+   "ref": "Nm 22:28"
+  },
+  {
+   "id": "ratinho",
+   "nome": "Ratinho-do-campo",
+   "modelo": "A-T",
+   "origem": "bíblica (temático)",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "RUT"
+   ],
+   "ref": "Rt 2"
+  },
+  {
+   "id": "perdiz",
+   "nome": "Perdiz",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "1SA"
+   ],
+   "ref": "1 Sm 26:20"
+  },
+  {
+   "id": "mula",
+   "nome": "Mula",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "2SA"
+   ],
+   "ref": "2 Sm 18:9 · Ed 2:66"
+  },
+  {
+   "id": "pavao",
+   "nome": "Pavão",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "1KI"
+   ],
+   "ref": "1 Rs 10:22"
+  },
+  {
+   "id": "cavalo",
+   "nome": "Cavalo",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "2KI",
+    "JAS"
+   ],
+   "ref": "Jó 39:19 · Tg 3:3"
+  },
+  {
+   "id": "gazela",
+   "nome": "Gazela",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "1CH"
+   ],
+   "ref": "1 Cr 12:8 · Ct 2:9"
+  },
+  {
+   "id": "macaco",
+   "nome": "Macaquinho",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "2CH"
+   ],
+   "ref": "1 Rs 10:22 · 2 Cr 9:21"
+  },
+  {
+   "id": "raposa",
+   "nome": "Raposa",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "NEH",
+    "SNG"
+   ],
+   "ref": "Ne 4:3 · Ct 2:15"
+  },
+  {
+   "id": "dromedario",
+   "nome": "Dromedário",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "EST"
+   ],
+   "ref": "Et 8:10"
+  },
+  {
+   "id": "avestruz",
+   "nome": "Avestruz",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "JOB"
+   ],
+   "ref": "Jó 39:13-18"
+  },
+  {
+   "id": "cabra-montes",
+   "nome": "Cabra-montês",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "JDT"
+   ],
+   "ref": "Jó 39:1 · Sl 104:18"
+  },
+  {
+   "id": "damao",
+   "nome": "Damão (arganaz)",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "Pv 30:26"
+  },
+  {
+   "id": "cao",
+   "nome": "Cão",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "ECC",
+    "TOB"
+   ],
+   "ref": "Tb 6:2 · Ec 9:4"
+  },
+  {
+   "id": "cegonha",
+   "nome": "Cegonha",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "JER"
+   ],
+   "ref": "Jr 8:7 · Sl 104:17"
+  },
+  {
+   "id": "tilapia",
+   "nome": "Peixe-de-são-pedro (tilápia)",
+   "modelo": "A-A",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "EZK"
+   ],
+   "ref": "Ez 47:9-10 · Jo 21:11"
+  },
+  {
+   "id": "novilha",
+   "nome": "Novilha",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "HOS"
+   ],
+   "ref": "Os 10:11"
+  },
+  {
+   "id": "gafanhoto",
+   "nome": "Gafanhoto",
+   "modelo": "A-I",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "JOL"
+   ],
+   "ref": "Jl 2:25"
+  },
+  {
+   "id": "leoa-filhotes",
+   "nome": "Leoa e filhotes",
+   "modelo": "A-G",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "NAM"
+   ],
+   "ref": "Na 2:12"
+  },
+  {
+   "id": "pelicano",
+   "nome": "Pelicano",
+   "modelo": "A-A",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "ZEP"
+   ],
+   "ref": "Sf 2:14 · Sl 102:6"
+  },
+  {
+   "id": "galinha-pintinhos",
+   "nome": "Galinha e pintinhos",
+   "modelo": "A-G",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "MAT"
+   ],
+   "ref": "Mt 23:37"
+  },
+  {
+   "id": "gaivota",
+   "nome": "Gaivota",
+   "modelo": "A-V",
+   "origem": "bíblica (temático)",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "ACT"
+   ],
+   "ref": "At 27"
+  },
+  {
+   "id": "pombo-correio",
+   "nome": "Pombo-correio",
+   "modelo": "A-V",
+   "origem": "bíblica (temático)",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "ROM"
+   ],
+   "ref": "Rm 16"
+  },
+  {
+   "id": "cabra",
+   "nome": "Cabra",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "1CO"
+   ],
+   "ref": "1 Co 9:7"
+  },
+  {
+   "id": "cotovia",
+   "nome": "Cotovia",
+   "modelo": "A-V",
+   "origem": "bíblica (temático)",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "GAL"
+   ],
+   "ref": "Gl 5:22"
+  },
+  {
+   "id": "tartaruga",
+   "nome": "Tartaruga-grega",
+   "modelo": "A-T",
+   "origem": "bíblica (temático)",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "EPH"
+   ],
+   "ref": "Ef 6:13"
+  },
+  {
+   "id": "pintassilgo",
+   "nome": "Pintassilgo",
+   "modelo": "A-V",
+   "origem": "bíblica (temático)",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "PHP"
+   ],
+   "ref": "Fp 4:4"
+  },
+  {
+   "id": "toupeira",
+   "nome": "Toupeira",
+   "modelo": "A-T",
+   "origem": "temático",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "COL"
+   ],
+   "ref": "Cl 2:7"
+  },
+  {
+   "id": "coruja-torres",
+   "nome": "Coruja-das-torres",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "1TH",
+    "WIS"
+   ],
+   "ref": "1 Ts 5:6 (temático)"
+  },
+  {
+   "id": "lebre",
+   "nome": "Lebre",
+   "modelo": "A-T",
+   "origem": "bíblica (temático)",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "2TI"
+   ],
+   "ref": "2 Tm 4:7"
+  },
+  {
+   "id": "cabra-creta",
+   "nome": "Cabra-de-creta (kri-kri)",
+   "modelo": "A-T",
+   "origem": "bíblica (temático)",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "TIT"
+   ],
+   "ref": "Tt 1:5"
+  },
+  {
+   "id": "andorinha",
+   "nome": "Andorinha",
+   "modelo": "A-V",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "PHM"
+   ],
+   "ref": "Sl 84:3"
+  },
+  {
+   "id": "carneiro",
+   "nome": "Carneiro",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "HEB"
+   ],
+   "ref": "Gn 22:13 · Hb 11:17"
+  },
+  {
+   "id": "boi",
+   "nome": "Boi",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "1TI"
+   ],
+   "ref": "1 Tm 5:18 · 1 Co 9:9"
+  },
+  {
+   "id": "leao-cordeiro",
+   "nome": "Leão e cordeiro",
+   "modelo": "A-G",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "REV"
+   ],
+   "ref": "Ap 5:5-6 · Is 11:6"
+  },
+  {
+   "id": "leopardo-cabrito",
+   "nome": "Leopardo e cabrito",
+   "modelo": "A-G",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "ISA"
+   ],
+   "ref": "Is 11:6"
+  },
+  {
+   "id": "elefante",
+   "nome": "Elefante",
+   "modelo": "A-G",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": false,
+   "livros": [
+    "1MA"
+   ],
+   "ref": "1 Mc 6:30"
+  },
+  {
+   "id": "gato",
+   "nome": "Gato",
+   "modelo": "A-T",
+   "origem": "bíblica",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [
+    "BAR"
+   ],
+   "ref": "Br 6:21"
+  },
+  {
+   "id": "carpa",
+   "nome": "Carpa koi",
+   "modelo": "A-A",
+   "origem": "mundo",
+   "disponibilidade": "animal citado ou associado a um livro",
+   "companheiroInicial": false,
+   "preco": null,
+   "cresce": true,
+   "livros": [],
+   "ref": "lago"
+  },
+  {
+   "id": "onca",
+   "nome": "Onça-pintada",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "quati",
+   "nome": "Quati",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "cutia",
+   "nome": "Cutia",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "jabuti",
+   "nome": "Jabuti",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "sagui",
+   "nome": "Sagui",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "anta",
+   "nome": "Anta",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "ariranha",
+   "nome": "Ariranha",
+   "modelo": "A-A",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 150,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "arara-vermelha",
+   "nome": "Arara-vermelha",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "papagaio",
+   "nome": "Papagaio-verdadeiro",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "quero-quero",
+   "nome": "Quero-quero",
+   "modelo": "A-T",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 250,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "pica-pau",
+   "nome": "Pica-pau-de-cabeça-amarela",
+   "modelo": "A-V",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 200,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "lambari",
+   "nome": "Lambari",
+   "modelo": "A-A",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 150,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "tucunare",
+   "nome": "Tucunaré",
+   "modelo": "A-A",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 150,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  },
+  {
+   "id": "acara-disco",
+   "nome": "Acará-disco",
+   "modelo": "A-A",
+   "origem": "brasileira",
+   "disponibilidade": "extra brasileiro (catálogo)",
+   "companheiroInicial": false,
+   "preco": 150,
+   "cresce": true,
+   "livros": [],
+   "ref": "fauna brasileira"
+  }
+ ],
+ "plantas": [
+  {
+   "id": "oliveira",
+   "nome": "Oliveira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Gn 8:11 · Sl 52:8 · Rm 11:17"
+  },
+  {
+   "id": "oliveira-brava",
+   "nome": "Oliveira-brava",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Ne 8:15 · Rm 11:17"
+  },
+  {
+   "id": "figueira",
+   "nome": "Figueira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Gn 3:7 · Mc 11:13 · Jo 1:48"
+  },
+  {
+   "id": "sicomoro",
+   "nome": "Sicômoro (figueira-brava)",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Lc 19:4 · Am 7:14"
+  },
+  {
+   "id": "videira",
+   "nome": "Videira",
+   "forma": "trepadeira",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 150,
+   "ref": "Jo 15:5 · Mq 4:4"
+  },
+  {
+   "id": "cedro-libano",
+   "nome": "Cedro do Líbano",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Sl 92:12 · Ed 3:7"
+  },
+  {
+   "id": "acacia",
+   "nome": "Acácia",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Êx 25:10"
+  },
+  {
+   "id": "romazeira",
+   "nome": "Romãzeira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Dt 8:8 · Jl 1:12"
+  },
+  {
+   "id": "tamareira",
+   "nome": "Tamareira",
+   "forma": "palmeira",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 300,
+   "ref": "Sl 92:12 · Jo 12:13"
+  },
+  {
+   "id": "amendoeira",
+   "nome": "Amendoeira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Ec 12:5 · Jr 1:11 · Nm 17:8"
+  },
+  {
+   "id": "aloes",
+   "nome": "Aloés (agar)",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Nm 24:6"
+  },
+  {
+   "id": "salgueiro",
+   "nome": "Salgueiro de ribeiro",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Lv 23:40 · Sl 137:2"
+  },
+  {
+   "id": "terebinto",
+   "nome": "Terebinto",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Js 24:26 · Eclo 24:16"
+  },
+  {
+   "id": "carvalho-toco",
+   "nome": "Carvalho que rebrota",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Jó 14:7 · Is 11:1"
+  },
+  {
+   "id": "espinheiro",
+   "nome": "Espinheiro florido",
+   "forma": "arbusto",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Jz 9:14-15"
+  },
+  {
+   "id": "tamargueira",
+   "nome": "Tamargueira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "1 Sm 22:6 · Gn 21:33"
+  },
+  {
+   "id": "balsameira",
+   "nome": "Balsameira (amoreira)",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "2 Sm 5:23-24"
+  },
+  {
+   "id": "zimbro",
+   "nome": "Zimbro (giesta)",
+   "forma": "arbusto",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "1 Rs 19:4"
+  },
+  {
+   "id": "sandalo",
+   "nome": "Sândalo vermelho (algumim)",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "2 Cr 2:8"
+  },
+  {
+   "id": "pinheiro-alepo",
+   "nome": "Pinheiro-de-alepo",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Ne 8:15"
+  },
+  {
+   "id": "murta",
+   "nome": "Murta",
+   "forma": "arbusto",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Et 2:7 · Zc 1:8"
+  },
+  {
+   "id": "macieira",
+   "nome": "Macieira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Pv 25:11 · Ct 2:3"
+  },
+  {
+   "id": "lirio-vales",
+   "nome": "Lírio dos vales",
+   "forma": "flor",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Ct 2:1"
+  },
+  {
+   "id": "lirios-campo",
+   "nome": "Lírios e anêmonas do campo",
+   "forma": "flor",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Mt 6:28"
+  },
+  {
+   "id": "cipreste",
+   "nome": "Cipreste",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Is 55:13"
+  },
+  {
+   "id": "cevada",
+   "nome": "Cevada",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Rt 2:23"
+  },
+  {
+   "id": "trigo",
+   "nome": "Trigo",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "1 Co 15:37 · Jo 12:24"
+  },
+  {
+   "id": "mostardeira",
+   "nome": "Mostardeira",
+   "forma": "arbusto",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Mt 13:31-32"
+  },
+  {
+   "id": "mamoneira",
+   "nome": "Planta de Jonas (mamoneira)",
+   "forma": "arbusto",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Jn 4:6"
+  },
+  {
+   "id": "hissopo",
+   "nome": "Hissopo",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Sl 51:7 · Lv 14:4"
+  },
+  {
+   "id": "arvore-vida",
+   "nome": "Árvore da vida",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Ap 22:2 · Gn 2:9"
+  },
+  {
+   "id": "arvore-frutos-espirito",
+   "nome": "Árvore dos nove frutos",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Gl 5:22-23"
+  },
+  {
+   "id": "arvore-grande-daniel",
+   "nome": "Grande árvore frondosa",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Dn 4:10-12"
+  },
+  {
+   "id": "cedro-monte",
+   "nome": "Cedro plantado no monte",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Ez 17:22-23"
+  },
+  {
+   "id": "roseira-jerico",
+   "nome": "Roseira de Jericó",
+   "forma": "arbusto",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Eclo 24:14"
+  },
+  {
+   "id": "palmeira-vitoria",
+   "nome": "Palmeira da vitória",
+   "forma": "palmeira",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 300,
+   "ref": "1 Mc 13:51"
+  },
+  {
+   "id": "arvore-aromatica",
+   "nome": "Árvore aromática (caneleira)",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Br 5:8"
+  },
+  {
+   "id": "pomar-variado",
+   "nome": "Pomar com açude",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Ec 2:5-6"
+  },
+  {
+   "id": "ipomeia",
+   "nome": "Ipomeia (glória-da-manhã)",
+   "forma": "trepadeira",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Lm 3:22-23 (temática: renova a cada manhã)"
+  },
+  {
+   "id": "flor-rocha",
+   "nome": "Flor-da-rocha",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Ob 1:3-4 (temática)"
+  },
+  {
+   "id": "flor-carmelo",
+   "nome": "Flor do Carmelo",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Na 1:4 (temática)"
+  },
+  {
+   "id": "girassol",
+   "nome": "Girassol",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Ml 4:2 (temática: sol da justiça)"
+  },
+  {
+   "id": "margarida",
+   "nome": "Margarida",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Sf 3:17 (temática: alegria)"
+  },
+  {
+   "id": "calendula",
+   "nome": "Calêndula",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "3 Jo (temática: hospitalidade)"
+  },
+  {
+   "id": "jasmim",
+   "nome": "Jasmim",
+   "forma": "arbusto",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "2 Co 2:15 (temática: bom perfume)"
+  },
+  {
+   "id": "lavanda",
+   "nome": "Lavanda",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Fp 4:18 (temática: aroma agradável)"
+  },
+  {
+   "id": "lirio-pascoa",
+   "nome": "Lírio de Páscoa",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "1 Ts 4:14 (temática: ressurreição)"
+  },
+  {
+   "id": "hortela",
+   "nome": "Hortelã",
+   "forma": "erva",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Fm 1:7 (temática: refrigério)"
+  },
+  {
+   "id": "violeta",
+   "nome": "Violeta",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "2 Jo (temática)"
+  },
+  {
+   "id": "dama-da-noite",
+   "nome": "Dama-da-noite",
+   "forma": "arbusto",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "2 Pe 1:19 (temática: estrela da alva)"
+  },
+  {
+   "id": "hibisco",
+   "nome": "Rosa-de-Sarom (hibisco)",
+   "forma": "arbusto",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Ct 2:1 · 1 Jo (temática: amor)"
+  },
+  {
+   "id": "sempre-viva",
+   "nome": "Sempre-viva",
+   "forma": "flor",
+   "origem": "temática",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Jd 24 (temática: guardados)"
+  },
+  {
+   "id": "espigas-chuva",
+   "nome": "Espigas sob a chuva",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Tg 5:7"
+  },
+  {
+   "id": "flor-campo",
+   "nome": "Flor-do-campo",
+   "forma": "flor",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "1 Pe 1:24-25"
+  },
+  {
+   "id": "ipe-amarelo",
+   "nome": "Ipê-amarelo",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "ipe-roxo",
+   "nome": "Ipê-roxo",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "ipe-branco",
+   "nome": "Ipê-branco",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "jabuticabeira",
+   "nome": "Jabuticabeira",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "pau-brasil",
+   "nome": "Pau-brasil",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "araucaria",
+   "nome": "Araucária",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "quaresmeira",
+   "nome": "Quaresmeira",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "jacaranda",
+   "nome": "Jacarandá-mimoso",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "cajueiro",
+   "nome": "Cajueiro",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "pitangueira",
+   "nome": "Pitangueira",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "cafeeiro",
+   "nome": "Cafeeiro",
+   "forma": "arbusto",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 150,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "pau-ferro",
+   "nome": "Pau-ferro",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "buriti",
+   "nome": "Buriti",
+   "forma": "palmeira",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 300,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "coqueiro",
+   "nome": "Coqueiro",
+   "forma": "palmeira",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 300,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "mandacaru",
+   "nome": "Mandacaru",
+   "forma": "arbusto",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora brasileira (pacote Sertão)"
+  },
+  {
+   "id": "xique-xique",
+   "nome": "Xique-xique",
+   "forma": "arbusto",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora brasileira (pacote Sertão)"
+  },
+  {
+   "id": "bromelia",
+   "nome": "Bromélia",
+   "forma": "flor",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "flora brasileira (pacote Mata Atlântica)"
+  },
+  {
+   "id": "samambaia",
+   "nome": "Samambaia",
+   "forma": "arbusto",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora brasileira (pacote Mata Atlântica)"
+  },
+  {
+   "id": "orquidea",
+   "nome": "Orquídea",
+   "forma": "flor",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "flora brasileira (pacote Mata Atlântica)"
+  },
+  {
+   "id": "vitoria-regia",
+   "nome": "Vitória-régia",
+   "forma": "aquatica",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 120,
+   "ref": "flora brasileira (pacote Amazônia)"
+  },
+  {
+   "id": "sumauma",
+   "nome": "Sumaúma",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira (pacote Amazônia)"
+  },
+  {
+   "id": "canela-de-ema",
+   "nome": "Canela-de-ema",
+   "forma": "flor",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "flora brasileira (pacote Cerrado)"
+  },
+  {
+   "id": "capim-dourado",
+   "nome": "Capim-dourado",
+   "forma": "erva",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "flora brasileira (pacote Cerrado)"
+  },
+  {
+   "id": "lobeira",
+   "nome": "Lobeira",
+   "forma": "arbusto",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 150,
+   "ref": "flora brasileira (pacote Cerrado)"
+  },
+  {
+   "id": "feijao-trepador",
+   "nome": "Feijoeiro trepador",
+   "forma": "trepadeira",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora brasileira (temática: 2 Ts 1:3)"
+  },
+  {
+   "id": "bananeira",
+   "nome": "Bananeira",
+   "forma": "palmeira",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 300,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "maracuja",
+   "nome": "Maracujá",
+   "forma": "trepadeira",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 150,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "cerejeira",
+   "nome": "Cerejeira",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo (pacote Cerejeiras)"
+  },
+  {
+   "id": "baoba",
+   "nome": "Baobá",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo"
+  },
+  {
+   "id": "bordo",
+   "nome": "Bordo",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo"
+  },
+  {
+   "id": "limoeiro",
+   "nome": "Limoeiro",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora do mundo"
+  },
+  {
+   "id": "lavanda-campo",
+   "nome": "Campo de lavanda",
+   "forma": "flor",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "flora do mundo"
+  },
+  {
+   "id": "tulipa",
+   "nome": "Tulipas",
+   "forma": "flor",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "flora do mundo"
+  },
+  {
+   "id": "bambu",
+   "nome": "Bambu",
+   "forma": "arbusto",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora do mundo"
+  },
+  {
+   "id": "musgo",
+   "nome": "Musgo e trevos",
+   "forma": "erva",
+   "origem": "chão e água",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "chão da ilha"
+  },
+  {
+   "id": "junco",
+   "nome": "Junco e taboa",
+   "forma": "aquatica",
+   "origem": "chão e água",
+   "frutifera": false,
+   "preco": 120,
+   "ref": "beira de rio e lago"
+  },
+  {
+   "id": "nenufar",
+   "nome": "Ninfeia",
+   "forma": "aquatica",
+   "origem": "chão e água",
+   "frutifera": false,
+   "preco": 120,
+   "ref": "lago"
+  },
+  {
+   "id": "cogumelos-variados",
+   "nome": "Cogumelos",
+   "forma": "erva",
+   "origem": "chão e água",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "sombra das árvores"
+  },
+  {
+   "id": "alfarrobeira",
+   "nome": "Alfarrobeira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Lc 15:16"
+  },
+  {
+   "id": "pistacheira",
+   "nome": "Pistacheira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Gn 43:11"
+  },
+  {
+   "id": "nogueira",
+   "nome": "Nogueira",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Ct 6:11"
+  },
+  {
+   "id": "platano",
+   "nome": "Plátano-oriental",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "Gn 30:37"
+  },
+  {
+   "id": "carvalho-basa",
+   "nome": "Carvalho de Basã",
+   "forma": "arvore",
+   "origem": "bíblica",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "Is 2:13 · Zc 11:2"
+  },
+  {
+   "id": "sarca",
+   "nome": "Sarça",
+   "forma": "arbusto",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Êx 3:2"
+  },
+  {
+   "id": "hena",
+   "nome": "Hena",
+   "forma": "arbusto",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "Ct 1:14"
+  },
+  {
+   "id": "linho",
+   "nome": "Linho",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Pv 31:13 · Êx 9:31"
+  },
+  {
+   "id": "acafrao",
+   "nome": "Açafrão",
+   "forma": "flor",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Ct 4:14"
+  },
+  {
+   "id": "nardo",
+   "nome": "Nardo",
+   "forma": "flor",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Ct 4:13-14 · Jo 12:3"
+  },
+  {
+   "id": "papoula",
+   "nome": "Papoula do campo",
+   "forma": "flor",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Is 40:6-8 (flor do campo)"
+  },
+  {
+   "id": "narciso",
+   "nome": "Narciso (rosa de Sarom)",
+   "forma": "flor",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "Ct 2:1 · Is 35:1"
+  },
+  {
+   "id": "endro",
+   "nome": "Endro",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Mt 23:23"
+  },
+  {
+   "id": "cominho",
+   "nome": "Cominho",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Is 28:25 · Mt 23:23"
+  },
+  {
+   "id": "arruda",
+   "nome": "Arruda",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Lc 11:42"
+  },
+  {
+   "id": "coentro",
+   "nome": "Coentro",
+   "forma": "erva",
+   "origem": "bíblica",
+   "frutifera": false,
+   "preco": 60,
+   "ref": "Êx 16:31"
+  },
+  {
+   "id": "mangueira",
+   "nome": "Mangueira",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira (cultivada)"
+  },
+  {
+   "id": "jaqueira",
+   "nome": "Jaqueira",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira (cultivada)"
+  },
+  {
+   "id": "goiabeira",
+   "nome": "Goiabeira",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "aceroleira",
+   "nome": "Aceroleira",
+   "forma": "arbusto",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 150,
+   "ref": "flora brasileira (cultivada)"
+  },
+  {
+   "id": "pequizeiro",
+   "nome": "Pequizeiro",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira (Cerrado)"
+  },
+  {
+   "id": "acaizeiro",
+   "nome": "Açaizeiro",
+   "forma": "palmeira",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 300,
+   "ref": "flora brasileira (Amazônia)"
+  },
+  {
+   "id": "cupuacuzeiro",
+   "nome": "Cupuaçuzeiro",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira (Amazônia)"
+  },
+  {
+   "id": "cacaueiro",
+   "nome": "Cacaueiro",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora brasileira (Amazônia)"
+  },
+  {
+   "id": "paineira",
+   "nome": "Paineira",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "embauba",
+   "nome": "Embaúba",
+   "forma": "arvore",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "manaca",
+   "nome": "Manacá-da-serra",
+   "forma": "arbusto",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora brasileira (Mata Atlântica)"
+  },
+  {
+   "id": "heliconia",
+   "nome": "Helicônia",
+   "forma": "flor",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 80,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "primavera",
+   "nome": "Primavera (buganvília)",
+   "forma": "trepadeira",
+   "origem": "brasileira",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora brasileira"
+  },
+  {
+   "id": "laranjeira",
+   "nome": "Laranjeira",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora do mundo (Ásia)"
+  },
+  {
+   "id": "abacateiro",
+   "nome": "Abacateiro",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora do mundo (México)"
+  },
+  {
+   "id": "pessegueiro",
+   "nome": "Pessegueiro",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": true,
+   "preco": 350,
+   "ref": "flora do mundo (China)"
+  },
+  {
+   "id": "figueira-bengala",
+   "nome": "Figueira-de-bengala",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo (Índia)"
+  },
+  {
+   "id": "sequoia",
+   "nome": "Sequoia",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo (EUA)"
+  },
+  {
+   "id": "betula",
+   "nome": "Bétula",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo (Europa)"
+  },
+  {
+   "id": "magnolia",
+   "nome": "Magnólia",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo (Ásia e América)"
+  },
+  {
+   "id": "abeto",
+   "nome": "Abeto",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo (Europa)"
+  },
+  {
+   "id": "eucalipto",
+   "nome": "Eucalipto",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo (Austrália)"
+  },
+  {
+   "id": "flamboyant",
+   "nome": "Flamboyant",
+   "forma": "arvore",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 350,
+   "ref": "flora do mundo (Madagascar)"
+  },
+  {
+   "id": "hortensia",
+   "nome": "Hortênsia",
+   "forma": "arbusto",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora do mundo (Ásia)"
+  },
+  {
+   "id": "azaleia",
+   "nome": "Azaleia",
+   "forma": "arbusto",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora do mundo (Ásia)"
+  },
+  {
+   "id": "camelia",
+   "nome": "Camélia",
+   "forma": "arbusto",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora do mundo (Ásia)"
+  },
+  {
+   "id": "alecrim",
+   "nome": "Alecrim",
+   "forma": "arbusto",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 150,
+   "ref": "flora do mundo (Mediterrâneo)"
+  },
+  {
+   "id": "lotus",
+   "nome": "Lótus",
+   "forma": "aquatica",
+   "origem": "mundo",
+   "frutifera": false,
+   "preco": 120,
+   "ref": "flora do mundo (Ásia)"
+  }
+ ],
+ "decoracao": [
+  {
+   "id": "flores",
+   "nome": "Canteiro de flores",
+   "preco": 60
+  },
+  {
+   "id": "cogumelos",
+   "nome": "Cogumelos",
+   "preco": 60
+  },
+  {
+   "id": "rocha",
+   "nome": "Pedra com musgo",
+   "preco": 70
+  },
+  {
+   "id": "arbusto",
+   "nome": "Arbusto",
+   "preco": 90
+  },
+  {
+   "id": "banco",
+   "nome": "Banco de madeira",
+   "preco": 180
+  },
+  {
+   "id": "lanterna",
+   "nome": "Lanterna",
+   "preco": 220,
+   "nota": "Acende à noite"
+  },
+  {
+   "id": "colmeia",
+   "nome": "Colmeia",
+   "preco": 260,
+   "nota": "Sl 19:10"
+  },
+  {
+   "id": "poco",
+   "nome": "Poço",
+   "preco": 420,
+   "nota": "Gn 24"
+  },
+  {
+   "id": "fonte",
+   "nome": "Fonte de pedra",
+   "preco": 600
+  }
+ ],
+ "melhorias": [
+  {
+   "id": "caminho",
+   "nome": "Caminho de pedras até a árvore",
+   "preco": 120
+  },
+  {
+   "id": "lago",
+   "nome": "Laguinho",
+   "preco": 400
+  },
+  {
+   "id": "ponte",
+   "nome": "Ponte sobre o rio",
+   "preco": 250,
+   "requer": "nascente"
+  },
+  {
+   "id": "cerca",
+   "nome": "Cerca de madeira",
+   "preco": 300
+  },
+  {
+   "id": "mureta",
+   "nome": "Mureta de pedra",
+   "preco": 900,
+   "requer": "cerca"
+  }
+ ],
+ "pacotes": [
+  {
+   "id": "noite-estrelada",
+   "nome": "Noite Estrelada",
+   "tipo": "ceu",
+   "precoReais": 990,
+   "orvalho": 1500,
+   "desc": "Aurora suave, estrela cadente e vaga-lumes azulados, do entardecer ao amanhecer."
+  },
+  {
+   "id": "cerrado",
+   "nome": "Cerrado em Flor",
+   "tipo": "flora",
+   "precoReais": 990,
+   "orvalho": 1500,
+   "desc": "Capim dourado, flores roxas e borda de cerâmica."
+  },
+  {
+   "id": "cascata",
+   "nome": "Cascata Cristalina",
+   "tipo": "cascata",
+   "precoReais": 790,
+   "orvalho": 1500,
+   "desc": "Uma cascata cai da beira do jardim, com arco-íris na névoa durante o dia."
+  },
+  {
+   "id": "natal",
+   "nome": "Natal em Casa",
+   "tipo": "sazonal",
+   "precoReais": 490,
+   "orvalho": 1500,
+   "desc": "Luzinhas na borda do jardim e uma estrela no topo da árvore. Volta todo ano."
+  },
+  {
+   "id": "animais-companheiros-novos",
+   "nome": "Pacote Companheiros Novos",
+   "tipo": "animais",
+   "precoReais": 990,
+   "orvalho": 1500,
+   "itens": [
+    "raposinha"
+   ],
+   "desc": "Animais que chegam juntos ao seu jardim."
+  },
+  {
+   "id": "animais-mata-atlantica",
+   "nome": "Pacote Mata Atlântica",
+   "tipo": "animais",
+   "precoReais": 990,
+   "orvalho": 1500,
+   "itens": [
+    "mico-leao"
+   ],
+   "desc": "Animais que chegam juntos ao seu jardim."
+  },
+  {
+   "id": "animais-cerrado",
+   "nome": "Pacote Cerrado",
+   "tipo": "animais",
+   "precoReais": 990,
+   "orvalho": 1500,
+   "itens": [
+    "lobo-guara",
+    "seriema"
+   ],
+   "desc": "Animais que chegam juntos ao seu jardim."
+  },
+  {
+   "id": "animais-amazonia",
+   "nome": "Pacote Amazônia",
+   "tipo": "animais",
+   "precoReais": 990,
+   "orvalho": 1500,
+   "itens": [
+    "boto",
+    "borboleta-azul",
+    "peixe-boi"
+   ],
+   "desc": "Animais que chegam juntos ao seu jardim."
+  }
+ ]
+}
