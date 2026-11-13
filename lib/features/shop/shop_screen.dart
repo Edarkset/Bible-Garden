@@ -4,6 +4,7 @@ import 'package:bible_garden/app/providers.dart';
 import 'package:bible_garden/core/economy.dart';
 import 'package:bible_garden/core/purchases.dart';
 import 'package:bible_garden/data/content/content.dart';
+import 'package:bible_garden/features/common/orvalho_badge.dart';
 import 'package:bible_garden/features/garden/garden_screen.dart';
 import 'package:bible_garden/features/shop/purchase_providers.dart';
 import 'package:bible_garden/l10n/gen/app_localizations.dart';
@@ -99,14 +100,7 @@ class ShopScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.shopTitle),
-        actions: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: Text(t.gardenOrvalho(balance)),
-            ),
-          ),
-        ],
+        actions: [Center(child: OrvalhoBadge(balance: balance))],
       ),
       body: ListView(
         children: [

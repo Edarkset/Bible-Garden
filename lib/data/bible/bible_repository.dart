@@ -1,12 +1,13 @@
 import 'dart:collection';
-import 'dart:isolate';
 
 import 'package:bible_garden/data/bible/bible_models.dart';
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/services.dart';
 
 /// Lê os livros da Bíblia Livre dos assets, sob demanda.
 ///
-/// O JSON é decodificado numa isolate (Salmos tem ~400 KB) e os últimos
+/// O JSON grande é decodificado fora da thread da tela (Salmos tem ~400 KB;
+/// no navegador, `compute` roda na mesma thread) e os últimos
 /// livros abertos ficam em memória.
 final class BibleRepository {
   new(
@@ -45,7 +46,7 @@ final class BibleRepository {
       cache: false,
     );
     final book = raw.length > isolateThreshold
-        ? await Isolate.run(() => BookText.parse(raw))
+        ? await compute(BookText.parse, raw)
         : BookText.parse(raw);
     _cache[id] = book;
     while (_cache.length > cacheSize) {

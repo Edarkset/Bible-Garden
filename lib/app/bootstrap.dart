@@ -4,7 +4,7 @@ import 'package:bible_garden/data/bible/bible_repository.dart';
 import 'package:bible_garden/data/content/content.dart';
 import 'package:bible_garden/data/content/devotionals.dart';
 import 'package:bible_garden/data/db/app_database.dart';
-import 'package:bible_garden/data/db/db_open.dart';
+import 'package:bible_garden/data/db/db_connect.dart';
 import 'package:bible_garden/data/sprites/sprite_manifest.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
@@ -16,7 +16,7 @@ Future<List<Override>> bootstrap({
 }) async {
   final b = bundle ?? rootBundle;
   final results = await Future.wait<Object>([
-    (openDb ?? openAppDatabase)(),
+    (openDb ?? openPlatformDatabase)(),
     b.loadString('assets/data/conteudo.json'),
     BibleRepository.loadIndex(bundle: b),
     b.loadString('assets/data/sprites_manifest.json'),

@@ -71,7 +71,7 @@ class _BibleGardenAppState extends ConsumerState<BibleGardenApp> {
       textDirection: TextDirection.ltr,
       child: Banner(
         message: 'MOD',
-        location: BannerLocation.topEnd,
+        location: BannerLocation.topStart,
         color: BgColors.jabuticaba,
         child: app,
       ),
