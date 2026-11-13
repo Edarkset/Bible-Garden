@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bible Garden · protótipo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400&family=Pixelify+Sans:wght@400..600&display=swap" rel="stylesheet">
+<style>:root{
+  --bg:#E6EDE2; --surface:#F5F7F1; --surface-2:#EDF1E8; --ink:#22302A; --muted:#5B6B62; --line:#CAD5C6;
+  --ipe:#C98F12; --ipe-soft:#F6E3B0; --orvalho:#3E8FA6; --btn:#2F7488; --btn-ink:#FFFFFF; --on-folha:#FFFFFF; --folha:#3F7A45; --jabuticaba:#4B2A45; --focus:#3E8FA6;
+  --read-bg:#FBFAF5; --read-ink:#26302B;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#0F1719; --surface:#172126; --surface-2:#1C2830; --ink:#E5ECE4; --muted:#9BAAA2; --line:#2B3A40;
+  --ipe:#F0C24E; --ipe-soft:#3A3220; --orvalho:#7CC3D2; --btn:#7CC3D2; --btn-ink:#0F1719; --on-folha:#0F1719; --folha:#8BBF5E; --jabuticaba:#C9A2C2; --focus:#7CC3D2;
+  --read-bg:#141C1F; --read-ink:#DCE3DA; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0F1719; --surface:#172126; --surface-2:#1C2830; --ink:#E5ECE4; --muted:#9BAAA2; --line:#2B3A40;
+  --ipe:#F0C24E; --ipe-soft:#3A3220; --orvalho:#7CC3D2; --btn:#7CC3D2; --btn-ink:#0F1719; --on-folha:#0F1719; --folha:#8BBF5E; --jabuticaba:#C9A2C2; --focus:#7CC3D2;
+  --read-bg:#141C1F; --read-ink:#DCE3DA; color-scheme:dark; }
+*{box-sizing:border-box} html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{margin:0;height:100%} 
+body{background:var(--bg);color:var(--ink);font-family:"Literata",Georgia,"Times New Roman",serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+.px{font-family:"Pixelify Sans","Courier New",monospace;letter-spacing:.02em}
+.app{max-width:480px;margin:0 auto;min-height:100%;padding:0 16px calc(96px + env(safe-area-inset-bottom,0px))}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 0 6px}
+.top h1{font-size:1.25rem;margin:0;font-weight:600;line-height:1.2}
+.season{font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.season i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.iconbtn{background:none;border:0;padding:8px;border-radius:10px;cursor:pointer;color:var(--muted)}
+.iconbtn:hover{background:var(--surface-2)}
+.hud{display:flex;justify-content:space-between;align-items:center;margin:6px 0 4px}
+.dew{display:flex;align-items:center;gap:6px;font-size:1.05rem}
+.week{display:flex;gap:5px;align-items:center}
+.week b{width:9px;height:9px;border-radius:2px;background:var(--line);display:block}
+.week b.on{background:var(--folha)}
+.week span{font-size:.78rem;color:var(--muted);margin-left:6px}
+.stage-wrap{position:relative;margin:4px -16px 0;display:flex;justify-content:center}
+canvas#terra{width:min(100%,440px);aspect-ratio:1/1;display:block;image-rendering:pixelated;image-rendering:crisp-edges;touch-action:manipulation}
+.caption{text-align:center;margin:6px 0 2px}
+.caption .st{font-size:1.15rem}
+.caption small{display:block;color:var(--muted);font-size:.86rem}
+.lema{text-align:center;color:var(--muted);font-style:italic;font-size:.88rem;margin:2px 0 12px}
+.primary{display:block;width:100%;border:0;border-radius:14px;padding:15px 18px;background:var(--folha);color:#fff;font-weight:600;font-size:1.02rem;cursor:pointer}
+:root[data-theme="dark"] .primary{color:#0F1719}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .primary{color:#0F1719}}
+.primary:disabled{opacity:.5;cursor:default}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.ghost{border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:12px;cursor:pointer;text-align:left}
+.ghost strong{display:block;font-weight:600}
+.ghost small{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:14px}
+.card h2{font-size:1.02rem;margin:0 0 6px;font-weight:600}
+.card p{margin:.3em 0;color:var(--muted);font-size:.93rem}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;font-size:.9rem}
+.sig div{color:var(--muted)} .sig div b{display:block;color:var(--ink);font-weight:600}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:20}
+nav.tabs .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+nav.tabs button{background:none;border:0;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font-size:.74rem;cursor:pointer;border-radius:10px}
+nav.tabs button[aria-current="page"]{color:var(--folha);font-weight:600}
+nav.tabs svg{width:24px;height:24px}
+.screen{display:none} .screen.on{display:block}
+/* leitura */
+.reader{background:var(--read-bg);color:var(--read-ink);margin:0 -16px;padding:8px 22px 40px;min-height:70vh}
+.reader[data-rt="sepia"]{--read-bg:#F3E9D4;--read-ink:#3B2F22;background:#F3E9D4;color:#3B2F22}
+.reader[data-rt="night"]{background:#10161A;color:#D5DCD3}
+.rbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;position:sticky;top:env(safe-area-inset-top,0px);background:inherit;z-index:5}
+.rbar h2{margin:0;font-size:1.3rem;font-weight:600}
+.rtools{display:flex;gap:4px}
+.rtools button{border:1px solid currentColor;background:none;border-radius:8px;padding:4px 9px;cursor:pointer;opacity:.75;font-size:.85rem}
+.blk{padding:4px 0 4px 12px;margin:0 0 6px -12px;border-left:3px solid transparent;transition:border-color .4s}
+.blk.fast{border-left-color:var(--ipe)}
+.blk p{margin:0;font-size:var(--fs,18px);line-height:1.75;max-width:62ch}
+.blk sup{font-family:"Pixelify Sans",monospace;font-size:.62em;opacity:.55;margin-right:3px}
+.rnote{border-radius:12px;padding:12px 14px;margin:18px 0;background:var(--ipe-soft);color:var(--ink);font-size:.93rem}
+.paused{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);border-radius:999px;padding:8px 16px;font-size:.88rem;z-index:30;display:none;border:0;cursor:pointer}
+.attrib{font-size:.75rem;opacity:.6;margin-top:24px;max-width:62ch}
+.chlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px;margin-top:8px}
+.chlist button{aspect-ratio:1;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-family:"Pixelify Sans",monospace}
+.chlist button.done{background:var(--folha);color:#fff;border-color:transparent}
+.chlist button.avail{border:2px solid var(--folha)}
+.chlist button:disabled{opacity:.4;cursor:default}
+/* oração */
+.pray{position:fixed;inset:0;background:#0B1214;color:#E7EDE6;z-index:50;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.pray.on{display:flex}
+.glow{width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#FFE9A8 0%,rgba(248,210,122,.35) 40%,rgba(248,210,122,0) 70%);transform:scale(.25);transition:transform 1s linear;margin-bottom:28px}
+.pray p{max-width:30ch;opacity:.8}
+.pray .end{margin-top:36px;background:none;border:1px solid rgba(231,237,230,.35);color:inherit;border-radius:999px;padding:9px 18px;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--folha);background:var(--folha);color:#fff}
+.req{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.req:first-child{border-top:0}
+.req span{flex:1}
+.req.done span{color:var(--muted);text-decoration:line-through}
+.req button{border:1px solid var(--line);background:none;border-radius:8px;padding:5px 9px;cursor:pointer;font-size:.82rem}
+input[type=text],textarea,select{width:100%;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:11px 12px}
+textarea{min-height:90px;resize:vertical}
+/* floresta */
+.bioma{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px 14px;margin:0 0 4px;position:relative}
+.bioma h3{margin:0 0 8px;font-size:.98rem;font-weight:600;display:flex;justify-content:space-between}
+.bioma h3 small{color:var(--muted);font-weight:400}
+.books{display:flex;flex-wrap:wrap;gap:6px}
+.books button{border:0;background:var(--surface-2);border-radius:10px;padding:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;width:52px}
+.books button span{font-size:.62rem;color:var(--muted);line-height:1.1;margin-top:2px;max-width:48px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.books button.extra{outline:1.5px dashed var(--jabuticaba)}
+.river{height:26px;display:flex;justify-content:center}
+.binfo{position:sticky;bottom:calc(76px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);border-radius:14px;padding:10px 14px;font-size:.9rem;margin-top:10px;display:none}
+/* loja */
+.items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.item canvas{width:100%;aspect-ratio:1;image-rendering:pixelated;background:var(--surface-2);border-radius:10px}
+.item b{font-weight:600;font-size:.95rem}
+.item small{color:var(--muted);font-size:.8rem}
+.item button{border:0;border-radius:10px;padding:8px;background:var(--surface-2);cursor:pointer;font-family:"Pixelify Sans",monospace}
+.item button.buy{background:var(--orvalho);color:#fff}
+.item button:disabled{opacity:.5;cursor:default}
+.opt{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px}
+.sw{width:34px;height:34px;border-radius:10px;border:3px solid transparent;cursor:pointer}
+.sw[aria-pressed="true"]{border-color:var(--ink)}
+label.lbl{display:block;font-weight:600;font-size:.92rem;margin-top:10px}
+/* overlays */
+.sheet{position:fixed;inset:0;background:rgba(10,16,18,.45);z-index:60;display:none;align-items:flex-end;justify-content:center}
+.sheet.on{display:flex}
+.sheet .panel{background:var(--surface);color:var(--ink);width:100%;max-width:480px;max-height:88vh;overflow:auto;border-radius:22px 22px 0 0;padding:18px 18px calc(22px + env(safe-area-inset-bottom,0px))}
+.sheet h2{margin:.2em 0 .4em;font-size:1.25rem}
+.reward{position:fixed;left:50%;transform:translate(-50%,20px);bottom:calc(92px + env(safe-area-inset-bottom,0px));width:min(440px,calc(100% - 32px));background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;z-index:40;box-shadow:0 10px 30px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .5s,transform .5s}
+.reward.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.reward b{display:block;font-size:1.05rem}
+.reward p{margin:.25em 0 0;color:var(--muted);font-size:.92rem}
+.onb{position:fixed;inset:0;background:var(--bg);z-index:70;overflow:auto;display:none}
+.onb.on{display:block}
+.onb .in{max-width:440px;margin:0 auto;padding:40px 22px calc(40px + env(safe-area-inset-bottom,0px))}
+.onb h1{font-size:1.7rem;line-height:1.2;margin:.2em 0 .4em;font-weight:600}
+.onb p{color:var(--muted)}
+.step{display:none} .step.on{display:block}
+.pick{display:grid;gap:8px;margin:12px 0 20px}
+.pick button{text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 14px;cursor:pointer}
+.pick button[aria-pressed="true"]{border-color:var(--folha);box-shadow:inset 0 0 0 1.5px var(--folha)}
+.pick button small{display:block;color:var(--muted)}
+.dots{display:flex;gap:6px;margin-bottom:18px}.dots i{width:22px;height:4px;border-radius:2px;background:var(--line)}.dots i.on{background:var(--folha)}
+.testgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.testgrid button{border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:9px;cursor:pointer;font-size:.85rem}
+.range{display:flex;align-items:center;gap:10px}.range input{flex:1}
+.mono{font-family:"Pixelify Sans",monospace}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.linkbtn{display:block;margin:10px auto 0;background:none;border:0;color:inherit;opacity:.7;text-decoration:underline;cursor:pointer;font-size:.88rem}
+.pack{display:flex;flex-direction:column;gap:8px;padding:12px 0;border-top:1px solid var(--line)}
+.pack:first-child{border-top:0}
+.pack b{display:block;font-weight:600}.pack small{color:var(--muted);font-size:.86rem}
+.pack-btns{display:flex;gap:6px;flex-wrap:wrap}
+.pack-btns button{border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:7px 11px;cursor:pointer;font-size:.86rem}
+.pack-btns button.buy{background:var(--orvalho);border-color:transparent;color:#fff}
+.pack-btns button:disabled{opacity:.45;cursor:default}
+.previewbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom,0px));width:min(448px,calc(100% - 24px));background:var(--ink);color:var(--bg);border-radius:14px;padding:8px 8px 8px 14px;display:flex;align-items:center;gap:8px;z-index:35;font-size:.9rem}
+.previewbar[hidden]{display:none}
+.previewbar span{flex:1}
+.previewbar button{border:0;border-radius:10px;padding:8px 12px;cursor:pointer;background:var(--bg);color:var(--ink);font-size:.86rem}
+.previewbar #pv-buy{background:var(--orvalho);color:#fff}
+.herbs{display:grid;gap:10px}
+.herb{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.herb b{font-weight:600}.herb i{color:var(--muted);margin-left:8px;font-size:.88rem}
+.herb p{margin:.3em 0;font-size:.92rem}.herb small{color:var(--folha);font-size:.84rem}
+.herb.lock{opacity:.6;border-style:dashed}
+
+.ghost.wide{display:block;width:100%;text-align:center;margin-top:10px;font-weight:600}
+.up{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.up:first-child{border-top:0}.up b{display:block;font-weight:600;font-size:.95rem}.up small{color:var(--muted);font-size:.82rem}
+.up button{border:0;border-radius:10px;padding:8px 12px;background:var(--orvalho);color:#fff;cursor:pointer;font-family:"Pixelify Sans",monospace;min-width:84px}
+.up button:disabled{opacity:.5;cursor:default}
+h2.sec{font-size:1.02rem;margin:18px 0 8px}
+.modbar{background:var(--ipe);color:#1b1408;font-size:.82rem;text-align:center;padding:6px 12px;font-weight:600}
+.rver{margin:-2px 0 12px}#r-versao{width:100%;padding:7px 10px;border-radius:10px;font-size:.88rem;background:transparent;border:1px solid currentColor;opacity:.8;color:inherit}
+.rbar h2{white-space:nowrap}
+
+/* v0.5: contraste e áreas de toque */
+.item button.buy,.pack-btns button.buy,.up button,.previewbar #pv-buy{background:var(--btn);color:var(--btn-ink)}
+.chip[aria-pressed="true"]{color:var(--on-folha)}
+.chlist button.done{color:var(--on-folha)}
+.rtools button{min-height:40px;min-width:44px;padding:6px 10px}
+#r-voltar{min-width:44px;min-height:44px;font-size:1.2rem}
+.pack-btns button,.item button{min-height:44px}
+.sw{width:42px;height:42px}
+label.check{display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer}
+label.check input{width:22px;height:22px;accent-color:var(--folha)}
+/* moldura suave do jardim */
+canvas#terra{border-radius:22px;box-shadow:0 10px 30px rgba(20,40,30,.14)}
+.stage-wrap{margin:6px 0 0}
+/* Hoje no jardim */
+.hoje-top{display:flex;justify-content:space-between;align-items:baseline}
+.hoje-top h2{margin:0}
+.bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin:8px 0 10px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orvalho),var(--folha));border-radius:99px;transition:width .8s ease}
+.pills{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pill{border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:10px 6px;cursor:pointer;text-align:center;min-height:56px;color:var(--ink)}
+.pill b{display:block;font-weight:600}.pill small{color:var(--muted);font-size:.76rem}
+.pill.done{border-color:var(--folha);background:color-mix(in srgb,var(--folha) 14%,var(--surface))}
+.pill.done b::before{content:"✓ ";color:var(--folha)}
+.hoje-nota{font-size:.84rem!important;margin-top:10px!important}
+button.meta{display:block;width:100%;text-align:left;cursor:pointer;color:var(--ink);font-size:.92rem}
+button.meta .bar{margin:8px 0 0}
+.rw-acts{display:flex;gap:8px;margin-top:10px}.rw-acts:empty{display:none}
+.rw-acts button{border:0;border-radius:10px;padding:10px 14px;background:var(--folha);color:var(--on-folha);font-weight:600;cursor:pointer;min-height:44px}
+.rw-acts button.sec{background:var(--surface-2);color:var(--ink)}
+.floater{position:fixed;z-index:45;color:var(--orvalho);font-size:1.1rem;font-weight:600;pointer-events:none;opacity:0;transition:transform 1.2s ease,opacity 1.2s ease}
+.floater.on{opacity:1}
+
+.item button.own,.up button.own{opacity:1;background:transparent;color:var(--folha);border:1.5px solid var(--folha);font-weight:600}
+.linkbtn{min-height:44px;padding:10px}
+#r-versao{min-height:44px}
+
+/* editar: bandeja fixa para a ilha continuar visível */
+#edit{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(72px + env(safe-area-inset-bottom,0px));width:min(456px,calc(100% - 16px));z-index:36;margin:0;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:12px 14px}
+#edit h2{display:flex;justify-content:space-between;align-items:center}
+#edit .opt{flex-wrap:nowrap;overflow-x:auto;margin:6px 0 0;padding-bottom:4px}
+#edit .opt .chip{white-space:nowrap;min-height:44px}
+#edit p{margin:.2em 0}
+</style></head><body>
+<div class="modbar" id="modbar" hidden>Versão mod · moedas liberadas e simulação acelerada. Nada disso existe no app real.</div>
+<div class="app" id="app">
+  <!-- JARDIM -->
+  <section class="screen on" id="s-jardim" aria-label="Jardim">
+    <div class="top">
+      <div><h1 id="g-nome">Meu jardim</h1><div class="season"><i id="g-season-dot"></i><span id="g-season">Tempo Comum</span></div></div>
+      <button class="iconbtn" id="btn-ajustes" aria-label="Ajustes e modo de teste"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+    </div>
+    <div class="hud">
+      <div class="dew px" title="Orvalho: a porção de hoje"><svg width="16" height="18" viewBox="0 0 8 9" shape-rendering="crispEdges"><path fill="#6FB3C9" d="M3 0h2v1h1v2h1v4H6v1H2V7H1V3h1V1h1z"/><path fill="#A8DCE6" d="M2 4h1v2H2z"/></svg><span id="g-orvalho">0</span></div>
+      <div class="week" aria-label="Seu ritmo nos últimos 7 dias"><span id="g-week" class="week"></span><span id="g-dias">0 dias no jardim</span></div>
+    </div>
+    <div class="stage-wrap"><canvas id="terra" width="800" height="800" role="img" aria-label="Ilha do jardim de Gênesis"></canvas></div>
+    <div class="caption"><div class="st px" id="g-stage">Semente</div><small id="g-prog">Gênesis · 0 de 50 capítulos</small></div>
+    <div class="lema" id="g-lema"></div>
+    <button class="primary" id="btn-continuar">Ler Gênesis 1</button>
+    <div class="card hoje" id="hoje"><div class="hoje-top"><h2>Hoje no jardim</h2><span class="px" id="h-txt">0 de 40</span></div>
+      <div class="bar" aria-hidden="true"><i id="h-bar"></i></div>
+      <div class="pills">
+        <button class="pill" id="h-ler"><b>Ler</b><small>a copa cresce</small></button>
+        <button class="pill" id="btn-orar2"><b>Orar</b><small>as raízes crescem</small></button>
+        <button class="pill" id="btn-devo"><b>Devocional</b><small id="devo-sub">4 min</small></button>
+      </div>
+      <p class="hoje-nota" id="h-nota">Qualquer um dos três já rende a porção de hoje. Não há sequência para perder.</p>
+    </div>
+    <button class="card meta" id="meta" hidden><span id="meta-t"></span><div class="bar"><i id="meta-bar"></i></div></button>
+    <button class="ghost wide" id="btn-editar">Editar jardim</button>
+    <div class="card" id="edit" hidden><h2>Editar jardim <button class="chip" id="edit-ok">Concluir</button></h2><p id="edit-dica"></p><div class="opt" id="edit-inv"></div></div>
+    <div class="card"><h2>A assinatura deste jardim</h2>
+      <div class="sig">
+        <div>Luz predominante<b id="sig-luz">Ainda aprendendo</b></div>
+        <div>Raízes (oração)<b id="sig-raiz">0 momentos</b></div>
+        <div>Gavinhas (devocional)<b id="sig-devo">0</b></div>
+        <div>Pedras de Ebenézer<b id="sig-eben">0</b></div>
+        <div>Canteiro atual<b id="sig-cant">Origens</b></div>
+        <div>Semente única<b class="px" id="sig-seed">—</b></div>
+      </div>
+      <p style="margin-top:10px">Raízes, baú e horários são só seus. Amigos que visitarem verão apenas a copa e a decoração.</p>
+    </div>
+  </section>
+
+  <!-- LER -->
+  <section class="screen" id="s-ler" aria-label="Leitura">
+    <div id="ler-lista">
+      <div class="top"><h1>Gênesis</h1><span class="season">4 canteiros · 50 capítulos</span></div>
+      <p style="color:var(--muted);margin:.2em 0 .6em">Os capítulos 1 e 2 estão disponíveis neste protótipo. Os outros podem ser simulados no modo de teste.</p>
+      <label class="lbl" for="l-versao">Tradução</label><select id="l-versao"></select><p id="l-versao-nota" style="color:var(--muted);font-size:.88rem;margin:.4em 0 0"></p>
+      <div id="ler-valid"></div><div id="canteiros"></div>
+    </div>
+    <div id="ler-texto" class="reader" hidden>
+      <div class="rbar"><button class="iconbtn" id="r-voltar" aria-label="Voltar">←</button><h2 id="r-tit">Gênesis 1</h2>
+        <div class="rtools"><button id="r-menor" aria-label="Diminuir letra">A−</button><button id="r-maior" aria-label="Aumentar letra">A+</button><button id="r-tema" aria-label="Trocar tema de leitura">Tema</button></div></div>
+      <div class="rver"><select id="r-versao" aria-label="Tradução"></select></div>
+      <div id="r-blocos"></div>
+      <div id="r-nota" class="rnote" hidden></div>
+      <button class="primary" id="r-concluir" style="margin-top:20px">Concluir capítulo</button>
+      <button class="ghost wide mod-only" id="r-simular" hidden>Simular leitura atenta (mod)</button>
+      <button class="linkbtn" id="r-sensor">Usar sensor de movimento (opcional)</button>
+      <p class="attrib" id="r-attrib">Texto: Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018. Licença Creative Commons Atribuição 4.0 Brasil. Fonte: eBible.org.</p>
+    </div>
+  </section>
+
+  <!-- ORAR -->
+  <section class="screen" id="s-orar" aria-label="Oração">
+    <div class="top"><h1>Oração</h1></div>
+    <p style="color:var(--muted);margin-top:0">Escolha quanto tempo quer dedicar. Se precisar sair do app, você tem 15 segundos para voltar.</p>
+    <div class="chips" id="o-tempos"></div>
+    <label class="lbl check"><input type="checkbox" id="o-guiada"> Oração guiada (adoração, confissão, gratidão, súplica)</label>
+    <button class="primary" id="o-comecar" style="margin-top:14px">Começar oração</button>
+    <div class="card"><h2>Pedidos de oração</h2>
+      <p>Quando uma oração for respondida, marque-a. Uma pedra de Ebenézer será erguida no seu jardim (1 Sm 7:12).</p>
+      <div style="display:flex;gap:8px;margin:10px 0"><input type="text" id="o-novo" placeholder="Escreva um pedido" aria-label="Novo pedido"><button class="chip" id="o-add">Adicionar</button></div>
+      <div id="o-lista"></div>
+    </div>
+  </section>
+
+  <!-- FLORESTA -->
+  <section class="screen" id="s-floresta" aria-label="Floresta">
+    <div class="top"><h1>Sua floresta</h1><span class="season" id="f-resumo"></span></div>
+    <p style="color:var(--muted);margin-top:0">A forma de cada planta segue o tamanho do livro. O rio nasce em Gênesis e, quando a Bíblia inteira for lida, atravessa todos os biomas até o Apocalipse.</p>
+    <div class="opt" id="f-toggle"><button class="chip" data-v="mapa" aria-pressed="true">Mapa</button><button class="chip" data-v="herb" aria-pressed="false">Herbário</button></div>
+    <div id="f-mapa"></div><div id="f-herb" class="herbs" hidden></div>
+    <div class="binfo" id="f-info"></div>
+  </section>
+
+  <!-- LOJA / PERSONALIZAR -->
+  <section class="screen" id="s-loja" aria-label="Loja e personalização">
+    <div class="top"><h1>Cuidar do jardim</h1><div class="dew px"><svg width="16" height="18" viewBox="0 0 8 9" shape-rendering="crispEdges"><path fill="#6FB3C9" d="M3 0h2v1h1v2h1v4H6v1H2V7H1V3h1V1h1z"/></svg><span id="l-orvalho">0</span></div></div>
+    <p style="color:var(--muted);margin-top:0">A árvore só cresce com leitura, oração e devocional. Aqui você usa o orvalho que essa constância rendeu para liberar animais, melhorias e decoração.</p>
+    </div>
+    <div class="card"><h2>Melhorias do terreno</h2><p>Liberadas com orvalho, que só vem da leitura, da oração e do devocional.</p><div id="l-melhorias"></div></div>
+    <h2 class="sec">Animais</h2><div class="items" id="l-animais"></div>
+    <h2 class="sec">Decoração</h2><div class="items" id="l-itens"></div>
+    <div class="card" id="c-pacotes"><h2>Pacotes visuais</h2><p>Só mudam a aparência. Experimente no seu jardim antes de decidir. A compra é única e o pacote é seu para sempre. Presentear um pacote chega na próxima versão.</p><div id="l-pacotes"></div>
+    <div class="card"><h2>Personalizar</h2>
+      <label class="lbl">Árvore de Gênesis</label><div class="opt" id="p-especie"></div>
+      <label class="lbl">Companheiro</label><div class="opt" id="p-comp"></div>
+      <label class="lbl">Cor das flores</label><div class="opt" id="p-cor"></div>
+      <label class="lbl">Acessório do companheiro</label><div class="opt" id="p-acess"></div>
+      <label class="lbl">Estilo visual (teste A/B)</label><div class="opt" id="p-render"></div>
+      <label class="lbl" for="p-lema">Lema do jardim</label>
+      <select id="p-lema"><option>Salmo 1:3</option><option>Colossenses 2:7</option><option>João 15:5</option><option>Lamentações 3:22-23</option><option>Gênesis 2:15</option></select>
+      <label class="lbl" for="p-nome">Nome do jardim (muda a forma da árvore)</label><input type="text" id="p-nome">
+    </div>
+    <div class="card"><h2>Jardim Aberto</h2>
+      <p>Ler, orar e ver o jardim crescer é gratuito para sempre. Quem puder pode apoiar com qualquer valor. Quem não puder pede uma semente suspensa e recebe o mesmo agradecimento, sem comprovar nada.</p>
+      <div class="row"><button class="ghost" disabled><strong>Ser Semeador</strong><small>No protótipo, nada é cobrado</small></button><button class="ghost" disabled><strong>Pedir semente suspensa</strong><small>Sem perguntas</small></button></div>
+    </div>
+  </section>
+</div>
+
+<nav class="tabs" aria-label="Navegação"><div class="in">
+  <button data-tab="jardim" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21v-8"/><path d="M12 13c-4 0-6-3-6-7 4 0 6 3 6 7z"/><path d="M12 11c0-3 2-6 6-6 0 4-2 6-6 6z"/><path d="M6 21h12"/></svg>Jardim</button>
+  <button data-tab="ler"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1z"/><path d="M12 6v14"/></svg>Ler</button>
+  <button data-tab="orar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="4"/><path d="M12 13v8M8 21h8M9 17l3-2 3 2"/></svg>Orar</button>
+  <button data-tab="floresta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 20v-4M17 20v-6M12 20V9"/><path d="M7 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM12 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM17 14a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>Floresta</button>
+  <button data-tab="loja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c-3 4-5 6.5-5 10a5 5 0 0 0 10 0c0-3.5-2-6-5-10z"/></svg>Cuidar</button>
+</div></nav>
+
+<button class="paused" id="r-pausa">Contagem pausada. Toque para continuar lendo.</button>
+
+<div class="pray" id="pray" role="dialog" aria-label="Momento de oração">
+  <div class="glow" id="p-glow"></div>
+  <p id="p-txt">Respire. Você está diante de Deus.</p>
+  <p class="px" id="p-tempo" style="opacity:.45;font-size:.9rem"></p>
+  <button class="end" id="p-fim">Encerrar</button>
+</div>
+
+<div class="previewbar" id="preview" hidden><span id="pv-t"></span><button id="pv-buy"></button><button id="pv-sair">Sair</button></div>
+
+<div class="reward" id="reward" role="status" aria-live="polite"><b id="rw-t"></b><p id="rw-d"></p><div class="rw-acts" id="rw-acts"></div></div>
+<div class="floater px" id="floater" aria-hidden="true"></div>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="panel" id="sheet-panel"></div></div>
+
+<div class="onb" id="onb" role="dialog" aria-label="Plantar seu jardim"><div class="in">
+  <div class="dots" id="onb-dots"></div>
+  <div class="step" data-s="0"><h1>Toda floresta começa com uma semente.</h1><p>Este é o Bible Garden: cada livro da Bíblia que você lê vira um pequeno jardim. Ele cresce com a leitura, a oração e o devocional, e nunca murcha.</p>
+    <label class="lbl" for="onb-nome">Dê um nome ao seu jardim</label><input type="text" id="onb-nome" placeholder="Jardim do Erick"><button class="primary" style="margin-top:20px" data-next>Continuar</button></div>
+  <div class="step" data-s="1"><h1>Qual Bíblia você usa?</h1><p>Isso define quantos jardins sua floresta terá. Dá para mudar depois.</p>
+    <div class="pick" id="onb-trad"><button data-v="protestante" aria-pressed="true">Protestante<small>66 livros</small></button><button data-v="catolica">Católica<small>73 livros: os deuterocanônicos entram nos biomas, não num pacote à parte</small></button></div>
+    <label class="lbl" for="onb-versao">Tradução preferida</label><select id="onb-versao"></select><p style="font-size:.88rem">As traduções licenciadas (ARA, NVI, ARC…) entram assim que a licença for assinada. Até lá, você lê na Bíblia Livre.</p><button class="primary" data-next>Continuar</button></div>
+  <div class="step" data-s="2"><h1>Escolha a árvore de Gênesis.</h1><p>Cada livro terá uma espécie. Esta é a primeira.</p>
+    <div class="pick" id="onb-esp"><button data-v="oliveira" aria-pressed="true">Oliveira<small>A pomba voltou com uma folha dela (Gn 8:11)</small></button><button data-v="figueira">Figueira<small>A primeira árvore nomeada no Éden depois da queda (Gn 3:7)</small></button><button data-v="ipe">Ipê-amarelo<small>Flora brasileira: floresce em ouro no fim do inverno</small></button></div><button class="primary" data-next>Continuar</button></div>
+  <div class="step" data-s="3"><h1>Quem vai morar no seu jardim?</h1>
+    <div class="pick" id="onb-comp"><button data-v="ovelha" aria-pressed="true">Uma ovelha<small>Sl 23</small></button><button data-v="capivara">Uma capivara<small>Tranquila como deve ser</small></button><button data-v="beijaflor">Um beija-flor<small>Visita as flores que você fizer crescer</small></button></div>
+    <label class="lbl">Cor das flores</label><div class="opt" id="onb-cor"></div><button class="primary" data-next>Continuar</button></div>
+  <div class="step" data-s="4"><h1>Quando você gosta de ler?</h1><p>Um único lembrete por dia, em tom de convite. Você desliga quando quiser.</p>
+    <div class="pick" id="onb-hora"><button data-v="manha" aria-pressed="true">De manhã<small>Depois do café</small></button><button data-v="tarde">À tarde<small>Numa pausa</small></button><button data-v="noite">À noite<small>Antes de dormir</small></button><button data-v="nenhum">Sem lembrete</button></div>
+    <button class="primary" id="onb-fim">Plantar e ler Gênesis 1</button></div>
+</div></div>
+
+<script>const TEXTO={"fonte": "Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018 — CC BY 4.0 Brasil. Texto via eBible.org.", "GEN": {"1": ["No princípio criou Deus os céus e a terra.", "E a terra estava desordenada e vazia, e as trevas estavam sobre a face do abismo, e o Espírito de Deus se movia sobre a face das águas.", "E disse Deus: Haja luz; e houve luz.", "E viu Deus que a luz era boa: e separou Deus a luz das trevas.", "E chamou Deus à luz Dia, e às trevas chamou Noite: e foi a tarde e a manhã o primeiro dia.", "E disse Deus: Haja expansão em meio das águas, e separe as águas das águas.", "E fez Deus a expansão, e separou as águas que estavam debaixo da expansão, das águas que estavam sobre a expansão: e foi assim.", "E chamou Deus à expansão Céus: e foi a tarde e a manhã, o dia segundo.", "E disse Deus: Juntem-se as águas que estão debaixo dos céus em um lugar, e descubra-se a porção seca; e foi assim.", "E chamou Deus à porção seca Terra, e à reunião das águas chamou Mares; e viu Deus que era bom.", "E disse Deus: Produza a terra erva verde, erva que dê semente; árvore de fruto que dê fruto segundo a sua espécie, que sua semente esteja nela, sobre a terra: e foi assim.", "E produziu a terra erva verde, erva que dá semente segundo sua natureza, e árvore que dá fruto, cuja semente está nele, segundo a sua espécie; e viu Deus que era bom.", "E foi a tarde e a manhã, o dia terceiro.", "E disse Deus: Haja luminares na expansão dos céus para separar o dia e a noite: e sejam por sinais, e para as estações, e para dias e anos;", "E sejam por luminares na expansão dos céus para iluminar sobre a terra: e foi.", "E fez Deus os dois grandes luminares; o luminar maior para que exerça domínio no dia, e o luminar menor para que exerça domínio na noite; fez também as estrelas.", "E as pôs Deus na expansão dos céus, para iluminar sobre a terra,", "E para exercer domínio no dia e na noite, e para separar a luz e as trevas: e viu Deus que era bom.", "E foi a tarde e a manhã, o dia quarto.", "E disse Deus: Produzam as águas répteis de alma vivente, e aves que voem sobre a terra, na expansão aberta dos céus.", "E criou Deus as grandes criaturas marinhas, e toda coisa viva que anda arrastando, que as águas produziram segundo a sua espécie, e toda ave de asas segundo sua espécie: e viu Deus que era bom.", "E Deus os abençoou dizendo: Frutificai e multiplicai, e enchei as águas nos mares, e as aves se multipliquem na terra.", "E foi a tarde e a manhã, o dia quinto.", "E disse Deus: Produza a terra seres viventes segundo a sua espécie, animais e serpentes e animais da terra segundo sua espécie: e foi assim.", "E fez Deus animais da terra segundo a sua espécie, e gado segundo a sua espécie, e todo animal que anda arrastando sobre a terra segundo sua espécie: e viu Deus que era bom.", "E disse Deus: Façamos ao ser humano à nossa imagem, conforme nossa semelhança; e domine os peixes do mar, e as aves dos céus, e os animais, e toda a terra, e todo animal que anda arrastando sobre a terra.", "E criou Deus o ser humano à sua imagem, à imagem de Deus o criou; macho e fêmea os criou.", "E Deus os abençoou; e disse-lhes Deus: Frutificai e multiplicai, e enchei a terra, e subjugai-a, e dominai os peixes do mar, as aves dos céus, e todos os animais que se movem sobre a terra.", "E disse Deus: Eis que vos dei toda erva que dá semente, que está sobre a face de toda a terra; e toda árvore em que há fruto de árvore que dá semente, vos será para comer.", "E a todo animal da terra, e a todas as aves dos céus, e a tudo o que se move sobre a terra, em que há vida, toda erva verde lhes será para comer: e foi assim.", "E viu Deus tudo o que havia feito, e eis que era bom em grande maneira. E foi a tarde e a manhã, o dia sexto."], "2": ["E foram concluídos os céus e a terra, e tudo o que neles há.", "E acabou Deus no dia sétimo sua obra que fez, e repousou o dia sétimo de toda sua obra que havia feito.", "E abençoou Deus ao dia sétimo, e o santificou, porque nele repousou de toda sua obra que havia Deus criado e feito.", "Estas são as origens dos céus e da terra quando foram criados, no dia que o SENHOR Deus fez a terra e os céus,", "E antes que toda planta do campo existisse na terra, e antes que toda erva do campo nascesse; porque ainda não havia o SENHOR Deus feito chover sobre a terra, nem havia homem para que lavrasse a terra;", "Mas subia da terra um vapor, que regava toda a face da terra.", "Formou, pois, o SENHOR Deus ao homem do pó da terra, e assoprou em seu nariz sopro de vida; e foi o homem em alma vivente.", "E havia o SENHOR Deus plantado um jardim em Éden ao oriente, e pôs ali ao homem que havia formado.", "E havia o SENHOR Deus feito nascer da terra toda árvore agradável à vista, e boa para comer: também a árvore da vida em meio do jardim, e a árvore do conhecimento do bem e do mal.", "E saía de Éden um rio para regar o jardim, e dali se repartia em quatro ramificações.", "O nome de um era Pisom: este é o que cerca toda a terra de Havilá, onde há ouro:", "E o ouro daquela terra é bom; há ali também bdélio e pedra ônix.", "O nome do segundo rio é Giom; este é o que rodeia toda a terra de Cuxe.", "E o nome do terceiro rio é Tigre; este é o que vai diante da Assíria. E o quarto rio é o Eufrates.", "Então o SENHOR Deus tomou o homem, e o pôs no jardim de Éden, para que o lavrasse e o guardasse.", "E mandou o SENHOR Deus ao homem, dizendo: De toda árvore do jardim comerás;", "Mas da árvore do conhecimento do bem e do mal não comerás dela; porque no dia que dela comeres, morrerás.", "E disse o SENHOR Deus: Não é bom que o homem esteja só; farei para ele ajuda idônea para ele.", "Formou, pois, o SENHOR Deus da terra todo animal do campo, e toda ave dos céus, e trouxe-os a Adão, para que visse como lhes havia de chamar; e tudo o que Adão chamou aos animais viventes, esse é seu nome.", "E pôs Adão nomes a todo animal e ave dos céus e a todo animal do campo: mas para Adão não achou ajuda que estivesse idônea para ele.", "E o SENHOR Deus fez cair sonho sobre Adão, e ele adormeceu: então tomou uma de suas costelas, e fechou a carne em seu lugar;", "E da costela que o SENHOR Deus tomou do homem, fez uma mulher, e trouxe-a ao homem.", "E disse Adão: Esta é agora osso de meus ossos, e carne de minha carne: esta será chamada Mulher, porque do homem foi tomada.", "Portanto, deixará o homem a seu pai e a sua mãe, e se achegará à sua mulher, e serão uma só carne.", "E estavam ambos nus, Adão e sua mulher, e não se envergonhavam."]}};</script>
+<script>/* Bible Garden — regras puras (testáveis). Usado pelo protótipo e pelos testes. */
+(function (root) {
+  const RULES = {
+    BLOCK_MAX_WPM: 900,      // acima disso o bloco "passou voando" (rolagem)
+    CHAPTER_MAX_WPM: 500,    // teto do tempo total do capítulo
+    BLOCK_OK_SHARE: 0.8,     // ≥80% dos blocos com tempo plausível
+    IDLE_PAUSE_MS: 90000,    // sem toque/rolagem por 90 s → pausa a contagem
+    PRAYER_MIN_MIN: 2,       // oração conta a partir de 2 min
+    PRAYER_GRACE_MS: 15000,  // pode sair do app por até 15 s (ex.: tela bloqueou)
+    PORCAO: { presenca: 20, oracao: 10, devocional: 10, teto: 40 },
+    READ_MIN_FOR_PRESENCE: 3 // minutos de leitura validada para a porção de presença
+  };
+
+  function wordsOf(s) { return (s.trim().match(/\S+/g) || []).length; }
+
+  // agrupa versículos em blocos de ~60 palavras sem quebrar versículo
+  function makeBlocks(verses, target = 60) {
+    const blocks = []; let cur = { from: 1, verses: [], words: 0 };
+    verses.forEach((v, i) => {
+      cur.verses.push({ n: i + 1, t: v }); cur.words += wordsOf(v);
+      if (cur.words >= target) { blocks.push(cur); cur = { from: i + 2, verses: [], words: 0 }; }
+    });
+    if (cur.verses.length) {
+      if (cur.words < target / 3 && blocks.length) { const last = blocks[blocks.length - 1]; last.verses.push(...cur.verses); last.words += cur.words; }
+      else blocks.push(cur);
+    }
+    return blocks;
+  }
+
+  function minBlockMs(words) { return (words / RULES.BLOCK_MAX_WPM) * 60000; }
+  function minChapterMs(words) { return (words / RULES.CHAPTER_MAX_WPM) * 60000; }
+
+  // blocks: [{words, visibleMs}] ; activeMs: tempo ativo total no capítulo
+  function validateChapter(blocks, activeMs) {
+    const total = blocks.reduce((a, b) => a + b.words, 0);
+    const flagged = [];
+    blocks.forEach((b, i) => { if (b.visibleMs < minBlockMs(b.words)) flagged.push(i); });
+    const okShare = 1 - flagged.length / Math.max(1, blocks.length);
+    const needMs = minChapterMs(total);
+    const ok = okShare >= RULES.BLOCK_OK_SHARE && activeMs >= needMs;
+    return { ok, flagged, okShare, needMs, remainingMs: Math.max(0, needMs - activeMs) };
+  }
+
+  // estágios: 0 semente · 1 broto · 2 muda · 3 árvore · 4 frutífera · 5 florida · 6 plena
+  const STAGES = ["Semente", "Broto", "Muda", "Árvore", "Árvore frutífera", "Árvore florida", "Árvore plena"];
+  function stageFor(done, caps) {
+    if (done <= 0) return 0;
+    if (done >= caps) return 6;
+    const f = done / caps;                 // vitória rápida: o 1º capítulo já brota
+    if (f < 0.12) return 1; if (f < 0.30) return 2; if (f < 0.55) return 3; if (f < 0.80) return 4; return 5;
+  }
+  // progresso contínuo (0–6) para animação suave entre estágios
+  function growthFor(done, caps) {
+    const s = stageFor(done, caps); if (s === 0 || s === 6) return s;
+    const cuts = [0, 1 / caps, 0.12, 0.30, 0.55, 0.80, 1];
+    const f = done / caps; const a = cuts[s], b = cuts[s + 1];
+    return s + Math.min(0.99, (f - a) / (b - a));
+  }
+
+  // Gênesis em 4 canteiros (unidades literárias)
+  const SECTIONS = {
+    GEN: [{ nome: "Origens", de: 1, ate: 11 }, { nome: "Abraão", de: 12, ate: 25 }, { nome: "Isaque e Jacó", de: 26, ate: 36 }, { nome: "José", de: 37, ate: 50 }],
+    PSA: [{ nome: "Livro I", de: 1, ate: 41 }, { nome: "Livro II", de: 42, ate: 72 }, { nome: "Livro III", de: 73, ate: 89 }, { nome: "Livro IV", de: 90, ate: 106 }, { nome: "Livro V", de: 107, ate: 150 }]
+  };
+  function sectionsDone(book, readSet) {
+    return (SECTIONS[book] || []).map(s => { for (let c = s.de; c <= s.ate; c++) if (!readSet.has(c)) return false; return true; });
+  }
+
+  // tamanho da planta segue o tamanho do livro (minutos a 230 ppm)
+  function sizeClass(minutes) { return minutes < 15 ? "flor" : minutes < 60 ? "media" : "grande"; }
+
+  // porção diária (maná): o mesmo para todos que comparecem — ler mais não multiplica
+  function porcaoDoDia(day) {
+    let p = 0;
+    const presenca = (day.readMin || 0) >= RULES.READ_MIN_FOR_PRESENCE || (day.prayMin || 0) >= RULES.PRAYER_MIN_MIN || !!day.devocional;
+    if (presenca) p += RULES.PORCAO.presenca;
+    if ((day.prayMin || 0) >= RULES.PRAYER_MIN_MIN) p += RULES.PORCAO.oracao;
+    if (day.devocional) p += RULES.PORCAO.devocional;
+    return Math.min(p, RULES.PORCAO.teto);
+  }
+
+  // oração: recompensa o ato, não os minutos
+  function prayerCounts(plannedMin, elapsedMs, abandoned) {
+    if (abandoned) return false;
+    return elapsedMs >= Math.min(plannedMin, RULES.PRAYER_MIN_MIN) * 60000 - 500 && elapsedMs >= plannedMin * 60000 - 500;
+  }
+
+  // calendário cristão (Páscoa: algoritmo gregoriano anônimo)
+  function easter(y) {
+    const a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25),
+      g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4,
+      l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451),
+      month = Math.floor((h + l - 7 * m + 114) / 31), day = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(y, month - 1, day);
+  }
+  function adventStart(y) { const xmas = new Date(y, 11, 25); const dow = xmas.getDay(); const lastSun = new Date(y, 11, 25 - (dow === 0 ? 7 : dow)); return new Date(y, 11, lastSun.getDate() - 21); }
+  function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+  function liturgicalSeason(date) {
+    const d = new Date(date.getFullYear(), date.getMonth(), date.getDate()); const y = d.getFullYear();
+    const E = easter(y), ash = addDays(E, -46), pent = addDays(E, 49), adv = adventStart(y);
+    if (d >= adv && d < new Date(y, 11, 25)) return { id: "advento", nome: "Advento", cor: "#6B4C8A" };
+    if (d >= new Date(y, 11, 25) || d <= new Date(y, 0, 6)) return { id: "natal", nome: "Natal", cor: "#D9B44A" };
+    if (d >= ash && d < E) return { id: "quaresma", nome: "Quaresma", cor: "#7A5C8E" };
+    if (d >= E && d <= pent) return { id: d.getTime() === pent.getTime() ? "pentecostes" : "pascoa", nome: d.getTime() === pent.getTime() ? "Pentecostes" : "Tempo Pascal", cor: d.getTime() === pent.getTime() ? "#C8452E" : "#E8D9A8" };
+    return { id: "comum", nome: "Tempo Comum", cor: "#5E8A4E" };
+  }
+
+  // assinatura: luz preferida a partir dos horários em que a pessoa lê
+  function preferredLight(hours) {
+    if (!hours || !hours.length) return null;
+    const bins = { madrugada: 0, manha: 0, tarde: 0, noite: 0 };
+    hours.forEach(h => { if (h < 5) bins.madrugada++; else if (h < 12) bins.manha++; else if (h < 18) bins.tarde++; else bins.noite++; });
+    return Object.entries(bins).sort((a, b) => b[1] - a[1])[0][0];
+  }
+
+  // ritmo semanal (não é sequência: nada "zera")
+  function weekRhythm(activeDates, today) {
+    const set = new Set(activeDates); const out = [];
+    for (let i = 6; i >= 0; i--) { const d = addDays(today, -i); out.push(set.has(isoDay(d))); }
+    return out;
+  }
+  function isoDay(d) { const z = n => String(n).padStart(2, "0"); return `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}`; }
+
+  // semente procedural estável a partir do nome do jardim
+  function hashSeed(str) { let h = 2166136261; for (const ch of String(str)) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(seed) { let s = seed >>> 0 || 1; return () => { s ^= s << 13; s >>>= 0; s ^= s >> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; }; }
+
+  // loja: só cosmético. Comprar nunca altera crescimento.
+  function buy(state, item) {
+    if (state.orvalho < item.preco) return { ok: false, motivo: "orvalho insuficiente" };
+    const next = JSON.parse(JSON.stringify(state)); next.orvalho -= item.preco; next.itens.push(item.id); return { ok: true, state: next };
+  }
+
+  // v2: sinais de leitura — ritmo de rolagem ("leitura da tela") e presença (toques ou mão)
+  // still: fração do tempo ativo sem rolar; velCV: variação da velocidade quando rola;
+  // inputs: toques/rolagens humanas; blocks: nº de blocos; handShare: fração de janelas com celular na mão (null = sem sensor)
+  function readingSignals({ still = 0, velCV = 0, inputs = 0, blocks = 1, handShare = null }) {
+    const ritmo = still >= 0.25 || velCV >= 0.5;
+    const presencaToque = inputs >= Math.max(1, Math.ceil(blocks / 3));
+    const presencaMao = handShare !== null && handShare >= 0.3;
+    return { ritmo, presenca: presencaToque || presencaMao, presencaToque, presencaMao, sensor: handShare !== null };
+  }
+  function validateChapterV2(blocks, activeMs, sig) {
+    const v = validateChapter(blocks, activeMs); const s = readingSignals(Object.assign({ blocks: blocks.length }, sig));
+    let motivo = null; if (!v.ok) motivo = v.flagged.length ? 'rapido' : 'tempo'; else if (!s.ritmo) motivo = 'ritmo'; else if (!s.presenca) motivo = 'presenca';
+    return Object.assign({}, v, { ok: v.ok && s.ritmo && s.presenca, sinais: s, motivo });
+  }
+  function nextStageIn(done, caps) { const s = stageFor(done, caps); if (s >= 6) return null; for (let n = done + 1; n <= caps; n++) if (stageFor(n, caps) > s) return { estagio: STAGES[s + 1], faltam: n - done }; return null; }
+
+  // aderência: dias desde a última visita (volta acolhedora) e próxima conquista (efeito de proximidade da meta)
+  function diasDesde(ultimo, hoje) { if (!ultimo) return null; const a = new Date(ultimo + 'T12:00:00'), b = new Date(hoje + 'T12:00:00'); return Math.round((b - a) / 86400000); }
+  function proximaConquista(orvalho, itens) { const pend = itens.filter(i => !i.tem).sort((a, b) => a.preco - b.preco); if (!pend.length) return null;
+    const alc = pend.filter(i => i.preco <= orvalho); const alvo = alc.length ? alc[alc.length - 1] : pend[0];
+    return { id: alvo.id, nome: alvo.nome, preco: alvo.preco, falta: Math.max(0, alvo.preco - orvalho), pct: Math.min(1, orvalho / alvo.preco) }; }
+  function minutosCapitulo(palavras, ppm = 230) { return Math.max(1, Math.round(palavras / ppm)); }
+  const api = { diasDesde, proximaConquista, minutosCapitulo, readingSignals, validateChapterV2, nextStageIn, RULES, wordsOf, makeBlocks, minBlockMs, minChapterMs, validateChapter, STAGES, stageFor, growthFor, SECTIONS, sectionsDone, sizeClass, porcaoDoDia, prayerCounts, easter, adventStart, liturgicalSeason, preferredLight, weekRhythm, isoDay, addDays, hashSeed, rng, buy };
+  if (typeof module !== "undefined" && module.exports) module.exports = api; else root.BGCore = api;
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+<script>/* Renderizador do terrário: desenha em 160×200 lógicos. Modo pixel = quantiza para paleta + pontilhado Bayer. */
+const Terra = (() => {
+  const W = 200, H = 200;
+  const PAL = ['#8CCBE6','#A9D8E8','#C6E6EE','#DDEFE8','#EEF6EF','#F2B7A0','#F7D9B5','#F3C27A','#E8A25C','#B46A8C','#7E4E7A','#F0A87A',
+    '#0E1430','#141B3A','#1F2850','#2B3561','#3B4A7A','#7FA88A','#5E8A6E','#4A6E5A','#35503F','#1F3B2C','#2E5A3A','#3F7A45','#5E9A4E',
+    '#8BBF5E','#B9DB7C','#9FB8A0','#C3D6C2','#2E1F18','#4A3022','#6B4A32','#8C6440','#B08456','#D4AE7E','#5F6670','#8B929B','#B7BDC4',
+    '#E3E6E8','#FFFFFF','#F7F4EA','#3E7FA0','#6FB3C9','#A8DCE6','#E2A92B','#F5D35A','#E87B9A','#C8452E','#8A5BB8','#F2F0E6','#4A2545',
+    '#5B7DD8','#FFE9A8','#F8D27A','#2A4A5E','#46607A','#D9C7E8','#9A3A2E','#77AD54','#6DA54F','#B4C871','#A6BF68','#F5C9A8','#F4D2AE','#EFB79A','#F6E0C2','#B9DCEB','#9FD1E6','#D2EAF0','#F2C38E','#E9C0B0','#C99AA8','#566A8A','#6E7FA0'];
+  const hex = h => h[0]==='#' ? [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)] : h.match(/\d+/g).slice(0,3).map(Number);
+  const PR = PAL.map(hex);
+  let LUT = null;
+  function buildLUT(){ LUT = new Uint32Array(32768);
+    for (let i=0;i<32768;i++){ const r=((i>>10)&31)*8+4,g=((i>>5)&31)*8+4,b=(i&31)*8+4; let best=0,bd=1e9;
+      for (let k=0;k<PR.length;k++){ const p=PR[k]; const dr=r-p[0],dg=g-p[1],db=b-p[2]; const d=dr*dr*0.3+dg*dg*0.59+db*db*0.11; if(d<bd){bd=d;best=k;} }
+      const p=PR[best]; LUT[i]=(p[0]<<16)|(p[1]<<8)|p[2]; } }
+  const BAYER=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
+  function quantize(ctx){ if(!LUT) buildLUT(); const im=ctx.getImageData(0,0,W,H), d=im.data;
+    for (let y=0;y<H;y++) for (let x=0;x<W;x++){ const o=(y*W+x)*4; const bo=(BAYER[(y&3)*4+(x&3)]/16-0.5)*10;
+      let r=d[o]+bo,g=d[o+1]+bo,b=d[o+2]+bo; r=r<0?0:r>255?255:r; g=g<0?0:g>255?255:g; b=b<0?0:b>255?255:b;
+      const c=LUT[((r>>3)<<10)|((g>>3)<<5)|(b>>3)]; d[o]=c>>16; d[o+1]=(c>>8)&255; d[o+2]=c&255; d[o+3]=255; }
+    ctx.putImageData(im,0,0); }
+  const lerp=(a,b,t)=>a+(b-a)*t, clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const mix=(c1,c2,t)=>{const a=hex(c1),b=hex(c2);return `rgb(${lerp(a[0],b[0],t)|0},${lerp(a[1],b[1],t)|0},${lerp(a[2],b[2],t)|0})`;};
+  const SKY=[[0,'#0E1430','#2B3561'],[4.5,'#141B3A','#3B4A7A'],[5.5,'#7E4E7A','#F2B7A0'],[6.6,'#F2B7A0','#F7D9B5'],[8,'#A9D8E8','#EEF6EF'],
+    [12,'#8CCBE6','#DDEFE8'],[15.5,'#A9D8E8','#F7D9B5'],[17,'#F3C27A','#F7D9B5'],[18.2,'#B46A8C','#F0A87A'],[19.3,'#3B4A7A','#7E4E7A'],[20.5,'#141B3A','#2B3561'],[24,'#0E1430','#2B3561']];
+  function sky(h){ for(let i=0;i<SKY.length-1;i++){ const a=SKY[i],b=SKY[i+1]; if(h>=a[0]&&h<=b[0]){const t=(h-a[0])/(b[0]-a[0]); return [mix(a[1],b[1],t),mix(a[2],b[2],t)];} } return [SKY[0][1],SKY[0][2]]; }
+  function nightF(h){ if(h>=20.5||h<4.5) return 1; if(h<6.5) return 1-(h-4.5)/2; if(h>=18.5) return (h-18.5)/2; return 0; }
+  function goldF(h){ return h>=15&&h<19 ? Math.sin(Math.PI*(h-15)/4) : (h>=5&&h<7.5? Math.sin(Math.PI*(h-5)/2.5)*0.7:0); }
+
+  const SPECIES = {
+    oliveira:{shape:{h:1.0,w:1.25,spread:1.15,twist:0.22},bark:['#4A3022','#8C6440'], leaf:['#4A6E5A','#7FA88A','#C3D6C2'], fruit:'#4A2545', bloom:'#F2F0E6', nome:'Oliveira'},
+    figueira:{shape:{h:0.82,w:1.45,spread:1.5,twist:0.06},bark:['#5F6670','#8B929B'], leaf:['#1F3B2C','#2E5A3A','#5E9A4E'], fruit:'#4A2545', bloom:'#8A5BB8', nome:'Figueira'},
+    ipe:{shape:{h:1.22,w:0.95,spread:1.05,twist:0.03},bark:['#2E1F18','#6B4A32'], leaf:['#2E5A3A','#5E9A4E','#8BBF5E'], fruit:'#B08456', bloom:'#F5D35A', bloom2:'#E2A92B', nome:'Ipê-amarelo'}
+  };
+
+  // ================= ILHA ISOMÉTRICA (v0.4) =================
+  function ell(c,x,y,rx,ry,col,rot=0){ c.fillStyle=col; c.beginPath(); c.ellipse(x,y,Math.max(.3,rx),Math.max(.3,ry),rot,0,7); c.fill(); }
+  function line(c,x1,y1,x2,y2,w,col){ c.strokeStyle=col; c.lineWidth=w; c.lineCap='round'; c.beginPath(); c.moveTo(x1,y1); c.lineTo(x2,y2); c.stroke(); }
+  function model(seed){ const r=BGCore.rng(seed); const n=3+Math.floor(r()*3); const br=[];
+    for(let i=0;i<n;i++){ const a=-0.95+1.9*(i+0.5)/n+(r()-0.5)*0.35; br.push({a, len:0.55+r()*0.4, at:0.55+r()*0.35,
+      subs:[{a:a-0.35-r()*0.3,len:0.45+r()*0.3,at:0.6},{a:a+0.3+r()*0.3,len:0.4+r()*0.3,at:0.75}], rf:0.75+r()*0.35}); }
+    const tile=[]; for(let i=0;i<81;i++) tile.push({a:r(),b:r(),c:r(),d:r()});
+    const roots=[]; for(let i=0;i<16;i++){ const segs=[]; for(let s=0;s<4;s++) segs.push((r()-0.5)*0.8); roots.push({side:i%2,off:(r()-0.5)*0.5,segs,l:0.6+r()*0.5}); }
+    const stars=[]; for(let i=0;i<46;i++) stars.push({x:r()*200,y:r()*120,p:r()*6});
+    const clouds=[]; for(let i=0;i<6;i++) clouds.push({x:r()*240,y:20+r()*150,w:16+r()*22,s:0.6+r()*0.8,front:i>3});
+    const rocks=[]; for(let i=0;i<5;i++) rocks.push({x:(r()-0.5)*70,y:r()*10,w:2+r()*4,p:r()*6});
+    const fr=[]; for(let i=0;i<24;i++) fr.push({b:Math.floor(r()*12),dx:(r()-0.5),dy:(r()-0.5),k:r()});
+    return {br,tile,roots,stars,clouds,rocks,fr,lean:(r()-0.5)*0.12};
+  }
+  // geometria do terreno
+  function geo(G){ const tw={5:12,7:10,9:8}[G]||10, th=tw/2, ox=100, oy=122-G*th, k=tw/10; return {G,tw,th,ox,oy,k,c:(G-1)/2,D:Math.round(24*Math.max(.8,k))}; }
+  function ctr(Gm,i,j){ return [Gm.ox+(i-j)*Gm.tw, Gm.oy+(i+j)*Gm.th]; }
+  function tileAt(S,x,y){ const Gm=geo(S.terreno||5); const dx=(x-Gm.ox)/Gm.tw, dy=(y-Gm.oy)/Gm.th; const i=Math.round((dy+dx)/2), j=Math.round((dy-dx)/2);
+    return (i>=0&&j>=0&&i<Gm.G&&j<Gm.G)?[i,j]:null; }
+  function tileTypes(S){ const G=S.terreno||5, c=(G-1)/2, T={};
+    if(S.nascente){ for(let j=c+1;j<G;j++) T[`1,${j}`]='agua'; T[`1,${c+1}`]='nascente'; if(S.melhorias.includes('ponte')) T[`1,${G-2}`]='ponte'; }
+    if(S.melhorias.includes('lago')){ ['0,0','0,1','1,0','1,1'].forEach(k=>{ if(!T[k]) T[k]='lago'; }); }
+    if(S.melhorias.includes('caminho')){ for(let k=1;k<=c;k++) T[`${c+k},${c+k}`]='caminho'; }
+    return T; }
+  function diamond(c,x,y,tw,th){ c.beginPath(); c.moveTo(x,y-th); c.lineTo(x+tw,y); c.lineTo(x,y+th); c.lineTo(x-tw,y); c.closePath(); }
+
+  // ---------- árvore (mesmas regras de crescimento e espécies) ----------
+  function drawTree(c,S,t,g,sp,M){ const lean=M.lean; const tips=[];
+    if(g>=1 && g<3){ const isS=g<2; const k=isS?(g-1):(g-2); const sh=isS?8+8*k:16+14*k; const sx=80+Math.sin(t*1.1)*0.6*(sh/20);
+      line(c,80,133,sx,133-sh,isS?1:1.4,'#2E5A3A');
+      if(isS){ const ls=3.2+2.4*k; ell(c,sx-ls,133-sh,ls,ls*0.45,'#B9DB7C',-0.35); ell(c,sx+ls,133-sh-0.5,ls,ls*0.45,'#2E5A3A',0.35); }
+      else { const nL=2+Math.floor(k*5); for(let i=0;i<nL;i++){ const yy=133-sh*(0.3+0.7*i/Math.max(1,nL)); const side=i%2?1:-1; ell(c,80+side*3.6+(sx-80)*(1-(133-yy)/sh),yy,3.6,1.5,i%2?'#2E5A3A':'#B9DB7C',side*0.4); } ell(c,sx-2.5,133-sh,3,1.6,'#B9DB7C',-0.3); ell(c,sx+2.5,133-sh-1,3,1.6,'#2E5A3A',0.3); }
+      if(S.devos>0){ for(let i=0;i<Math.min(S.devos,4);i++){ c.fillStyle='#3F7A45'; c.fillRect(80+(i%2?1:-2),130-i*2.5,1,1); } }
+    }
+    let trunkTop=[80,133];
+    if(g>=3){ const s=clamp((g-3)/3,0,1), shp=sp.shape; const th=(26+44*s)*shp.h, tw=(3+4.6*s)*shp.w; const tx=80+lean*th, ty=133-th; trunkTop=[tx,ty];
+      const cxo=80+shp.twist*th*(M.lean>0?1:-1);
+      c.fillStyle=sp.bark[0]; c.beginPath(); c.moveTo(80-tw*1.5,134); c.quadraticCurveTo(80-tw*0.9,132,80-tw*0.8,130); c.quadraticCurveTo(cxo-tw*0.6,133-th*0.5,tx-tw*0.4,ty); c.lineTo(tx+tw*0.4,ty); c.quadraticCurveTo(cxo+tw*0.6,133-th*0.5,80+tw*0.8,130); c.quadraticCurveTo(80+tw*0.9,132,80+tw*1.5,134); c.fill();
+      c.fillStyle=sp.bark[1]; for(let k=0;k<4;k++){ const yy=133-th*(0.2+k*0.18); c.fillRect(lerp(80,tx,(133-yy)/th)-tw*0.25+(k%2),yy,1,th*0.08); }
+      const canopy=[];
+      M.br.forEach(b=>{ const ax=lerp(80,tx,b.at), ay=133-th*b.at; const L=(12+17*s)*b.len*Math.min(shp.spread,1.35); const ex=ax+Math.sin(b.a)*L*1.1, ey=ay-Math.cos(b.a)*L*0.8;
+        line(c,ax,ay,ex,ey,1+tw*0.3,sp.bark[0]); canopy.push([ex,ey,(6+9*s)*b.rf*(0.85+0.15*shp.spread)]);
+        b.subs.forEach(sb=>{ const sx=lerp(ax,ex,sb.at), sy=lerp(ay,ey,sb.at); const L2=L*sb.len; const qx=sx+Math.sin(sb.a)*L2, qy=sy-Math.cos(sb.a)*L2*0.8; line(c,sx,sy,qx,qy,0.8+tw*0.14,sp.bark[0]); canopy.push([qx,qy,(4.5+6.5*s)*b.rf]); }); });
+      canopy.push([tx,ty-5-5*s,(8+10*s)*(0.8+0.2*shp.spread)]);
+      const bloomT = S.especie==='ipe' ? clamp((g-5)/0.8,0,1) : 0;
+      const L0=bloomT>0?mix(sp.leaf[0],sp.bloom2,bloomT):sp.leaf[0], L1=bloomT>0?mix(sp.leaf[1],sp.bloom2,bloomT):sp.leaf[1], L2c=bloomT>0?mix(sp.leaf[2],sp.bloom,bloomT):sp.leaf[2];
+      const sway=Math.sin(t*1.2)*0.7;
+      if(g>=6){ c.globalAlpha=.18; canopy.forEach(([x,y,r])=>ell(c,x,y,r*1.35,r*1.2,'#FFE9A8')); c.globalAlpha=1; }
+      canopy.forEach(([x,y,r])=>ell(c,x+1+sway*0.5,y+1.8,r,r*0.84,L0));
+      canopy.forEach(([x,y,r])=>ell(c,x+sway*0.7,y,r*0.86,r*0.72,L1));
+      canopy.forEach(([x,y,r])=>ell(c,x-r*0.32+sway,y-r*0.32,r*0.5,r*0.4,L2c));
+      if(g>=6){ c.globalAlpha=.6; canopy.forEach(([x,y,r])=>ell(c,x-r*0.5+sway,y-r*0.5,r*0.22,r*0.16,'#FFE9A8')); c.globalAlpha=1; }
+      tips.push(...canopy);
+      // vinhas = devocional
+      for(let i=0;i<Math.min(S.devos*2,12);i++){ const fy=133-th*(0.12+0.065*i); const side=i%2?1:-1; const fx=lerp(80,tx,(133-fy)/th)+side*(tw*0.5+0.8); ell(c,fx,fy,1.3,0.8,i%3?'#3F7A45':'#B9DB7C',side*0.5); }
+      // frutos e flores
+      if(g>=4){ const nF=Math.min(14,3+Math.floor((g-4)*6)); for(let i=0;i<nF;i++){ const f=M.fr[i], cp=canopy[f.b%canopy.length]; const fx=cp[0]+f.dx*cp[2]*1.2, fy=cp[1]+f.dy*cp[2]*0.9;
+        if(S.especie==='ipe'){ if(g<5){ c.fillStyle='#F5D35A'; c.fillRect(fx,fy,1,1);} } else { c.fillStyle=sp.fruit; c.fillRect(fx,fy,S.especie==='figueira'?2:1.5,S.especie==='figueira'?2:1.5); } } }
+      if(g>=5 && S.especie!=='ipe'){ const nB=Math.min(12,Math.floor((g-5)*14)+3); for(let i=0;i<nB;i++){ const f=M.fr[23-i], cp=canopy[(f.b+3)%canopy.length]; c.fillStyle=sp.bloom; c.fillRect(cp[0]+f.dy*cp[2], cp[1]+f.dx*cp[2]*0.8,1,1); } }
+    }
+    return {tips,trunkTop}; }
+
+  // ---------- animais ----------
+  function drawAnimal(c,id,x,y,t,k,dir,S,ph){ const bob=Math.abs(Math.sin(t*3+ph))*0.6; c.save(); c.translate(x,y); c.scale(k*dir,k);
+    const px=(col,a,b,w,h)=>{ c.fillStyle=col; c.fillRect(a,b,w,h); };
+    if(id==='ovelha'||id==='cordeiro'){ const s=id==='cordeiro'?0.75:1; c.scale(s,s); ell(c,0,-3-bob,4.2,3,'#E3E6E8'); ell(c,-1,-3.6-bob,3.4,2.4,'#F2F0E6'); ell(c,4.2,-3.4-bob,1.7,1.5,'#2E1F18'); px('#FFFFFF',4.4,-4-bob,1,1); px('#2E1F18',-2.5,-0.6,1,1.4); px('#2E1F18',1.8,-0.6,1,1.4); }
+    else if(id==='capivara'){ ell(c,0,-2.8-bob*0.5,5,2.8,'#8C6440'); ell(c,4.8,-3.6-bob*0.5,2.4,1.9,'#6B4A32'); px('#2E1F18',5.2,-4.4,1,1); px('#2E1F18',3.4,-5.6,1,1); px('#2E1F18',-3,-0.4,1,1.4); px('#2E1F18',2.4,-0.4,1,1.4); }
+    else if(id==='tatu'){ const roll=Math.sin(t*0.8+ph)>0.6; if(roll){ ell(c,0,-2.5,2.6,2.5,'#8B929B'); px('#5F6670',-2,-3,4,0.7); px('#5F6670',-2,-1.6,4,0.7); } else { ell(c,0,-2.2,4,2.2,'#8B929B'); px('#5F6670',-2.5,-3.4,1,2.4); px('#5F6670',-0.5,-3.8,1,2.6); px('#5F6670',1.5,-3.4,1,2.4); ell(c,4,-1.8,1.5,1,'#B08456'); } }
+    else if(id==='garca'){ px('#2E1F18',-0.5,-6,1,6); px('#2E1F18',1,-6,1,6); ell(c,0,-8-bob*0.3,3.2,2,'#FFFFFF'); px('#F2F0E6',2,-14,1.2,6); ell(c,3,-14.5,1.4,1.1,'#FFFFFF'); px('#F5D35A',4.2,-14.8,2.4,0.8); }
+    else if(id==='sanhaco'){ const hop=Math.max(0,Math.sin(t*4+ph))>0.8?1.5:0; ell(c,0,-2.2-hop,2.2,1.7,'#46607A'); ell(c,0,-2.6-hop,1.6,1.1,'#6FB3C9'); px('#2E1F18',1.8,-3-hop,1.2,0.7); px('#FFFFFF',0.8,-3.2-hop,0.8,0.8); }
+    else if(id==='pomba'){ ell(c,0,-2.4,2.8,1.8,'#F2F0E6'); ell(c,2.2,-3.6,1.3,1.2,'#FFFFFF'); px('#E8A25C',3.4,-3.8,1,0.8); px('#5E8A6E',4.4,-3.2,1.6,0.8); }
+    else if(id==='tucano'){ ell(c,0,-3,2,3,'#2E1F18'); ell(c,0.6,-4.4,1.4,1.2,'#FFFFFF'); px('#E8A25C',1.6,-5.4,3.8,1.6); px('#2E1F18',4.4,-4.6,1,0.8); px('#C8452E',-0.5,-0.5,1.5,0.8); }
+    else if(id==='coruja'){ ell(c,0,-3,2.4,3,'#B08456'); ell(c,0,-5,2.2,1.8,'#D4AE7E'); px('#F5D35A',-1.4,-5.6,1.2,1.2); px('#F5D35A',0.6,-5.6,1.2,1.2); px('#2E1F18',-1,-5.2,0.6,0.6); px('#2E1F18',1,-5.2,0.6,0.6); px('#F2F0E6',-1,-2.6,0.8,0.8); px('#F2F0E6',0.6,-1.8,0.8,0.8); }
+    else if(id==='beijaflor'){ const hy=-12+Math.sin(t*2+ph)*3; px('#3F7A45',-1.5,hy,3,2); px('#C8452E',1,hy+1,1.2,1); px('#2E1F18',2,hy,2,0.6); c.globalAlpha=.6; px('#C6E6EE',-1,hy-(Math.sin(t*40)>0?2:1),2,2); c.globalAlpha=1; }
+    else if(id==='borboletas'){ for(let i=0;i<2;i++){ const bx=Math.sin(t*0.6+i*2+ph)*14, by=-14+Math.sin(t*0.9+i)*6; const w=Math.abs(Math.sin(t*9+i)); px(i?'#F5D35A':S.corFlor,bx-1-w*1.5,by,1+w*1.5,2); px(i?'#F5D35A':S.corFlor,bx+1,by,1+w*1.5,2); px('#2E1F18',bx,by,1,2.4); } }
+    else if(id==='abelhas'){ for(let i=0;i<3;i++){ const a=t*2+i*2.1+ph; px('#F5D35A',Math.cos(a)*8,-8+Math.sin(a*1.7)*4,1.2,1); px('#2E1F18',Math.cos(a)*8+0.4,-8+Math.sin(a*1.7)*4,0.4,1); } }
+    c.restore();
+    if(S.acessorio && S.acessorio!=='nenhum' && (id===S.companheiro) && (id==='ovelha'||id==='capivara')){ const hx=x+dir*k*(id==='ovelha'?4.2:4.8), hy=y+k*(id==='ovelha'?-3.4:-3.6)-bob*k;
+      if(S.acessorio==='lenco'){ c.fillStyle='#C8452E'; c.fillRect(hx-dir*2*k-1,hy+k,3*k,1.4*k); }
+      if(S.acessorio==='chapeu'){ c.fillStyle='#F5D35A'; c.fillRect(hx-2.5*k,hy-2*k,5*k,1*k); c.fillStyle='#E2A92B'; c.fillRect(hx-1.2*k,hy-3.4*k,2.4*k,1.5*k); }
+      if(S.acessorio==='coroa'){ ['#E87B9A','#F5D35A','#F2F0E6',S.corFlor].forEach((col,i)=>{ c.fillStyle=col; c.fillRect(hx-2*k+i*1.3*k,hy-2.3*k,1,1); }); } }
+  }
+  // ---------- decorações ----------
+  function drawDeco(c,id,x,y,t,k,night){ c.save(); c.translate(x,y); c.scale(k,k); const px=(col,a,b,w,h)=>{ c.fillStyle=col; c.fillRect(a,b,w,h); };
+    if(id==='banco'){ px('#6B4A32',-6,-5,12,2); px('#8C6440',-6,-6,12,1); px('#4A3022',-5,-3,1,3); px('#4A3022',4,-3,1,3); px('#4A3022',-6,-9,12,1.5); }
+    if(id==='lanterna'){ px('#2E1F18',-0.5,-14,1.5,14); px('#2E1F18',-2,-17,5,1.5); px(night?'#FFE9A8':'#F8D27A',-1.5,-16,4,3); if(night){ c.globalAlpha=.3; ell(c,0.5,-14,9,7,'#F8D27A'); c.globalAlpha=1; } }
+    if(id==='colmeia'){ ell(c,0,-4,4.5,4.5,'#E2A92B'); px('#B08456',-4.5,-6,9,1); px('#B08456',-4,-3,8,1); px('#4A3022',-1,-2,2,2); }
+    if(id==='fonte'){ ell(c,0,-1.5,7,2.5,'#8B929B'); px('#B7BDC4',-6,-4.5,12,3); ell(c,0,-4.5,5,1.4,'#6FB3C9'); px('#B7BDC4',-1,-10,2,5); const h=3+Math.sin(t*6)*0.8; px('#A8DCE6',-0.5,-10-h,1,h); px('#A8DCE6',-2,-11,1,1); px('#A8DCE6',1,-11,1,1); }
+    if(id==='cogumelos'){ [[0,0,3],[3.5,1,2],[-3,1,2]].forEach(([dx,dy,s])=>{ px('#F2F0E6',dx-0.5,dy-s,1,s); ell(c,dx,dy-s,s*0.9,s*0.55,'#C8452E'); px('#FFFFFF',dx-1,dy-s-0.6,1,1); }); }
+    if(id==='flores'){ for(let i=0;i<6;i++){ const fx=-6+i*2.4, fy=-1-(i%2)*1.5; px('#3F7A45',fx,fy,1,3); px(['#8A5BB8','#F5D35A','#E87B9A','#F2F0E6','#5B7DD8','#C8452E'][i],fx-1,fy-1,3,2); } }
+    if(id==='arbusto'){ ell(c,0,-4,6,4.5,'#2E5A3A'); ell(c,-1,-5,4.5,3.4,'#3F7A45'); ell(c,-2,-6,2,1.6,'#8BBF5E'); }
+    if(id==='poco'){ ell(c,0,-2,6,2.4,'#5F6670'); px('#8B929B',-6,-6,12,4); ell(c,0,-6,5,1.6,'#3E7FA0'); px('#6B4A32',-5,-14,1.2,8); px('#6B4A32',4,-14,1.2,8); px('#4A3022',-6,-15,13,1.5); }
+    if(id==='rocha'){ ell(c,0,-2.5,5,3,'#8B929B'); ell(c,-1,-3.4,3.4,2,'#B7BDC4'); px('#5E9A4E',-3,-5,4,1); }
+    if(id==='ebenezer'){ for(let i=0;i<(c._eb||1);i++){ const w=5-i*0.6; ell(c,0,-1.5-i*2.2,w/2+1,1.3,'#8B929B'); ell(c,-0.5,-2-i*2.2,w/2,0.6,'#B7BDC4'); } }
+    c.restore(); }
+
+  function draw(c, S, t, g){
+    const h=S.hora, n=nightF(h), gold=goldF(h), sp=SPECIES[S.especie]||SPECIES.oliveira, M=S._model, P=S.pacotes||{}, Gm=geo(S.terreno||5), {G,tw,th,ox,oy,k,D}=Gm;
+    const [top,bot]=sky(h);
+    const gr=c.createLinearGradient(0,0,0,H); gr.addColorStop(0,top); gr.addColorStop(1,bot); c.fillStyle=gr; c.fillRect(0,0,W,H);
+    if(n>0.3) M.stars.forEach(s=>{ c.globalAlpha=n*(0.5+0.5*Math.sin(t*1.5+s.p)); c.fillStyle='#FFFFFF'; c.fillRect(s.x|0,s.y|0,1,1); }); c.globalAlpha=1;
+    if(P.ceu==='noite-estrelada' && n>0.25){ ['#8BBF5E','#6FB3C9','#8A5BB8'].forEach((col,i)=>{ c.globalAlpha=0.38*n; c.fillStyle=col; c.beginPath(); c.moveTo(0,30+i*9);
+        for(let x=0;x<=W;x+=4) c.lineTo(x,24+i*9+Math.sin(x*0.05+t*0.3+i)*7); for(let x=W;x>=0;x-=4) c.lineTo(x,34+i*9+Math.sin(x*0.05+t*0.3+i+0.6)*7); c.fill(); }); c.globalAlpha=1;
+      const ph=(t%9)/9; if(ph<0.12){ const q=ph/0.12; c.strokeStyle='#FFFFFF'; c.globalAlpha=1-q; c.lineWidth=1; c.beginPath(); c.moveTo(20+q*110,10+q*30); c.lineTo(12+q*110,6+q*30); c.stroke(); c.globalAlpha=1; } }
+    if(n<0.8 && !S.chuva){ const f=clamp((h-5.5)/13,0,1); const sx=14+f*172, sy=60-Math.sin(Math.PI*f)*48; c.globalAlpha=.25; ell(c,sx,sy,15,15,'#FFE9A8'); c.globalAlpha=1; ell(c,sx,sy,8,8,gold>0.3?'#F8D27A':'#FFE9A8'); }
+    else if(!S.chuva){ ell(c,170,26,6,6,'#E3E6E8'); ell(c,172.5,24.5,5,5,top); }
+    if(S.arcoiris && n<0.5){ ['#C8452E','#E8A25C','#F5D35A','#8BBF5E','#6FB3C9','#8A5BB8'].forEach((col,i)=>{ c.strokeStyle=col; c.globalAlpha=.5; c.lineWidth=2; c.beginPath(); c.arc(100,150,110-i*2,Math.PI*1.08,Math.PI*1.92); c.stroke(); }); c.globalAlpha=1; }
+    // nuvens de trás
+    const cloudCol=n>0.5?'#2B3561':(gold>0.3?'#F7D9B5':'#FFFFFF');
+    M.clouds.filter(q=>!q.front).forEach(q=>{ const x=((q.x+t*q.s*3)%260)-30; c.globalAlpha=n>0.5?0.5:0.75; ell(c,x,q.y,q.w*0.5,q.w*0.18,cloudCol); ell(c,x-q.w*0.2,q.y-2,q.w*0.3,q.w*0.16,cloudCol); c.globalAlpha=1; });
+    if(S.chuva){ c.globalAlpha=.28; c.fillStyle='#566A8A'; c.fillRect(0,0,W,H); c.globalAlpha=1; c.strokeStyle='#D2EAF0'; c.globalAlpha=.75; c.lineWidth=1; for(let i=0;i<50;i++){ const x=(i*37+t*70)%210-5, y=(i*53+t*160)%200; c.beginPath(); c.moveTo(x,y); c.lineTo(x-2,y+5); c.stroke(); } c.globalAlpha=1; }
+    // ----- base da ilha: faces e rocha
+    const L=[ox-G*tw,oy+(G-1)*th], B=[ox,oy+(2*G-1)*th], R=[ox+G*tw,oy+(G-1)*th];
+    // rocha de baixo
+    c.fillStyle='#4A3022'; c.beginPath(); c.moveTo(L[0],L[1]+D); c.lineTo(B[0]-tw*1.5,B[1]+D+6); c.lineTo(B[0],B[1]+D+16*k+6); c.lineTo(B[0]+tw*1.5,B[1]+D+6); c.lineTo(R[0],R[1]+D); c.closePath(); c.fill();
+    c.fillStyle='#5F6670'; c.beginPath(); c.moveTo(L[0]+tw,L[1]+D); c.lineTo(B[0]-tw,B[1]+D+3); c.lineTo(B[0],B[1]+D+12*k+4); c.lineTo(B[0]-tw*2,B[1]+D+2); c.closePath(); c.fill();
+    M.rocks.forEach(r=>{ ell(c,B[0]+r.x*k,B[1]+D+22*k+r.y+Math.sin(t*0.8+r.p)*1.5,r.w,r.w*0.7,'#5F6670'); });
+    const bands=[[0,2.5,'#5E9A4E','#3F7A45'],[2.5,10,'#8C6440','#6B4A32'],[10,17,'#6B4A32','#4A3022'],[17,D,'#8B929B','#5F6670']];
+    const faceL=(a,b,col)=>{ c.fillStyle=col; c.beginPath(); c.moveTo(L[0],L[1]+a); c.lineTo(B[0],B[1]+a); c.lineTo(B[0],B[1]+b); c.lineTo(L[0],L[1]+b); c.closePath(); c.fill(); };
+    const faceR=(a,b,col)=>{ c.fillStyle=col; c.beginPath(); c.moveTo(B[0],B[1]+a); c.lineTo(R[0],R[1]+a); c.lineTo(R[0],R[1]+b); c.lineTo(B[0],B[1]+b); c.closePath(); c.fill(); };
+    bands.forEach(([a,b,cl,cr])=>{ const aa=a*D/24, bb=b===D?D:b*D/24; faceL(aa,bb,cl); faceR(aa,bb,cr); });
+    if(P.flora==='cerrado'){ faceL(2.5*D/24,4.5*D/24,'#9A3A2E'); faceR(2.5*D/24,4.5*D/24,'#9A3A2E'); for(let q=0;q<G*2;q++){ const f=q/(G*2); c.fillStyle='#E8A25C'; c.fillRect(lerp(L[0],B[0],f),lerp(L[1],B[1],f)+3.2*D/24,2,1); c.fillRect(lerp(B[0],R[0],f),lerp(B[1],R[1],f)+3.2*D/24,2,1);} }
+    // pedrinhas nas faces
+    for(let q=0;q<G*3;q++){ const f=(q+0.5)/(G*3), m=M.tile[q%81]; c.fillStyle=m.a<0.5?'#B7BDC4':'#8B929B'; c.fillRect(lerp(L[0],B[0],f),lerp(L[1],B[1],f)+D*(0.78+m.b*0.15),1+m.c*2,1); c.fillRect(lerp(B[0],R[0],f),lerp(B[1],R[1],f)+D*(0.78+m.d*0.15),1+m.a*2,1); }
+    // raízes = oração (descem pelas faces da frente)
+    const nR=g>=1?Math.min(2+S.oracoes,16):0, depth=Math.min(6+S.oracoes*1.8,D+14*k);
+    for(let q=0;q<nR;q++){ const r=M.roots[q]; const onL=r.side===0; const f=0.82+r.off*0.3; let x=onL?lerp(L[0],B[0],f):lerp(B[0],R[0],1-f), y=(onL?lerp(L[1],B[1],f):lerp(B[1],R[1],1-f))+2.5*D/24; let a=Math.PI/2;
+      for(let s=0;s<4;s++){ a+=r.segs[s]*0.6; const nx=x+Math.cos(a)*depth*r.l/4, ny=y+Math.abs(Math.sin(a))*depth*r.l/4; line(c,x,y,nx,ny,s<1?1.3:0.9,'#D4AE7E'); x=nx; y=ny; } r._tip=[x,y]; }
+    if(S.diario>0){ c.fillStyle='#8C6440'; c.fillRect(R[0]-tw*2.4,R[1]+D*0.55,7,5); c.fillStyle='#6B4A32'; c.fillRect(R[0]-tw*2.4,R[1]+D*0.55,7,1.6); c.fillStyle='#F8D27A'; c.fillRect(R[0]-tw*2.4+3,R[1]+D*0.55+2,1,1.5); }
+    // ----- topo: ladrilhos
+    const T=tileTypes(S), cerr=P.flora==='cerrado'; const wind=Math.sin(t*1.3)*0.6;
+    for(let s=0;s<=2*(G-1);s++) for(let i=0;i<G;i++){ const j=s-i; if(j<0||j>=G) continue; const [x,y]=ctr(Gm,i,j), m=M.tile[(i*9+j)%81], ty=T[`${i},${j}`];
+      let col = ((i+j)%2? (cerr?'#B9DB7C':'#8BBF5E') : (cerr?'#D4AE7E':'#5E9A4E'));
+      if(!cerr) col=((i+j)%2?'#77AD54':'#6DA54F'); else col=((i+j)%2?'#B4C871':'#A6BF68');
+      if(ty==='agua'||ty==='nascente'||ty==='lago'||ty==='ponte') col='#3E7FA0'; if(ty==='caminho') col=cerr?'#D4AE7E':'#8BBF5E';
+      c.fillStyle=col; diamond(c,x,y,tw+0.5,th+0.5); c.fill();
+      if(ty==='agua'||ty==='nascente'||ty==='lago'||ty==='ponte'){ c.fillStyle='#6FB3C9'; diamond(c,x,y,tw*0.7,th*0.7); c.fill(); c.fillStyle='#A8DCE6'; c.fillRect(x-tw*0.4+((t*5+i*3)%(tw*0.8)),y-0.5,2,1); if(ty==='nascente'){ c.fillStyle='#FFFFFF'; c.fillRect(x-1,y-1+Math.sin(t*4),2,1);} }
+      if(ty==='ponte'){ c.fillStyle='#8C6440'; for(let q=-2;q<=2;q++) c.fillRect(x-tw*0.6+q*0.5, y-1+q*th*0.35,tw*1.2,1.4); c.fillStyle='#4A3022'; c.fillRect(x-tw*0.7,y-3,1,4); c.fillRect(x+tw*0.6,y-3,1,4); }
+      if(ty==='caminho'){ [[-0.35,0],[0.3,-0.2],[0,0.4]].forEach(([a,b])=>{ ell(c,x+a*tw,y+b*th,tw*0.28,th*0.36,'#B7BDC4'); ell(c,x+a*tw-0.5,y+b*th-0.4,tw*0.18,th*0.2,'#E3E6E8'); }); }
+      if(!ty){ c.fillStyle=cerr?'#E8A25C':'#3F7A45'; c.fillRect(x+(m.a-0.5)*tw,y+(m.b-0.5)*th-2,1,2); c.fillStyle=cerr?'#F5D35A':'#B9DB7C'; c.fillRect(x+(m.c-0.5)*tw+wind*0.4,y+(m.d-0.5)*th-1.5,1,1.5);
+        const nfl=Math.floor(Math.min(g,6)*1.2)+(S.destaques||0); if(m.a*12<nfl && !(i===Math.round(Gm.c)&&j===Math.round(Gm.c))){ c.fillStyle='#3F7A45'; c.fillRect(x+(m.d-0.5)*tw*0.9,y+(m.a-0.5)*th-2.5,1,2.5); c.fillStyle=(cerr&&m.b<0.5)?'#8A5BB8':S.corFlor; c.fillRect(x+(m.d-0.5)*tw*0.9-1,y+(m.a-0.5)*th-3.5,3,2); } } }
+    // borda iluminada do topo
+    c.strokeStyle='#B9DB7C'; c.globalAlpha=.6; c.lineWidth=0.8; c.beginPath(); c.moveTo(L[0],L[1]); c.lineTo(ox,oy-th); c.lineTo(R[0],R[1]); c.stroke(); c.globalAlpha=1;
+    // cascata (rio do Éden ou pacote Cascata)
+    const fall=(x,y)=>{ c.fillStyle='#6FB3C9'; c.fillRect(x-2,y,4,D+20*k); c.fillStyle='#A8DCE6'; for(let q=0;q<4;q++) c.fillRect(x-1.5+(q%2)*2,y+((t*30+q*9)%(D+18*k)),1,4); c.globalAlpha=.6; ell(c,x,y+D+20*k,7,3,'#FFFFFF'); c.globalAlpha=1; };
+    if(S.nascente){ const [x,y]=ctr(Gm,1,G-1); fall(x-tw*0.5,y+th*0.5); }
+    if(P.cascata){ const [x,y]=ctr(Gm,G-1,1); fall(x+tw*0.5,y+th*0.5); if(n<0.6){ ['#C8452E','#F5D35A','#8BBF5E','#6FB3C9','#8A5BB8'].forEach((col,q)=>{ c.globalAlpha=.35; c.fillStyle=col; c.fillRect(x+tw*0.5-8+q*3,y+D+14*k,2,6); }); c.globalAlpha=1; } }
+    // ----- entidades ordenadas por profundidade
+    const ents=[]; const cc=Math.round(Gm.c);
+    ents.push({d:cc*2+0.5, f:()=>{ const [x,y]=ctr(Gm,cc,cc); if(g<3.4){ ell(c,x,y+1,4.5*k,2.2*k,'#6B4A32'); ell(c,x-0.6,y+0.4,3.2*k,1.3*k,'#8C6440'); } if(g<1){ ell(c,x,y+1,3.2*k,1.6*k,'#6B4A32'); ell(c,x,y,1.8*k,1.1*k,'#B08456'); }
+      const kk=0.97*k*(g<3?1.55:1); c.save(); c.translate(x,y+1); c.scale(kk,kk); c.translate(-80,-133); const res=drawTree(c,S,t,g,sp,M); c.restore(); S._tips=res.tips.map(p=>[x+(p[0]-80)*kk,y+1+(p[1]-133)*kk,p[2]*kk]); S._trunkTop=[x+(res.trunkTop[0]-80)*kk,y+1+(res.trunkTop[1]-133)*kk]; } });
+    const LY=S.layout||{}; Object.entries(LY).forEach(([key,id])=>{ const [i,j]=key.split(',').map(Number); if(i>=G||j>=G) return; const [x,y]=ctr(Gm,i,j); ents.push({d:i+j, f:()=>drawDeco(c,id,x,y+th*0.3,t,k,n>0.5)}); });
+    if(S.respondidas>0){ const i=G-1,j=0; const [x,y]=ctr(Gm,i,j); ents.push({d:i+j,f:()=>{ c._eb=Math.min(S.respondidas,6); drawDeco(c,'ebenezer',x,y+th*0.3,t,k,false); }}); }
+    // animais: companheiro + desbloqueados passeiam pelos ladrilhos livres
+    const free=[]; for(let i=0;i<G;i++) for(let j=0;j<G;j++){ const key=`${i},${j}`; if(!T[key]&&!LY[key]&&!(i===cc&&j===cc)) free.push([i,j]); }
+    const animals=[S.companheiro].concat((S.animais||[]).filter(a=>a!==S.companheiro));
+    animals.forEach((id,q)=>{ if(!free.length) return; const sp2=0.05+0.02*(q%3); const u=(t*sp2+q*1.7)%free.length; const a=free[Math.floor(u)%free.length], b=free[(Math.floor(u)+1+q)%free.length]; const f=u%1, e=f<0.6?0:(f-0.6)/0.4;
+      const [x1,y1]=ctr(Gm,a[0],a[1]), [x2,y2]=ctr(Gm,b[0],b[1]); const x=lerp(x1,x2,e), y=lerp(y1,y2,e); const dir=x2>=x1?1:-1;
+      if(id==='pomba'||id==='tucano'||id==='coruja'){ ents.push({d:cc*2+0.6,f:()=>{ const tp=(S._tips||[])[ (q*3+1) % Math.max(1,(S._tips||[]).length)]; if(tp) drawAnimal(c,id,tp[0]+(q%2?3:-3),tp[1]-tp[2]*0.6,t,k*0.9,q%2?1:-1,S,q); else drawAnimal(c,id,x,y,t,k,dir,S,q); }}); return; }
+      ents.push({d:lerp(a[0]+a[1],b[0]+b[1],e)+0.1, f:()=>drawAnimal(c,id,x,y,t,k,dir,S,q)}); });
+    ents.sort((p,q)=>p.d-q.d).forEach(e=>e.f());
+    // luzinhas de Natal na borda + estrela
+    if(P.sazonal==='natal'){ const cols=['#C8452E','#F5D35A','#6FB3C9','#8BBF5E']; const pts=[]; for(let q=0;q<=G*2;q++){ const f=q/(G*2); pts.push([lerp(L[0],B[0],f),lerp(L[1],B[1],f)+1.5]); pts.push([lerp(B[0],R[0],f),lerp(B[1],R[1],f)+1.5]); }
+      pts.forEach((p,q)=>{ const on=Math.sin(t*2+q*1.3)>-0.3; c.globalAlpha=on?1:.35; c.fillStyle=cols[q%4]; c.fillRect(p[0]|0,p[1]|0,1.5,1.5); }); c.globalAlpha=1;
+      const st=S._trunkTop; if(st&&g>=3){ const tp=S._tips; const topY=tp&&tp.length?Math.min(...tp.map(p=>p[1]-p[2]*0.8)):st[1]; c.fillStyle='#F5D35A'; c.fillRect(st[0]-1,topY-6,2,7); c.fillRect(st[0]-3,topY-3.5,6,2); c.fillStyle='#FFE9A8'; c.fillRect(st[0]-0.5,topY-3,1,1); } }
+    // nuvens da frente
+    M.clouds.filter(q=>q.front).forEach(q=>{ const x=((q.x+t*q.s*4)%260)-30; c.globalAlpha=n>0.5?0.35:0.6; ell(c,x,q.y+40,q.w*0.55,q.w*0.17,cloudCol); c.globalAlpha=1; });
+    // pólen / pétalas
+    if(n<0.5){ c.fillStyle='#FFE9A8'; for(let q=0;q<10;q++){ const x=40+((q*29+t*4)%120), y=50+((q*41+Math.sin(t+q)*6)%80); c.globalAlpha=.6; c.fillRect(x,y,1,1);} c.globalAlpha=1; }
+    if(g>=6 && S._tips){ for(let q=0;q<8;q++){ const x=70+((q*23+Math.sin(t*0.7+q)*10)%60), y=(q*31+t*9)%70+50; c.fillStyle=S.especie==='ipe'?'#F5D35A':sp.bloom; c.fillRect(x,y,1,1);} }
+    // traços da prática
+    if(S.traco==='manha' && h>=5 && h<11){ c.globalAlpha=.25*(1-Math.abs(h-7.5)/3.5); for(let q=0;q<4;q++){ c.fillStyle='#FFFFFF'; c.fillRect(0,oy+G*th+q*3+Math.sin(t*0.3+q)*1.5,W,2); } c.globalAlpha=1; }
+    if(S.traco==='tarde'){ c.globalAlpha=.07; c.fillStyle='#F8D27A'; c.fillRect(0,0,W,H); c.globalAlpha=1; }
+    if(S.traco==='madrugada'){ c.globalAlpha=.08; c.fillStyle='#D9C7E8'; c.fillRect(0,0,W,H); c.globalAlpha=1; }
+    // noite
+    const ff=(S.traco==='noite'?14:8), ffOn=n>0.4||(S.traco==='noite'&&n>0.08);
+    if(n>0){ c.globalAlpha=0.48*n; c.fillStyle='#0E1430'; c.fillRect(0,0,W,H); c.globalAlpha=1;
+      if(ffOn){ c.fillStyle='#F8D27A'; M.roots.slice(0,nR).forEach(r=>{ if(!r._tip) return; c.globalAlpha=0.6+0.4*Math.sin(t*2+r.off*9); c.fillRect(r._tip[0]|0,r._tip[1]|0,1,1); }); c.globalAlpha=1;
+        for(let q=0;q<ff;q++){ const x=ox-G*tw*0.8+((q*31+Math.sin(t*0.6+q)*14)%(G*tw*1.6)), y=oy-20+((q*23+Math.cos(t*0.5+q)*10)%(G*th*2+20)); const a=Math.max(0,Math.sin(t*2.2+q*1.7)); if(a>0.2){ c.globalAlpha=a*0.35; ell(c,x,y,2.5,2.5,P.ceu==='noite-estrelada'?'#A8DCE6':'#F5D35A'); c.globalAlpha=a; c.fillStyle=P.ceu==='noite-estrelada'?'#FFFFFF':'#FFE9A8'; c.fillRect(x|0,y|0,1,1);} } c.globalAlpha=1;
+        Object.entries(S.layout||{}).forEach(([key,id])=>{ if(id!=='lanterna') return; const [i,j]=key.split(',').map(Number); if(i>=G||j>=G) return; const [x,y]=ctr(Gm,i,j); c.globalAlpha=.32; ell(c,x+0.5*k,y-14*k,9*k,7*k,'#F8D27A'); c.globalAlpha=1; c.fillStyle='#FFE9A8'; c.fillRect(x-1.5*k,y+th*0.3-16*k,4*k,3*k); }); } }
+    // seleção no modo de edição
+    if(S._sel){ const [x,y]=ctr(Gm,S._sel[0],S._sel[1]); c.strokeStyle='#FFFFFF'; c.lineWidth=1; diamond(c,x,y,tw,th); c.stroke(); }
+    if(S._spark>0 && S._trunkTop){ const q=S._spark, tt=S._trunkTop; for(let i=0;i<18;i++){ const a=i*0.35+t*2, r=8+(1-q)*30+i%4*3; c.globalAlpha=q; c.fillStyle=i%2?'#FFE9A8':'#F5D35A'; c.fillRect(tt[0]+Math.cos(a)*r, tt[1]-6+Math.sin(a)*r*0.8,1,1);} c.globalAlpha=1; }
+  }
+  // ---- loop
+  let canvas, ctxD, off, ctxO, state, running=false, last=0, t0=performance.now(), anim=null, shown=null;
+  function mount(cv){ canvas=cv; ctxD=cv.getContext('2d'); off=document.createElement('canvas'); off.width=W; off.height=H; ctxO=off.getContext('2d',{willReadFrequently:true}); }
+  function setState(S){ state=S; if(shown===null) shown=S.g; }
+  function animateTo(from,to){ anim={from,to,start:performance.now(),dur:2800}; shown=from; }
+  function frame(now){ if(!running) return; requestAnimationFrame(frame);
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches; const step=reduce?250:42; if(now-last<step) return; last=now;
+    let t=(now-t0)/1000; if(reduce) t=Math.floor(t/4)*4;
+    let g=state.g, spark=0;
+    if(anim){ const k=Math.min(1,(now-anim.start)/anim.dur); const e=1-Math.pow(1-k,3); g=lerp(anim.from,anim.to,e); spark=k<1?Math.sin(k*Math.PI):0; if(k>=1) anim=null; }
+    const S=Object.assign({},state,{_spark:spark});
+    if(canvas.width!==W*4){ canvas.width=W*4; canvas.height=H*4; }
+    if(state.render==='suave'){ canvas.style.imageRendering='auto'; ctxD.setTransform(4,0,0,4,0,0); ctxD.imageSmoothingEnabled=true; draw(ctxD,S,t,g); }
+    else { canvas.style.imageRendering='pixelated'; ctxO.setTransform(1,0,0,1,0,0); draw(ctxO,S,t,g); quantize(ctxO); ctxD.setTransform(1,0,0,1,0,0); ctxD.imageSmoothingEnabled=false; ctxD.drawImage(off,0,0,W*4,H*4); }
+  }
+  function start(){ if(running) return; running=true; requestAnimationFrame(frame); }
+  function stop(){ running=false; }
+  // miniatura estática de item da loja
+  function thumb(cv,id,kind){ const c=cv.getContext('2d'); cv.width=32; cv.height=32; c.clearRect(0,0,32,32); c.fillStyle='#7FB257'; diamond(c,16,24,14,7); c.fill(); if(kind==='animal') drawAnimal(c,id,16,25,1.5,1.4,1,{corFlor:'#E87B9A'},0); else drawDeco(c,id,16,26,1,1.1,false); }
+  return { mount, setState, animateTo, start, stop, model, SPECIES, thumb, draw, quantize, W, H, nightF, tileAt, geo };
+})();
+</script>
+<script>(() => {
+const C = BGCore, $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const KEY = 'bible-garden-prototipo-v4';
+const BOOKS = [["GEN","Gênesis",50,1533,"Pentateuco"],["EXO","Êxodo",40,1213,"Pentateuco"],["LEV","Levítico",27,859,"Pentateuco"],["NUM","Números",36,1288,"Pentateuco"],["DEU","Deuteronômio",34,959,"Pentateuco"],["JOS","Josué",24,658,"Históricos"],["JDG","Juízes",21,618,"Históricos"],["RUT","Rute",4,85,"Históricos"],["1SA","1 Samuel",31,810,"Históricos"],["2SA","2 Samuel",24,695,"Históricos"],["1KI","1 Reis",22,816,"Históricos"],["2KI","2 Reis",25,719,"Históricos"],["1CH","1 Crônicas",29,942,"Históricos"],["2CH","2 Crônicas",36,822,"Históricos"],["EZR","Esdras",10,280,"Históricos"],["NEH","Neemias",13,406,"Históricos"],["EST","Ester",10,167,"Históricos"],["JOB","Jó",42,1070,"Sabedoria e Poesia"],["PSA","Salmos",150,2461,"Sabedoria e Poesia"],["PRO","Provérbios",31,915,"Sabedoria e Poesia"],["ECC","Eclesiastes",12,222,"Sabedoria e Poesia"],["SNG","Cantares",8,117,"Sabedoria e Poesia"],["ISA","Isaías",66,1292,"Profetas Maiores"],["JER","Jeremias",52,1364,"Profetas Maiores"],["LAM","Lamentações",5,154,"Profetas Maiores"],["EZK","Ezequiel",48,1273,"Profetas Maiores"],["DAN","Daniel",12,357,"Profetas Maiores"],["HOS","Oseias",14,197,"Os Doze"],["JOL","Joel",3,73,"Os Doze"],["AMO","Amós",9,146,"Os Doze"],["OBA","Obadias",1,21,"Os Doze"],["JON","Jonas",4,48,"Os Doze"],["MIC","Miqueias",7,105,"Os Doze"],["NAM","Naum",3,47,"Os Doze"],["HAB","Habacuque",3,56,"Os Doze"],["ZEP","Sofonias",3,53,"Os Doze"],["HAG","Ageu",2,38,"Os Doze"],["ZEC","Zacarias",14,211,"Os Doze"],["MAL","Malaquias",4,55,"Os Doze"],["MAT","Mateus",28,1071,"Evangelhos"],["MRK","Marcos",16,678,"Evangelhos"],["LUK","Lucas",24,1151,"Evangelhos"],["JHN","João",21,879,"Evangelhos"],["ACT","Atos",28,1007,"Atos"],["ROM","Romanos",16,433,"Cartas de Paulo"],["1CO","1 Coríntios",16,437,"Cartas de Paulo"],["2CO","2 Coríntios",13,257,"Cartas de Paulo"],["GAL","Gálatas",6,149,"Cartas de Paulo"],["EPH","Efésios",6,155,"Cartas de Paulo"],["PHP","Filipenses",4,104,"Cartas de Paulo"],["COL","Colossenses",4,95,"Cartas de Paulo"],["1TH","1 Tessalonicenses",5,89,"Cartas de Paulo"],["2TH","2 Tessalonicenses",3,47,"Cartas de Paulo"],["1TI","1 Timóteo",6,113,"Cartas de Paulo"],["2TI","2 Timóteo",4,83,"Cartas de Paulo"],["TIT","Tito",3,46,"Cartas de Paulo"],["PHM","Filemom",1,25,"Cartas de Paulo"],["HEB","Hebreus",13,303,"Cartas Gerais"],["JAS","Tiago",5,108,"Cartas Gerais"],["1PE","1 Pedro",5,105,"Cartas Gerais"],["2PE","2 Pedro",3,61,"Cartas Gerais"],["1JN","1 João",5,105,"Cartas Gerais"],["2JN","2 João",1,13,"Cartas Gerais"],["3JN","3 João",1,15,"Cartas Gerais"],["JUD","Judas",1,25,"Cartas Gerais"],["REV","Apocalipse",22,404,"Apocalipse"]];
+const DEUTERO = [["TOB","Tobias",14,244,"Históricos"],["JDT","Judite",16,339,"Históricos"],["1MA","1 Macabeus",16,924,"Históricos"],["2MA","2 Macabeus",15,555,"Históricos"],["WIS","Sabedoria",19,435,"Sabedoria e Poesia"],["SIR","Eclesiástico",51,1386,"Sabedoria e Poesia"],["BAR","Baruc",6,213,"Profetas Maiores"]];
+const BIOMAS = ["Pentateuco","Históricos","Sabedoria e Poesia","Profetas Maiores","Os Doze","Evangelhos","Atos","Cartas de Paulo","Cartas Gerais","Apocalipse"];
+const MOD = window.BG_MOD === true;
+const DECOS = [
+  {id:'flores',nome:'Canteiro de flores',preco:60},{id:'cogumelos',nome:'Cogumelos',preco:60},{id:'rocha',nome:'Pedra com musgo',preco:70},{id:'arbusto',nome:'Arbusto',preco:90},
+  {id:'banco',nome:'Banco de madeira',preco:180},{id:'lanterna',nome:'Lanterna',preco:220,nota:'Acende à noite'},{id:'colmeia',nome:'Colmeia',preco:260,nota:'Sl 19:10'},
+  {id:'poco',nome:'Poço',preco:420,nota:'Gn 24'},{id:'fonte',nome:'Fonte de pedra',preco:600}];
+const ANIMAIS = [
+  {id:'borboletas',nome:'Borboletas',preco:80},{id:'abelhas',nome:'Abelhas',preco:120},{id:'sanhaco',nome:'Sanhaço',preco:180},{id:'cordeiro',nome:'Cordeiro',preco:200,nota:'Jo 1:29'},
+  {id:'beijaflor',nome:'Beija-flor',preco:250},{id:'capivara',nome:'Capivara',preco:300},{id:'tatu',nome:'Tatu-bola',preco:300},{id:'ovelha',nome:'Ovelha',preco:300,nota:'Sl 23'},
+  {id:'pomba',nome:'Pomba',preco:350,nota:'Gn 8:11'},{id:'coruja',nome:'Coruja-buraqueira',preco:400},{id:'garca',nome:'Garça',preco:400},{id:'tucano',nome:'Tucano',preco:450}];
+const MELHORIAS = [
+  {id:'caminho',nome:'Caminho de pedras até a árvore',preco:120},{id:'terreno7',nome:'Ampliar terreno para 7 × 7',preco:300},{id:'lago',nome:'Laguinho',preco:400},
+  {id:'ponte',nome:'Ponte sobre o rio',preco:250,req:s=>s.lidos.includes(2),reqTxt:'Precisa da nascente (leia Gênesis 2)'},{id:'terreno9',nome:'Ampliar terreno para 9 × 9',preco:900,req:s=>s.melhorias.includes('terreno7'),reqTxt:'Depois do 7 × 7'}];
+const PACOTES = [
+  {id:'noite-estrelada',nome:'Noite Estrelada',tipo:'ceu',preco:'R$ 9,90',desc:'Aurora suave, estrela cadente e vaga-lumes azulados, do entardecer ao amanhecer.',hora:22},
+  {id:'cerrado',nome:'Cerrado em Flor',tipo:'flora',preco:'R$ 9,90',desc:'Capim dourado, flores roxas e borda de cerâmica. Cada compra planta uma muda nativa real.',hora:16},
+  {id:'cascata',nome:'Cascata Cristalina',tipo:'cascata',preco:'R$ 7,90',desc:'Uma cascata cai da beira da ilha, com arco-íris na névoa durante o dia.',hora:10},
+  {id:'natal',nome:'Natal em Casa',tipo:'sazonal',preco:'R$ 4,90',desc:'Luzinhas na borda da ilha e uma estrela no topo da árvore. Volta todo ano.',hora:21}];
+const VERSOES = [
+  {id:'BLIVRE',nome:'Bíblia Livre (BLIVRE)',status:'ok',nota:'Licença aberta CC BY 4.0. Disponível agora.'},
+  {id:'BLT',nome:'Bíblia Livre Para Todos (BLT)',status:'aberta',nota:'Licença aberta CC BY-SA 4.0, só Novo Testamento.'},
+  {id:'ALM1911',nome:'Almeida 1911',status:'aberta',nota:'Domínio público; linguagem antiga. A importar.'},
+  {id:'ARA',nome:'Almeida Revista e Atualizada (ARA)',status:'licenca',nota:'Sociedade Bíblica do Brasil. Requer licença.'},
+  {id:'ARC',nome:'Almeida Revista e Corrigida (ARC)',status:'licenca',nota:'Sociedade Bíblica do Brasil. Requer licença.'},
+  {id:'NAA',nome:'Nova Almeida Atualizada (NAA)',status:'licenca',nota:'Sociedade Bíblica do Brasil. Requer licença.'},
+  {id:'NTLH',nome:'Nova Tradução na Linguagem de Hoje (NTLH)',status:'licenca',nota:'Sociedade Bíblica do Brasil. Requer licença.'},
+  {id:'NVI',nome:'Nova Versão Internacional (NVI)',status:'licenca',nota:'Biblica. Requer licença.'},
+  {id:'NVT',nome:'Nova Versão Transformadora (NVT)',status:'licenca',nota:'Requer licença do detentor.'},
+  {id:'ACF',nome:'Almeida Corrigida Fiel (ACF)',status:'licenca',nota:'Sociedade Bíblica Trinitariana do Brasil. Requer licença.'},
+  {id:'KJA',nome:'King James Atualizada (KJA)',status:'licenca',nota:'Requer licença do detentor.'},
+  {id:'AVE',nome:'Bíblia Ave-Maria',status:'licenca',nota:'Edição católica. Requer licença.'},
+  {id:'CNBB',nome:'Bíblia da CNBB',status:'licenca',nota:'Edição católica. Requer licença.'}];
+const HERB = [
+  {id:'oliveira',nome:'Oliveira',sci:'Olea europaea',fato:'Pode viver mais de mil anos e rebrota do pé quando o tronco é cortado.',ref:'Gn 8:11 · Sl 52:8 · Rm 11:17',ok:s=>s.especie==='oliveira',dica:'Escolha a oliveira para Gênesis.'},
+  {id:'figueira',nome:'Figueira',sci:'Ficus carica',fato:'Muitas variedades dão duas safras por ano: uma precoce e outra principal.',ref:'Gn 3:7 · Mc 11:13 · Jo 1:48',ok:s=>s.especie==='figueira',dica:'Escolha a figueira para Gênesis.'},
+  {id:'ipe',nome:'Ipê-amarelo',sci:'Handroanthus sp.',fato:'Perde as folhas no fim do inverno e floresce inteiro de amarelo antes de as folhas voltarem.',ref:'Ct 2:12',ok:s=>s.especie==='ipe',dica:'Escolha o ipê-amarelo para Gênesis.'},
+  {id:'ovelha',nome:'Ovelha',sci:'Ovis aries',fato:'Reconhece rostos e vozes familiares e segue quem conhece.',ref:'Sl 23 · Jo 10:11',ok:s=>s.companheiro==='ovelha'||s.animais.includes('ovelha'),dica:'Companheira possível no cadastro.'},
+  {id:'capivara',nome:'Capivara',sci:'Hydrochoerus hydrochaeris',fato:'É o maior roedor do mundo e vive em grupos perto da água.',ref:'Sl 104:24',ok:s=>s.companheiro==='capivara'||s.animais.includes('capivara'),dica:'Companheira possível no cadastro.'},
+  {id:'beijaflor',nome:'Beija-flor',sci:'família Trochilidae',fato:'Bate as asas dezenas de vezes por segundo e consegue voar parado no ar.',ref:'Mt 6:26',ok:s=>s.companheiro==='beijaflor'||s.animais.includes('beijaflor'),dica:'Companheiro possível no cadastro.'},
+  {id:'borboleta',nome:'Borboleta',sci:'ordem Lepidoptera',fato:'Passa por metamorfose completa: ovo, lagarta, crisálida e adulta.',ref:'2 Co 5:17',ok:s=>s.animais.includes('borboletas'),dica:'Libere as borboletas com orvalho.'},
+  {id:'sanhaco',nome:'Sanhaço',sci:'Thraupis sayaca',fato:'Pássaro azul-acinzentado comum nas cidades brasileiras, adora frutas maduras.',ref:'Mt 10:29',ok:s=>s.animais.includes('sanhaco'),dica:'Libere o sanhaço com orvalho.'},
+  {id:'pomba',nome:'Pomba',sci:'Columba livia',fato:'Encontra o caminho de casa a centenas de quilômetros de distância.',ref:'Gn 8:11 · Mt 3:16',ok:s=>s.animais.includes('pomba'),dica:'Libere a pomba com orvalho.'},
+  {id:'nascente',nome:'Nascente',sci:'',fato:'Toda a floresta será atravessada por este rio quando a Bíblia inteira for lida.',ref:'Gn 2:10 · Ap 22:1',ok:s=>s.lidos.includes(2),dica:'Leia Gênesis 2.'},
+  {id:'abelha',nome:'Abelha',sci:'Apis mellifera',fato:'Uma colmeia visita milhões de flores para produzir um quilo de mel.',ref:'Sl 19:10 · Pv 16:24',ok:s=>s.animais.includes('abelhas'),dica:'Libere as abelhas com orvalho.'},
+  {id:'cedro',nome:'Cedro do Líbano',sci:'Cedrus libani',fato:'Madeira perfumada e resistente, usada na construção do templo.',ref:'1 Rs 5:6 · Sl 92:12',ok:()=>false,dica:'Terrário de 1 Reis.'},
+  {id:'mostarda',nome:'Mostardeira',sci:'Brassica nigra',fato:'Uma das menores sementes da horta vira um arbusto onde as aves pousam.',ref:'Mt 13:31-32',ok:()=>false,dica:'Bioma dos Evangelhos.'},
+  {id:'videira',nome:'Videira',sci:'Vitis vinifera',fato:'Precisa de poda para dar mais fruto.',ref:'Jo 15:1-5',ok:()=>false,dica:'Terrário de João.'}];
+const growthNow = () => growth();
+const CORES = ['#E87B9A','#8A5BB8','#F5D35A','#C8452E','#5B7DD8','#F2F0E6'];
+const DEF = {onb:false,nome:'',plantio:null,tradicao:'protestante',especie:'oliveira',companheiro:'ovelha',corFlor:'#E87B9A',moldura:'cupula',render:'pixel',lema:'Salmo 1:3',lembrete:'manha',tema:'sistema',
+  lidos:[],releituras:0,oracoes:0,devos:0,respondidas:0,destaques:0,diario:[],horas:[],pedidos:[],dias:{},gasto:0,bonus:0,itens:[],encaixes:{esquerda:null,direita:null,frente:null},vistos:{},
+  leitura:{fs:18,tema:'claro'},teste:{hora:null,chuva:false,arcoiris:false},
+  pacotes:{ceu:null,flora:null,sazonal:null},comprados:[],base:'madeira',acessorio:'nenhum',preview:null,sensor:false,ultimaValidacao:null,
+  terreno:5,melhorias:[],layout:{},inv:{},animais:[],versao:'BLIVRE',diaOffset:0};
+let S; try { S = Object.assign({}, DEF, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch(e) { S = Object.assign({}, DEF); }
+S.encaixes = Object.assign({}, DEF.encaixes, S.encaixes); S.pacotes = Object.assign({}, DEF.pacotes, S.pacotes); S.preview = null; if (MOD && !S.modInit) { S.bonus = 99999; S.modInit = true; } S.teste = Object.assign({}, DEF.teste, S.teste); S.leitura = Object.assign({}, DEF.leitura, S.leitura);
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
+const today = () => C.isoDay(C.addDays(new Date(), S.diaOffset || 0));
+const day = (d = today()) => (S.dias[d] = S.dias[d] || {readMin:0,prayMin:0,devocional:false});
+const orvalho = () => Object.values(S.dias).reduce((a, d) => a + C.porcaoDoDia(d), 0) + S.bonus - S.gasto;
+const growth = () => S.releituras > 0 ? 6 : C.growthFor(new Set(S.lidos).size, 50);
+let model = null, modelKey = '';
+function renderState() {
+  const k = (S.nome || '') + '|' + (S.plantio || ''); if (k !== modelKey) { modelKey = k; model = Terra.model(C.hashSeed(k)); }
+  const now = new Date(); const g = growth();
+  return { hora: S.teste.hora ?? (now.getHours() + now.getMinutes() / 60), especie: S.especie, companheiro: S.companheiro, corFlor: S.corFlor, render: S.render,
+    oracoes: S.oracoes, devos: S.devos, respondidas: S.respondidas, diario: S.diario.length, destaques: S.destaques, nascente: S.lidos.includes(2), encaixes: S.encaixes,
+    pomba: false, chuva: S.teste.chuva || Date.now() < chuvaAte, pacotes: pacotesAtivos(), acessorio: S.acessorio, terreno: S.terreno, melhorias: S.melhorias, layout: S.layout, animais: S.animais, _sel: editSel, traco: C.preferredLight(S.horas), arcoiris: S.teste.arcoiris, g, _model: model, _seed: C.hashSeed(k) };
+}
+function pacotesAtivos() { const p = Object.assign({}, S.pacotes); if (S.preview) { const pk = PACOTES.find(x => x.id === S.preview); if (pk) p[pk.tipo] = pk.id; } return p; }
+let editSel = null, chuvaAte = 0;
+// ---------- tema
+function applyTheme() { const r = document.documentElement; if (S.tema === 'sistema') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.tema === 'escuro' ? 'dark' : 'light'); }
+// ---------- navegação
+let tab = 'jardim';
+function go(t) { tab = t; $$('.screen').forEach(s => s.classList.toggle('on', s.id === 's-' + t)); $$('nav.tabs button').forEach(b => b.toggleAttribute('aria-current', b.dataset.tab === t)); $$('nav.tabs button[aria-current]').forEach(b=>b.setAttribute('aria-current','page'));
+  if (t === 'jardim') { Terra.start(); refreshGarden(); } else { Terra.stop(); if (editing) { editing = false; drawEdit(); } }
+  if (t === 'ler') showList(); if (t === 'floresta') drawForest(); if (t === 'loja') drawShop(); window.scrollTo(0, 0); }
+$$('nav.tabs button').forEach(b => b.onclick = () => go(b.dataset.tab));
+// ---------- jardim
+function refreshGarden() {
+  Terra.setState(renderState());
+  const n = new Set(S.lidos).size, g = growth(), st = Math.floor(Math.min(g, 6));
+  $('#g-nome').textContent = S.nome || 'Meu jardim';
+  const se = C.liturgicalSeason(new Date()); $('#g-season').textContent = se.nome; $('#g-season-dot').style.background = se.cor;
+  const ov = orvalho(); $('#l-orvalho').textContent = ov; countTo(ov);
+  const act = Object.entries(S.dias).filter(([, d]) => d.readMin || d.prayMin || d.devocional).map(([k]) => k);
+  $('#g-week').innerHTML = C.weekRhythm(act, new Date()).map(on => `<b class="${on ? 'on' : ''}"></b>`).join('');
+  $('#g-dias').textContent = act.length === 1 ? '1 dia no jardim' : act.length + ' dias no jardim';
+  $('#g-stage').textContent = (S.releituras ? 'Árvore plena · ' + (S.releituras + 1) + 'ª leitura' : C.STAGES[st]);
+  const secs = C.SECTIONS.GEN, cur = secs.find(s => { for (let c = s.de; c <= s.ate; c++) if (!S.lidos.includes(c)) return true; return false; }) || secs[3];
+  const inCur = S.lidos.filter(c => c >= cur.de && c <= cur.ate).length;
+  const nx = C.nextStageIn(n, 50); $('#g-prog').textContent = `Gênesis · ${n} de 50 capítulos · canteiro ${cur.nome} ${inCur}/${cur.ate - cur.de + 1}` + (nx && !S.releituras ? ` · próximo: ${nx.estagio.toLowerCase()} em ${nx.faltam} ${nx.faltam === 1 ? 'capítulo' : 'capítulos'}` : '');
+  drawPreviewBar();
+  $('#g-lema').textContent = S.lema ? '“' + S.lema + '”' : '';
+  const next = nextChapter(); $('#btn-continuar').textContent = next ? `Ler Gênesis ${next} · ~${capMin(next)} min` : (n >= 50 ? 'Reler Gênesis' : 'Ver capítulos de Gênesis');
+  const d = day(), por = C.porcaoDoDia(d); $('#h-txt').textContent = `${por} de 40 de orvalho`; $('#h-bar').style.width = (por / 40 * 100) + '%';
+  $('#h-ler').classList.toggle('done', d.readMin >= 3); $('#btn-orar2').classList.toggle('done', d.prayMin >= 2); $('#btn-devo').classList.toggle('done', !!d.devocional);
+  $('#h-nota').textContent = por >= 40 ? 'Porção completa. Volte amanhã: o orvalho cai de novo toda manhã.' : por > 0 ? 'Porção de hoje garantida. Orar e o devocional completam o resto.' : 'Qualquer um dos três já rende a porção de hoje. Não há sequência para perder.';
+  const alvo = C.proximaConquista(ov, ANIMAIS.map(a => ({ ...a, tem: S.animais.includes(a.id) || S.companheiro === a.id })).concat(MELHORIAS.filter(m => !m.req || m.req(S)).map(m => ({ ...m, tem: S.melhorias.includes(m.id) }))));
+  const mt = $('#meta'); mt.hidden = !alvo; if (alvo) { $('#meta-t').textContent = alvo.falta ? `Faltam ${alvo.falta} de orvalho para liberar: ${alvo.nome}` : `Você já pode liberar: ${alvo.nome}. Toque para ver.`; $('#meta-bar').style.width = (alvo.pct * 100) + '%'; }
+  const luz = C.preferredLight(S.horas); $('#sig-luz').textContent = luz ? {madrugada:'Lavanda da madrugada',manha:'Orvalho da manhã',tarde:'Dourado da tarde',noite:'Vaga-lumes da noite'}[luz] : 'Ainda aprendendo';
+  $('#sig-raiz').textContent = S.oracoes === 1 ? '1 momento' : S.oracoes + ' momentos'; $('#sig-devo').textContent = S.devos; $('#sig-eben').textContent = S.respondidas;
+  $('#sig-cant').textContent = cur.nome; $('#sig-seed').textContent = '#' + (C.hashSeed(modelKey) % 99991).toString().padStart(5, '0');
+  $('#devo-sub').textContent = day().devocional ? 'Feito hoje' : 'Gênesis 1:3 · 4 min';
+}
+function drawPreviewBar() { const bar = $('#preview'); if (!S.preview) { bar.hidden = true; return; } const pk = PACOTES.find(x => x.id === S.preview); bar.hidden = false;
+  $('#pv-t').textContent = 'Experimentando: ' + pk.nome; $('#pv-buy').textContent = S.comprados.includes(pk.id) ? 'Usar' : 'Comprar · ' + pk.preco; }
+$('#pv-sair').onclick = () => { S.preview = null; S.teste.hora = previewHora; refreshGarden(); };
+$('#pv-buy').onclick = () => { const id = S.preview; buyPack(id); S.preview = null; S.teste.hora = previewHora; equipPack(id, true); refreshGarden(); };
+let previewHora = null;
+function buyPack(id) { if (!S.comprados.includes(id)) { S.comprados.push(id); save(); toast('Pacote adicionado.', MOD ? 'Versão mod: nenhum valor foi cobrado.' : 'No protótipo nada é cobrado. Na versão real, a compra é única e o pacote é seu para sempre.'); } }
+function equipPack(id, on) { const pk = PACOTES.find(x => x.id === id); S.pacotes[pk.tipo] = on ? id : null; save(); }
+function previewPack(id) { const pk = PACOTES.find(x => x.id === id); previewHora = S.teste.hora; S.preview = id; S.teste.hora = pk.hora; go('jardim'); }
+function nextChapter() { for (let c = 1; c <= 50; c++) if (!S.lidos.includes(c) && (TEXTO.GEN[String(c)] || MOD)) return c; return null; }
+function capMin(n) { const v = TEXTO.GEN[String(n)]; return C.minutosCapitulo(v ? v.reduce((a, x) => a + C.wordsOf(x), 0) : 650); }
+$('#btn-continuar').onclick = () => { const next = nextChapter(); go('ler'); if (next) openChapter(next); };
+$('#h-ler').onclick = () => $('#btn-continuar').onclick();
+$('#meta').onclick = () => go('loja');
+$('#btn-orar2').onclick = () => go('orar');
+$('#terra').onclick = e => { const cv = $('#terra'), rc = cv.getBoundingClientRect(); const x = (e.clientX - rc.left) / rc.width * Terra.W, y = (e.clientY - rc.top) / rc.height * Terra.H;
+  if (!editing) { const r = renderState(); toast(C.STAGES[Math.floor(Math.min(r.g, 6))], 'A árvore cresce com a leitura; as raízes, com a oração; as gavinhas, com o devocional. Animais e melhorias você libera com orvalho.'); return; }
+  const tl = Terra.tileAt(renderState(), x, y); if (!tl) return; const key = tl.join(','), G = S.terreno, c = (G - 1) / 2; editSel = tl;
+  if (S.layout[key]) { delete S.layout[key]; save(); drawEdit(); refreshGarden(); return; }
+  if (!editItem) { refreshGarden(); return; }
+  const T = []; if (tl[0] === c && tl[1] === c) return toast('Esse é o lugar da árvore.', 'Escolha outro espaço.');
+  if (S.lidos.includes(2) && tl[0] === 1 && tl[1] > c) return toast('Ali corre o rio.', 'Escolha um espaço de grama.');
+  if (S.melhorias.includes('lago') && tl[0] <= 1 && tl[1] <= 1) return toast('Ali fica o laguinho.', 'Escolha um espaço de grama.');
+  if (S.melhorias.includes('caminho') && tl[0] === tl[1] && tl[0] > c) return toast('Ali passa o caminho.', 'Escolha um espaço de grama.');
+  if (tl[0] === G - 1 && tl[1] === 0 && S.respondidas > 0) return toast('Ali estão suas pedras de Ebenézer.', 'Escolha outro espaço.');
+  S.layout[key] = editItem; const left = (S.inv[editItem] || 0) - Object.values(S.layout).filter(v => v === editItem).length; if (left <= 0) editItem = null; save(); drawEdit(); refreshGarden(); };
+let shownOv = null;
+function countTo(v) { const el = $('#g-orvalho'); if (shownOv === null || v <= shownOv || v - shownOv > 5000) { shownOv = v; el.textContent = v; return; }
+  const from = shownOv, d = v - from, t0 = performance.now(); shownOv = v; const fl = $('#floater'); const r = el.getBoundingClientRect();
+  fl.textContent = '+' + d; fl.style.left = (r.right + 6) + 'px'; fl.style.top = r.top + 'px'; fl.style.transform = 'translateY(0)'; fl.classList.add('on');
+  requestAnimationFrame(() => { fl.style.transform = 'translateY(-26px)'; }); setTimeout(() => fl.classList.remove('on'), 1300);
+  const step = now => { const k = Math.min(1, (now - t0) / 900); el.textContent = Math.round(from + d * k); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
+// ---------- recompensa
+let rwTimer;
+function toast(t, d, ms = 5200, acts) { $('#rw-t').textContent = t; $('#rw-d').textContent = d; const box = $('#rw-acts'); box.innerHTML = '';
+  (acts || []).forEach((a, i) => { const bt = document.createElement('button'); bt.textContent = a.label; if (i) bt.className = 'sec'; bt.onclick = () => { $('#reward').classList.remove('on'); a.fn(); }; box.appendChild(bt); });
+  $('#reward').classList.add('on'); clearTimeout(rwTimer); rwTimer = setTimeout(() => $('#reward').classList.remove('on'), acts && acts.length ? Math.max(ms, 9000) : ms); }
+function chime() { try { const a = new (window.AudioContext || window.webkitAudioContext)(); [523.25, 659.25, 783.99].forEach((f, i) => { const o = a.createOscillator(), g = a.createGain(); o.type = 'sine'; o.frequency.value = f; g.gain.setValueAtTime(0, a.currentTime + i * .14); g.gain.linearRampToValueAtTime(.06, a.currentTime + i * .14 + .03); g.gain.exponentialRampToValueAtTime(.0001, a.currentTime + i * .14 + 1.2); o.connect(g); g.connect(a.destination); o.start(a.currentTime + i * .14); o.stop(a.currentTime + i * .14 + 1.3); }); } catch (e) {} }
+function porcaoMsg(before) { const d = orvalho() - before; return d > 0 ? ` +${d} de orvalho (porção de hoje).` : ''; }
+// ---------- traduções
+function fillVersoes(sel, val) { $(sel).innerHTML = VERSOES.map(v => `<option value="${v.id}" ${v.id === val ? 'selected' : ''}>${v.status === 'ok' ? '' : v.status === 'aberta' ? '◇ ' : '🔒 '}${v.nome}</option>`).join(''); }
+function versaoMsg(id) { const v = VERSOES.find(x => x.id === id); if (v.status === 'ok') return v.nota;
+  if (v.status === 'aberta') return v.nota + ' Neste protótipo, o texto continua na Bíblia Livre.';
+  return v.nota + ' Sua preferência fica salva e o texto continua na Bíblia Livre até a licença ser assinada.'; }
+function onVersao(id) { S.versaoPreferida = id; save(); const m = versaoMsg(id); if ($('#l-versao-nota')) $('#l-versao-nota').textContent = m; return m; }
+// ---------- leitura
+function showList() { $('#ler-lista').hidden = false; $('#ler-texto').hidden = true; stopTracking();
+  fillVersoes('#l-versao', S.versaoPreferida || 'BLIVRE'); $('#l-versao').onchange = e => onVersao(e.target.value); $('#l-versao-nota').textContent = versaoMsg(S.versaoPreferida || 'BLIVRE');
+  $('#canteiros').innerHTML = C.SECTIONS.GEN.map(s => { let h = ''; for (let c = s.de; c <= s.ate; c++) { const done = S.lidos.includes(c), avail = c <= 2 || MOD; h += `<button data-c="${c}" class="${done ? 'done' : avail ? 'avail' : ''}" ${!done && !avail ? 'disabled' : ''} aria-label="Capítulo ${c}${done ? ', lido' : ''}">${c}</button>`; }
+    const k = S.lidos.filter(c => c >= s.de && c <= s.ate).length; return `<div class="card"><h2>Canteiro ${s.nome} <small style="color:var(--muted);font-weight:400">· ${k}/${s.ate - s.de + 1}</small></h2><div class="chlist">${h}</div></div>`; }).join('');
+  const uv = S.ultimaValidacao; $('#ler-valid').innerHTML = uv ? `<div class="card"><h2>Como sua última leitura foi validada</h2><div class="sig">
+    <div>Capítulo<b>Gênesis ${uv.cap}</b></div><div>Tempo atento<b>${uv.min} min · ${uv.ppm} ppm</b></div><div>Blocos lidos com calma<b>${uv.blocos} de ${uv.total}</b></div>
+    <div>Pausas entre rolagens<b>${uv.pausas}% do tempo</b></div><div>Toques e rolagens<b>${uv.toques}</b></div><div>Celular na mão<b>${uv.mao === null ? 'Sensor desligado' : uv.mao + '% do tempo'}</b></div></div>
+    <p style="margin-top:8px">Esses sinais ficam só no seu aparelho. Nenhuma câmera é usada.</p></div>` : '';
+  $$('#canteiros button[data-c]').forEach(b => b.onclick = () => openChapter(+b.dataset.c)); }
+let RD = null;
+function openChapter(n) {
+  let verses = TEXTO.GEN[String(n)];
+  if (!verses && MOD) verses = Array.from({ length: 24 }, (_, i) => `[Gênesis ${n}:${i + 1}] Neste lugar aparece o versículo na tradução escolhida. A versão mod usa este texto provisório só para você simular a experiência de leitura do capítulo inteiro, com a mesma validação por blocos.`);
+  if (!verses) return;
+  $('#ler-lista').hidden = true; $('#ler-texto').hidden = false; $('#r-tit').textContent = 'Gênesis ' + n; $('#r-nota').hidden = true;
+  fillVersoes('#r-versao', S.versaoPreferida || 'BLIVRE'); $('#r-versao').onchange = e => { const m = onVersao(e.target.value); const nt = $('#r-nota'); nt.hidden = false; nt.textContent = m; };
+  $('#r-simular').hidden = !MOD;
+  const box = $('#ler-texto'); box.dataset.rt = S.leitura.tema; box.style.setProperty('--fs', S.leitura.fs + 'px');
+  const blocks = C.makeBlocks(verses); let vn = 0;
+  $('#r-blocos').innerHTML = blocks.map((b, i) => `<div class="blk" data-i="${i}"><p>${b.verses.map(v => `<sup>${v.n}</sup>${v.t} `).join('')}</p></div>`).join('');
+  RD = { n, blocks: blocks.map(b => ({ words: b.words, visibleMs: 0 })), active: 0, vis: new Set(), last: performance.now(), lastInput: Date.now(), idle: false, lastY: scrollY, ticks: 0, still: 0, vels: [], inputs: 0, lastInputCount: 0, hand: [], acc: [] };
+  drawSensorBtn();
+  const io = new IntersectionObserver(es => es.forEach(e => { const i = +e.target.dataset.i; if (e.isIntersecting && e.intersectionRatio >= .5) RD.vis.add(i); else RD.vis.delete(i); }), { threshold: [0, .5, 1] });
+  $$('#r-blocos .blk').forEach(el => io.observe(el)); RD.io = io;
+  RD.timer = setInterval(tick, 250); window.scrollTo(0, 0);
+}
+function tick() { if (!RD) return; const now = performance.now(), dt = now - RD.last; RD.last = now;
+  if (document.visibilityState !== 'visible') return;
+  if (Date.now() - RD.lastInput > C.RULES.IDLE_PAUSE_MS) { if (!RD.idle) { RD.idle = true; $('#r-pausa').style.display = 'block'; } return; }
+  RD.active += dt; RD.vis.forEach(i => RD.blocks[i].visibleMs += dt);
+  const dy = Math.abs(scrollY - RD.lastY); RD.lastY = scrollY; RD.ticks++; if (dy < 1) RD.still++; else RD.vels.push(dy / dt * 1000);
+  if (RD.acc.length >= 20) { const m = RD.acc.reduce((a, b) => a + b, 0) / RD.acc.length; const sd = Math.sqrt(RD.acc.reduce((a, b) => a + (b - m) ** 2, 0) / RD.acc.length); RD.hand.push(sd > 0.08); RD.acc = []; } }
+function sinais() { const mv = RD.vels; const mean = mv.reduce((a, b) => a + b, 0) / Math.max(1, mv.length); const cv = mv.length > 3 ? Math.sqrt(mv.reduce((a, b) => a + (b - mean) ** 2, 0) / mv.length) / mean : 0;
+  return { still: RD.still / Math.max(1, RD.ticks), velCV: cv, inputs: RD.inputs, handShare: (S.sensor && RD.hand.length) ? RD.hand.filter(Boolean).length / RD.hand.length : null }; }
+let lastInputAt = 0;
+['touchstart', 'pointerdown', 'wheel', 'keydown'].forEach(ev => addEventListener(ev, () => { if (RD && Date.now() - lastInputAt > 400) { RD.inputs++; lastInputAt = Date.now(); } }, { passive: true }));
+addEventListener('devicemotion', e => { if (!RD || !S.sensor) return; const a = e.accelerationIncludingGravity; if (!a || a.x == null) return; RD.acc.push(Math.hypot(a.x, a.y, a.z)); });
+async function enableSensor() { try { if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') { const r = await DeviceMotionEvent.requestPermission(); if (r !== 'granted') throw 0; }
+    if (typeof DeviceMotionEvent === 'undefined') throw 0; S.sensor = true; save(); toast('Sensor de movimento ativado.', 'Ele só percebe se o celular está na mão. Nada sai do aparelho.'); } catch (e) { S.sensor = false; save(); toast('Sensor indisponível aqui.', 'Tudo bem: os toques na tela bastam para validar a leitura.'); } drawSensorBtn(); }
+function drawSensorBtn() { const b = $('#r-sensor'); if (b) b.textContent = S.sensor ? 'Sensor de movimento ligado · desligar' : 'Usar sensor de movimento (opcional)'; }
+$('#r-sensor').onclick = () => { if (S.sensor) { S.sensor = false; save(); drawSensorBtn(); } else enableSensor(); };
+['scroll', 'touchstart', 'keydown', 'pointermove', 'wheel'].forEach(ev => addEventListener(ev, () => { if (RD) { RD.lastInput = Date.now(); if (RD.idle) { RD.idle = false; $('#r-pausa').style.display = 'none'; } } }, { passive: true }));
+$('#r-pausa').onclick = () => { if (RD) { RD.lastInput = Date.now(); RD.idle = false; } $('#r-pausa').style.display = 'none'; };
+function stopTracking() { if (RD) { clearInterval(RD.timer); RD.io && RD.io.disconnect(); RD = null; } $('#r-pausa').style.display = 'none'; }
+$('#r-voltar').onclick = showList;
+$('#r-simular').onclick = () => { if (!RD) return; window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); $('#r-simular').disabled = true; $('#r-simular').textContent = 'Lendo com calma…';
+  setTimeout(() => { if (!RD) return; RD.blocks.forEach(b => b.visibleMs = b.words / 230 * 60000); RD.active = RD.blocks.reduce((a, b) => a + b.visibleMs, 0); RD.ticks = 400; RD.still = 280; RD.vels = [400, 900, 650, 1100, 500, 800]; RD.inputs = RD.blocks.length;
+    $('#r-simular').disabled = false; $('#r-simular').textContent = 'Simular leitura atenta (mod)'; $('#r-concluir').onclick(); }, 1600); };
+$('#r-maior').onclick = () => { S.leitura.fs = Math.min(26, S.leitura.fs + 2); $('#ler-texto').style.setProperty('--fs', S.leitura.fs + 'px'); save(); };
+$('#r-menor').onclick = () => { S.leitura.fs = Math.max(14, S.leitura.fs - 2); $('#ler-texto').style.setProperty('--fs', S.leitura.fs + 'px'); save(); };
+$('#r-tema').onclick = () => { const o = ['claro', 'sepia', 'night']; S.leitura.tema = o[(o.indexOf(S.leitura.tema) + 1) % 3]; $('#ler-texto').dataset.rt = S.leitura.tema; save(); };
+$('#r-concluir').onclick = () => { if (!RD) return; const sg = sinais(); const v = C.validateChapterV2(RD.blocks, RD.active, sg);
+  $$('#r-blocos .blk').forEach((el, i) => el.classList.toggle('fast', v.flagged.includes(i)));
+  if (!v.ok) { const nota = $('#r-nota'); nota.hidden = false;
+    const MSG = { ritmo: 'A rolagem pareceu automática: velocidade constante e nenhuma pausa. Se você estava lendo, role com o dedo no seu próprio ritmo.', presenca: 'Não percebemos nenhum toque seu durante a leitura. Role o texto com o dedo e o capítulo vai contar normalmente.' };
+    nota.textContent = MSG[v.motivo] || (v.flagged.length ? 'Parece que você passou rápido por alguns trechos, marcados com uma linha dourada ao lado. Que tal voltar a eles com calma? Não há pressa: o jardim espera.' : 'Fique mais um pouco com o texto. O capítulo conta quando o tempo de leitura combina com uma leitura atenta.');
+    nota.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+  const tw = RD.blocks.reduce((a, b) => a + b.words, 0); S.ultimaValidacao = { cap: RD.n, min: +(RD.active / 60000).toFixed(1), ppm: Math.round(tw / (RD.active / 60000)), blocos: RD.blocks.length - v.flagged.length, total: RD.blocks.length,
+    pausas: Math.round(sg.still * 100), toques: sg.inputs, mao: sg.handShare === null ? null : Math.round(sg.handShare * 100) };
+  completeChapter(RD.n, RD.active / 60000); };
+function completeChapter(n, minutes) {
+  const before = orvalho(), gOld = growth(), had = S.lidos.includes(n);
+  if (!had) S.lidos.push(n); else if (new Set(S.lidos).size >= 50) S.releituras++;
+  S.horas.push(new Date().getHours()); day().readMin += minutes; save(); stopTracking();
+  const gNew = growth(); go('jardim'); Terra.animateTo(gOld, gNew); chime();
+  let t = `Gênesis ${n} lido com calma.`, d = '';
+  if (n === 1 && !S.vistos.broto) { S.vistos.broto = 1; d = 'Sua semente brotou. É assim que tudo começa.'; }
+  else if (n === 2 && !S.vistos.nascente) { S.vistos.nascente = 1; d = 'Uma nascente brotou no seu jardim: “E saía de Éden um rio para regar o jardim” (Gn 2:10). Esse rio vai atravessar a floresta até o Apocalipse.'; }
+  else d = 'Uma folha nova apareceu.';
+  const sec = C.SECTIONS.GEN.find(s => n >= s.de && n <= s.ate); if (sec && C.sectionsDone('GEN', new Set(S.lidos))[C.SECTIONS.GEN.indexOf(sec)] && !S.vistos['sec' + sec.nome]) { S.vistos['sec' + sec.nome] = 1; t = `Canteiro ${sec.nome} completo.`; d += ' Ganhou uma pedra da coroa.'; }
+  save(); if (navigator.vibrate) try { navigator.vibrate(25); } catch (e) {}
+  const acts = []; if (!day().prayMin) acts.push({ label: 'Orar 2 min', fn: () => { go('orar'); startPrayer(2); } }); acts.push({ label: 'Ficar no jardim', fn: () => {} });
+  setTimeout(() => toast(t, d + porcaoMsg(before), 7000, acts), 900);
+  emergent();
+}
+function emergent() { const r = renderState();
+  if (r.pomba && !S.vistos.pomba) { S.vistos.pomba = 1; save(); setTimeout(() => toast('Uma pomba pousou na sua árvore.', 'Ela veio porque as raízes estão fortes e a árvore deu fruto (Gn 8:11).', 7000), 4200); } }
+// ---------- oração
+let PR = null, minutos = 5;
+$('#o-tempos').innerHTML = [2, 5, 10, 15].map(m => `<button class="chip" data-m="${m}" aria-pressed="${m === 5}">${m} min</button>`).join('');
+$$('#o-tempos .chip').forEach(b => b.onclick = () => { minutos = +b.dataset.m; $$('#o-tempos .chip').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+const GUIA = ['Adoração: diga a Deus quem Ele é para você.', 'Confissão: entregue o que pesa.', 'Gratidão: agradeça por três coisas de hoje.', 'Súplica: peça por você e por alguém.'];
+$('#o-comecar').onclick = () => startPrayer(minutos);
+function startPrayer(m) { PR = { total: m * 60000 / (MOD ? 30 : 1), el: 0, last: performance.now(), hiddenAt: null, paused: false, guided: $('#o-guiada').checked };
+  $('#pray').classList.add('on'); $('#p-txt').textContent = PR.guided ? GUIA[0] : 'Respire. Você está diante de Deus.'; $('#p-fim').textContent = 'Encerrar'; PR.timer = setInterval(ptick, 500); }
+function ptick() { if (!PR || PR.paused) return; const now = performance.now(); if (document.visibilityState === 'visible') PR.el += now - PR.last; PR.last = now;
+  const k = Math.min(1, PR.el / PR.total); $('#p-glow').style.transform = `scale(${.25 + .75 * k})`;
+  if (PR.guided) $('#p-txt').textContent = GUIA[Math.min(3, Math.floor(k * 4))];
+  $('#p-tempo').textContent = k < 1 ? '' : '';
+  if (PR.el >= PR.total) finishPrayer(true); }
+document.addEventListener('visibilitychange', () => { if (!PR || PR.paused) return;
+  if (document.visibilityState === 'hidden') PR.hiddenAt = Date.now();
+  else { if (PR.hiddenAt && Date.now() - PR.hiddenAt > C.RULES.PRAYER_GRACE_MS) { PR.paused = true; $('#p-txt').textContent = 'Sua oração foi interrompida. Quer continuar de onde parou?'; $('#p-fim').textContent = 'Continuar'; } PR.hiddenAt = null; PR.last = performance.now(); } });
+$('#p-fim').onclick = () => { if (!PR) return; if (PR.paused) { PR.paused = false; PR.last = performance.now(); $('#p-fim').textContent = 'Encerrar'; $('#p-txt').textContent = PR.guided ? GUIA[0] : 'Respire. Você está diante de Deus.'; return; }
+  if (confirm('Encerrar agora? Deus ouviu mesmo assim. Só o jardim não vai registrar este momento.')) finishPrayer(false); };
+function finishPrayer(ok) { clearInterval(PR.timer); const m = PR.total * (MOD ? 30 : 1) / 60000; PR = null; $('#pray').classList.remove('on');
+  if (!C.prayerCounts(m, ok ? m * 60000 : 0, !ok)) return;
+  const before = orvalho(); S.oracoes++; day().prayMin += m; save(); go('jardim'); toast('Oração registrada.', 'Suas raízes cresceram um pouco.' + porcaoMsg(before), 6000, day().devocional ? null : [{ label: 'Fazer o devocional', fn: () => $('#btn-devo').onclick() }, { label: 'Agora não', fn: () => {} }]); emergent(); }
+function drawPedidos() { $('#o-lista').innerHTML = S.pedidos.length ? S.pedidos.map((p, i) => `<div class="req ${p.r ? 'done' : ''}"><span></span>${p.r ? '<small>Respondida</small>' : `<button data-i="${i}">Foi respondida</button>`}</div>`).join('') : '<p>Nenhum pedido ainda. Seus pedidos ficam só no seu aparelho.</p>';
+  $$('#o-lista .req span').forEach((el, i) => el.textContent = S.pedidos[i].t);
+  $$('#o-lista button[data-i]').forEach(b => b.onclick = () => { S.pedidos[+b.dataset.i].r = today(); S.respondidas++; save(); drawPedidos(); toast('Uma pedra de Ebenézer foi erguida.', '“Até aqui nos ajudou o Senhor” (1 Sm 7:12). Ela já está no seu jardim.'); }); }
+$('#o-add').onclick = () => { const v = $('#o-novo').value.trim(); if (!v) return; S.pedidos.push({ t: v, r: null }); $('#o-novo').value = ''; save(); drawPedidos(); };
+// ---------- devocional
+$('#btn-devo').onclick = () => openSheet(`<h2>Haja luz</h2><p style="color:var(--muted);margin-top:0">Gênesis 1:3</p>
+  <blockquote style="margin:0 0 12px;padding-left:12px;border-left:3px solid var(--ipe)">E disse Deus: Haja luz; e houve luz.</blockquote>
+  <p>Antes de qualquer outra coisa, Deus falou e a luz começou a existir. Não houve negociação com as trevas nem esforço visível, só uma palavra. A criação inteira começa com Deus vencendo a escuridão pela fala.</p>
+  <p>Muitas vezes a gente espera clarear sozinho para então falar com Deus. Gênesis mostra a ordem contrária: primeiro Ele fala, depois a luz aparece.</p>
+  <p><b>Para hoje:</b> antes de abrir qualquer outra tela, leia um versículo em voz baixa e deixe essa palavra ser a primeira do seu dia.</p>
+  <label class="lbl" for="devo-nota">Onde você precisa de luz hoje? (vai para o seu baú, só você vê)</label><textarea id="devo-nota"></textarea>
+  <button class="primary" id="devo-ok" style="margin-top:14px">${day().devocional ? 'Devocional de hoje já feito' : 'Concluir devocional'}</button>`, () => {
+  $('#devo-ok').disabled = day().devocional; $('#devo-ok').onclick = () => { const before = orvalho(); const nota = $('#devo-nota').value.trim(); if (nota) S.diario.push({ d: today(), t: nota });
+    day().devocional = true; S.devos++; save(); closeSheet(); refreshGarden(); toast('Devocional concluído.', 'Uma gavinha nova subiu pelo tronco.' + (nota ? ' Sua anotação foi guardada no baú.' : '') + porcaoMsg(before)); }; });
+// ---------- sheet
+function openSheet(html, after) { $('#sheet-panel').innerHTML = html; $('#sheet').classList.add('on'); after && after(); }
+function closeSheet() { $('#sheet').classList.remove('on'); }
+$('#sheet').onclick = e => { if (e.target.id === 'sheet') closeSheet(); };
+// ---------- floresta
+function icon(cls, state, pct) { const col = state === 'done' ? '#E2A92B' : state === 'grow' ? '#5E9A4E' : 'var(--line)'; const trunk = state === 'none' ? 'var(--line)' : '#6B4A32';
+  if (cls === 'flor') return `<svg width="34" height="34" viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="7" y="9" width="2" height="5" fill="${state === 'none' ? 'var(--line)' : '#3F7A45'}"/><rect x="5" y="5" width="6" height="4" fill="${col}"/><rect x="7" y="4" width="2" height="6" fill="${col}"/><rect x="7" y="6" width="2" height="2" fill="#F5D35A"/></svg>`;
+  if (cls === 'media') return `<svg width="34" height="34" viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="7" y="9" width="2" height="6" fill="${trunk}"/><rect x="4" y="4" width="8" height="6" fill="${col}"/><rect x="5" y="3" width="6" height="1" fill="${col}"/></svg>`;
+  return `<svg width="34" height="34" viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="7" y="9" width="2" height="7" fill="${trunk}"/><rect x="2" y="3" width="12" height="7" fill="${col}"/><rect x="4" y="1" width="8" height="2" fill="${col}"/><rect x="3" y="10" width="10" height="1" fill="${col}"/>${pct > 0 && pct < 1 ? `<rect x="2" y="15" width="${Math.max(1, Math.round(12 * pct))}" height="1" fill="#E2A92B"/>` : ''}</svg>`; }
+let fView = 'mapa';
+function drawHerb() { const got = HERB.filter(h => h.ok(S)).length; $('#f-herb').innerHTML = `<p style="color:var(--muted);margin-top:0">${got} de ${HERB.length} registrados. Cada espécie entra no herbário quando aparece no seu jardim.</p>` + HERB.map(h => { const ok = h.ok(S);
+    return `<div class="herb ${ok ? '' : 'lock'}"><b>${ok ? h.nome : '???'}</b>${ok && h.sci ? `<i>${h.sci}</i>` : ''}<p>${ok ? h.fato : h.dica}</p>${ok ? `<small>${h.ref}</small>` : ''}</div>`; }).join(''); }
+$$('#f-toggle button').forEach(b => b.onclick = () => { fView = b.dataset.v; $$('#f-toggle button').forEach(x => x.setAttribute('aria-pressed', x === b)); $('#f-mapa').hidden = fView !== 'mapa'; $('#f-herb').hidden = fView !== 'herb'; $('#f-info').style.display = 'none'; if (fView === 'herb') drawHerb(); });
+function drawForest() { if (fView === 'herb') drawHerb();
+  const list = BOOKS.concat(S.tradicao === 'catolica' ? DEUTERO.map(b => b.concat(['extra'])) : []);
+  const nG = new Set(S.lidos).size; let html = '';
+  BIOMAS.forEach((bi, k) => { const bs = list.filter(b => b[4] === bi);
+    html += `<div class="bioma"><h3>${bi}<small>${bs.length} ${bs.length === 1 ? 'livro' : 'livros'}</small></h3><div class="books">` + bs.map(b => { const min = b[3] * 23 / 230, cls = C.sizeClass(min);
+      const pct = b[0] === 'GEN' ? nG / 50 : 0, st = pct >= 1 ? 'done' : pct > 0 ? 'grow' : 'none';
+      return `<button data-b="${b[0]}" class="${b[5] ? 'extra' : ''}" aria-label="${b[1]}">${icon(cls, st, pct)}<span>${b[1]}</span></button>`; }).join('') + '</div></div>';
+    if (k < BIOMAS.length - 1) { const flow = k === 0 && S.lidos.includes(2); html += `<div class="river"><svg width="40" height="26" viewBox="0 0 40 26"><path d="M20 0 C 32 8, 8 16, 20 26" fill="none" stroke="${flow ? '#6FB3C9' : 'var(--line)'}" stroke-width="${flow ? 3 : 2}" stroke-dasharray="${flow ? '0' : '3 4'}"/></svg></div>`; } });
+  $('#f-mapa').innerHTML = html; $('#f-resumo').textContent = `${nG >= 50 ? 1 : 0} de ${list.length} livros`;
+  $$('#f-mapa .books button').forEach(b => b.onclick = () => { const bk = list.find(x => x[0] === b.dataset.b); const min = Math.round(bk[3] * 23 / 230); const cls = { flor: 'flor ou arbusto', media: 'árvore média', grande: 'árvore grande com canteiros' }[C.sizeClass(min)];
+    const info = $('#f-info'); info.style.display = 'block'; info.textContent = `${bk[1]} · ${cls} · cerca de ${min} min de leitura · ${bk[2]} ${bk[2] === 1 ? 'capítulo' : 'capítulos'}` + (bk[0] === 'GEN' ? ` · ${nG} lidos` : '') + (bk[5] ? ' · deuterocanônico' : ''); }); }
+// ---------- loja e personalização
+function drawShop() { const ov = orvalho(); $('#l-orvalho').textContent = ov;
+  const card = (it, kind, own, extra) => `<div class="item"><canvas data-th="${it.id}" data-k="${kind}" width="32" height="32" aria-hidden="true"></canvas><b>${it.nome}</b><small>${it.nota || extra || ''}</small>${own}</div>`;
+  $('#l-melhorias').innerHTML = MELHORIAS.map(m => { const has = S.melhorias.includes(m.id); const ok = !m.req || m.req(S);
+    return `<div class="up"><div><b>${m.nome}</b><small>${has ? 'Feito' : ok ? '' : m.reqTxt}</small></div><button class="${has ? 'own' : 'buy'}" data-up="${m.id}" ${has || !ok || ov < m.preco ? 'disabled' : ''}>${has ? 'No jardim' : m.preco}</button></div>`; }).join('');
+  $('#l-animais').innerHTML = ANIMAIS.map(a => { const has = S.animais.includes(a.id) || S.companheiro === a.id;
+    return card(a, 'animal', `<button class="${has ? 'own' : 'buy'}" data-an="${a.id}" ${has || ov < a.preco ? 'disabled' : ''}>${has ? (S.companheiro === a.id ? 'Companheiro' : 'No jardim') : 'Liberar · ' + a.preco}</button>`); }).join('');
+  $('#l-itens').innerHTML = DECOS.map(d => { const n = S.inv[d.id] || 0, placed = Object.values(S.layout).filter(v => v === d.id).length;
+    return card(d, 'deco', `<button class="buy" data-id="${d.id}" ${ov < d.preco ? 'disabled' : ''}>Comprar · ${d.preco}</button>`, n ? `${n} no inventário · ${placed} no jardim` : ''); }).join('');
+  $$('#s-loja canvas[data-th]').forEach(cv => Terra.thumb(cv, cv.dataset.th, cv.dataset.k));
+  const spend = (preco, ok) => { if (orvalho() < preco) return false; S.gasto += preco; ok(); save(); drawShop(); refreshGarden(); return true; };
+  $$('#l-melhorias [data-up]').forEach(b => b.onclick = () => { const m = MELHORIAS.find(x => x.id === b.dataset.up);
+    spend(m.preco, () => { S.melhorias.push(m.id); if (m.id === 'terreno7') S.terreno = 7; if (m.id === 'terreno9') S.terreno = 9; toast(m.nome + '.', 'Melhoria feita com o orvalho da sua constância.'); }); });
+  $$('#l-animais [data-an]').forEach(b => b.onclick = () => { const a = ANIMAIS.find(x => x.id === b.dataset.an); spend(a.preco, () => { S.animais.push(a.id); toast(a.nome + ' chegou ao seu jardim.', 'Liberado com orvalho, que só vem da leitura, da oração e do devocional.'); }); });
+  $$('#l-itens [data-id]').forEach(b => b.onclick = () => { const d = DECOS.find(x => x.id === b.dataset.id); spend(d.preco, () => { S.inv[d.id] = (S.inv[d.id] || 0) + 1; toast(d.nome + ' no inventário.', 'Toque em "Editar jardim" para colocar onde quiser.'); }); });
+  $('#l-pacotes').innerHTML = PACOTES.map(pk => { const own = S.comprados.includes(pk.id); const on = S.pacotes[pk.tipo] === pk.id;
+    return `<div class="pack"><div><b>${pk.nome}</b><small>${pk.desc}</small></div><div class="pack-btns"><button data-pv="${pk.id}">Experimentar</button>${own ? `<button class="buy" data-eq="${pk.id}">${on ? 'Tirar' : 'Usar'}</button>` : `<button class="buy" data-buy="${pk.id}">${MOD ? 'Comprar (mod: grátis)' : pk.preco}</button>`}</div></div>`; }).join('');
+  $$('#l-pacotes [data-pv]').forEach(b => b.onclick = () => previewPack(b.dataset.pv));
+  $$('#l-pacotes [data-buy]').forEach(b => b.onclick = () => { buyPack(b.dataset.buy); equipPack(b.dataset.buy, true); drawShop(); refreshGarden(); });
+  $$('#l-pacotes [data-eq]').forEach(b => b.onclick = () => { const pk = PACOTES.find(x => x.id === b.dataset.eq); equipPack(pk.id, S.pacotes[pk.tipo] !== pk.id); drawShop(); refreshGarden(); });
+  opts('#p-acess', [['nenhum', 'Nenhum'], ['lenco', 'Lenço'], ['chapeu', 'Chapéu de palha'], ['coroa', 'Coroa de flores']], 'acessorio');
+  opts('#p-especie', [['oliveira', 'Oliveira'], ['figueira', 'Figueira'], ['ipe', 'Ipê-amarelo']], 'especie');
+  opts('#p-comp', [['ovelha', 'Ovelha'], ['capivara', 'Capivara'], ['beijaflor', 'Beija-flor']], 'companheiro');
+  opts('#p-render', [['pixel', 'Pixel art'], ['suave', 'Vetorial suave']], 'render');
+  $('#p-cor').innerHTML = CORES.map(c => `<button class="sw" style="background:${c}" data-c="${c}" aria-label="Cor ${c}" aria-pressed="${S.corFlor === c}"></button>`).join('');
+  $$('#p-cor .sw').forEach(b => b.onclick = () => { S.corFlor = b.dataset.c; save(); drawShop(); refreshGarden(); });
+  $('#p-lema').value = S.lema; $('#p-lema').onchange = e => { S.lema = e.target.value; save(); refreshGarden(); };
+  $('#p-nome').value = S.nome; $('#p-nome').onchange = e => { S.nome = e.target.value.trim() || S.nome; save(); refreshGarden(); toast('Nova semente.', 'O nome do jardim gera a forma da árvore. Volte ao jardim para ver.'); }; }
+// ---------- editar jardim
+let editing = false, editItem = null;
+function drawEdit() { const box = $('#edit'); box.hidden = !editing; $('#btn-editar').textContent = editing ? 'Concluir edição' : 'Editar jardim';
+  if (!editing) { editSel = null; refreshGarden(); return; }
+  const avail = DECOS.filter(d => (S.inv[d.id] || 0) - Object.values(S.layout).filter(v => v === d.id).length > 0);
+  $('#edit-inv').innerHTML = avail.length ? avail.map(d => { const left = (S.inv[d.id] || 0) - Object.values(S.layout).filter(v => v === d.id).length;
+    return `<button class="chip" data-e="${d.id}" aria-pressed="${editItem === d.id}">${d.nome} · ${left}</button>`; }).join('') : '<p>Seu inventário está vazio.</p><button class="chip" id="edit-loja">Ver decoração</button>';
+  $('#edit-dica').textContent = editItem ? 'Toque num espaço livre da ilha para colocar.' : 'Escolha um item para colocar, ou toque num item da ilha para guardá-lo.';
+  $$('#edit-inv [data-e]').forEach(b => b.onclick = () => { editItem = editItem === b.dataset.e ? null : b.dataset.e; drawEdit(); }); if ($('#edit-loja')) $('#edit-loja').onclick = () => go('loja'); }
+$('#btn-editar').onclick = () => { editing = !editing; editItem = null; drawEdit(); if (editing) $('#terra').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+$('#edit-ok').onclick = () => { editing = false; editItem = null; drawEdit(); };
+function place(it) { if (it.lugar === 'frente') S.encaixes.frente = it.id; else if (!S.encaixes.esquerda) S.encaixes.esquerda = it.id; else S.encaixes.direita = it.id; }
+function opts(sel, arr, key) { $(sel).innerHTML = arr.map(([v, l]) => `<button class="chip" data-v="${v}" aria-pressed="${S[key] === v}">${l}</button>`).join('');
+  $$(sel + ' .chip').forEach(b => b.onclick = () => { S[key] = b.dataset.v; save(); drawShop(); refreshGarden(); }); }
+// ---------- ajustes e modo de teste
+$('#btn-ajustes').onclick = () => { const hv = S.teste.hora ?? -1;
+  openSheet(`<h2>Ajustes</h2><label class="lbl">Aparência do app</label><div class="opt" id="a-tema"></div>
+  <h2 style="margin-top:18px">Modo de teste</h2><p style="color:var(--muted);margin-top:0">Para validar a estética e as regras sem esperar dias.</p>
+  <label class="lbl" for="t-hora">Hora do dia: <span id="t-hora-v" class="mono">${hv < 0 ? 'real' : fmtH(hv)}</span></label><div class="range"><input type="range" id="t-hora" min="-1" max="23.5" step="0.5" value="${hv}"></div>
+  <label class="lbl" for="t-caps">Capítulos de Gênesis lidos: <span id="t-caps-v" class="mono">${new Set(S.lidos).size}</span></label><div class="range"><input type="range" id="t-caps" min="0" max="50" step="1" value="${new Set(S.lidos).size}"></div>
+  <div class="testgrid" style="margin-top:12px">
+   <button data-t="chuva">${S.teste.chuva ? 'Parar chuva' : 'Chuva'}</button><button data-t="arco">${S.teste.arcoiris ? 'Tirar arco-íris' : 'Arco-íris'}</button>
+   <button data-t="ora">+1 oração</button><button data-t="dev">+1 devocional</button><button data-t="resp">+1 oração respondida</button><button data-t="dest">+1 versículo destacado</button>
+   ${MOD ? '<button data-t="volta">Simular volta após 4 dias</button><button data-t="dia">Avançar um dia</button><button data-t="repor">Repor 99.999 de orvalho</button>' : ''}<button data-t="orv">+300 orvalho</button><button data-t="sensor">Sensor de movimento</button><button data-t="cresc">Ver animação de crescimento</button><button data-t="testes">Rodar autotestes</button><button data-t="reset">Reiniciar protótipo</button></div>
+  <p style="color:var(--muted);font-size:.86rem">Câmera para detectar presença: só no app nativo, opcional e desligada por padrão. Este protótipo nunca usa a câmera.</p>
+  <p id="t-out" class="mono" style="margin-top:12px;color:var(--muted)"></p>`, () => {
+    opts('#a-tema', [['sistema', 'Sistema'], ['claro', 'Claro'], ['escuro', 'Escuro']], 'tema'); $$('#a-tema .chip').forEach(b => b.addEventListener('click', () => { applyTheme(); }));
+    $('#t-hora').oninput = e => { const v = +e.target.value; S.teste.hora = v < 0 ? null : v; $('#t-hora-v').textContent = v < 0 ? 'real' : fmtH(v); save(); refreshGarden(); };
+    $('#t-caps').oninput = e => { const v = +e.target.value; S.lidos = Array.from({ length: v }, (_, i) => i + 1); S.releituras = 0; $('#t-caps-v').textContent = v; save(); refreshGarden(); };
+    $$('.testgrid button').forEach(b => b.onclick = () => { const t = b.dataset.t, out = $('#t-out');
+      if (t === 'chuva') { S.teste.chuva = !S.teste.chuva; b.textContent = S.teste.chuva ? 'Parar chuva' : 'Chuva'; }
+      if (t === 'arco') { S.teste.arcoiris = !S.teste.arcoiris; b.textContent = S.teste.arcoiris ? 'Tirar arco-íris' : 'Arco-íris'; }
+      if (t === 'ora') { S.oracoes++; day().prayMin += 5; } if (t === 'dev') { S.devos++; day().devocional = true; } if (t === 'resp') S.respondidas++; if (t === 'dest') S.destaques++; if (t === 'orv') S.bonus += 300; if (t === 'dia') { S.diaOffset++; out.textContent = 'Novo dia: ' + today(); } if (t === 'volta') { S.ultimaVisita = C.isoDay(C.addDays(new Date(today() + 'T12:00:00'), -4)); save(); location.reload(); } if (t === 'repor') S.bonus += 99999 - orvalho(); if (t === 'sensor') enableSensor();
+      if (t === 'cresc') { closeSheet(); const g = growth(); Terra.animateTo(Math.max(0, g - 1), g); chime(); }
+      if (t === 'testes') out.textContent = selfTest();
+      if (t === 'reset') { if (confirm('Apagar todo o progresso deste protótipo?')) { try { localStorage.removeItem(KEY); } catch (e) {} location.reload(); } }
+      save(); refreshGarden(); emergent(); }); }); };
+const fmtH = v => String(Math.floor(v)).padStart(2, '0') + ':' + (v % 1 ? '30' : '00');
+function selfTest() { const g1 = TEXTO.GEN['1']; const mk = w => C.makeBlocks(g1).map(b => ({ words: b.words, visibleMs: b.words / w * 60000 })); const tot = a => a.reduce((x, b) => x + b.visibleMs, 0);
+  const T = [['leitor 230 ppm aprovado', () => C.validateChapter(mk(230), tot(mk(230))).ok], ['leitor lento 120 ppm aprovado', () => C.validateChapter(mk(120), tot(mk(120))).ok],
+    ['rolagem 2000 ppm reprovada', () => !C.validateChapter(mk(2000), tot(mk(2000))).ok], ['celular parado reprovado', () => !C.validateChapter(C.makeBlocks(g1).map((b, i) => ({ words: b.words, visibleMs: i ? 0 : 6e5 })), 6e5).ok],
+    ['1º capítulo brota', () => C.stageFor(1, 50) === 1], ['plena só ao concluir', () => C.stageFor(49, 50) < 6 && C.stageFor(50, 50) === 6],
+    ['ler mais não multiplica orvalho', () => C.porcaoDoDia({ readMin: 5 }) === C.porcaoDoDia({ readMin: 90 })], ['teto diário 40', () => C.porcaoDoDia({ readMin: 9, prayMin: 9, devocional: true }) === 40],
+    ['quem só orou recebe', () => C.porcaoDoDia({ prayMin: 2 }) > 0], ['desistir não registra oração', () => !C.prayerCounts(5, 3e5, true)],
+    ['comprar não mexe no progresso', () => { const r = C.buy({ orvalho: 100, itens: [], lidos: [1] }, { id: 'x', preco: 50 }); return r.ok && r.state.lidos.length === 1; }],
+    ['Advento 2026 em 29/nov', () => C.isoDay(C.adventStart(2026)) === '2026-11-29'],
+    ['rolagem automática constante reprova no ritmo', () => !C.readingSignals({ still: 0, velCV: .02, inputs: 0, blocks: 12 }).ritmo],
+    ['sem sensor, toques bastam', () => C.readingSignals({ still: .6, velCV: .3, inputs: 6, blocks: 12, handShare: null }).presenca],
+    ['robô sem toques e celular na mesa reprova', () => !C.readingSignals({ still: .8, velCV: .2, inputs: 0, blocks: 12, handShare: 0 }).presenca]];
+  const res = T.map(([n, f]) => { let ok = false; try { ok = f(); } catch (e) {} return [n, ok]; }); const p = res.filter(r => r[1]).length;
+  return `${p} de ${res.length} testes passaram.` + (p < res.length ? ' Falharam: ' + res.filter(r => !r[1]).map(r => r[0]).join(', ') : ''); }
+// ---------- cadastro
+function onboarding() { $('#onb').classList.add('on'); let s = 0; const steps = $$('.step'); const show = () => { steps.forEach((el, i) => el.classList.toggle('on', i === s)); $('#onb-dots').innerHTML = steps.map((_, i) => `<i class="${i <= s ? 'on' : ''}"></i>`).join(''); };
+  show(); $$('[data-next]').forEach(b => b.onclick = () => { s++; show(); window.scrollTo(0, 0); });
+  [['#onb-trad', 'tradicao'], ['#onb-esp', 'especie'], ['#onb-comp', 'companheiro'], ['#onb-hora', 'lembrete']].forEach(([sel, key]) => $$(sel + ' button').forEach(b => b.onclick = () => { S[key] = b.dataset.v; $$(sel + ' button').forEach(x => x.setAttribute('aria-pressed', x === b)); }));
+  fillVersoes('#onb-versao', 'BLIVRE'); $('#onb-versao').onchange = e => { S.versaoPreferida = e.target.value; };
+  $('#onb-cor').innerHTML = CORES.map(c => `<button class="sw" style="background:${c}" data-c="${c}" aria-label="Cor ${c}" aria-pressed="${S.corFlor === c}"></button>`).join('');
+  $$('#onb-cor .sw').forEach(b => b.onclick = () => { S.corFlor = b.dataset.c; $$('#onb-cor .sw').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+  $('#onb-fim').onclick = () => { S.nome = $('#onb-nome').value.trim() || 'Meu jardim'; S.plantio = today(); S.onb = true; save(); $('#onb').classList.remove('on'); go('ler'); openChapter(1); }; }
+// ---------- início
+Terra.mount($('#terra')); applyTheme(); drawPedidos(); $('#modbar').hidden = !MOD; if (MOD) document.title = 'Bible Garden · versão mod';
+if (!S.onb) onboarding(); else { const gap = C.diasDesde(S.ultimaVisita, today()); go('jardim');
+  if (gap >= 3) { chuvaAte = Date.now() + 25000; setTimeout(() => toast('Que bom te ver de novo.', 'Seu jardim esperou por você, e choveu enquanto isso. Nada se perdeu.', 8000), 600); } }
+S.ultimaVisita = today(); save();
+window.BG = { S, go, openChapter, completeChapter, refreshGarden, renderState, selfTest };
+})();
+</script>
+</body></html>
