@@ -17,6 +17,11 @@ void main() {
   ) async {
     await pumpApp(tester);
     expect(find.text('Meu jardim'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.textContaining('CC BY 4.0'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.textContaining('Bíblia Livre'), findsWidgets);
     expect(find.textContaining('Ler Gênesis 1'), findsOneWidget);
     // Em prod não há selo nem botão da versão mod.

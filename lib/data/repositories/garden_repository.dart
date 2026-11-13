@@ -490,6 +490,102 @@ final class GardenRepository {
     return (await q.map((r) => r.read(s)).getSingle()) ?? 0;
   }
 
+  // ------------------------------------------------------- jardim e edição
+
+  Future<List<PlacementRow>> placements(String book) =>
+      (db.select(db.placements)..where((t) => t.book.equals(book))).get();
+
+  /// Coloca um item que a pessoa tem num ladrilho livre.
+  Future<bool> place(String book, String itemId, int x, int y) =>
+      db.transaction(() async {
+        if (!(await ownedItems()).contains(itemId)) return false;
+        final taken =
+            await (db.select(db.placements)..where(
+                  (t) => t.book.equals(book) & t.x.equals(x) & t.y.equals(y),
+                ))
+                .getSingleOrNull();
+        if (taken != null) return false;
+        await db
+            .into(db.placements)
+            .insert(
+              PlacementsCompanion.insert(
+                book: book,
+                itemId: itemId,
+                x: x,
+                y: y,
+              ),
+            );
+        return true;
+      });
+
+  /// Guarda o item que está no ladrilho (volta para a bandeja).
+  Future<bool> unplaceAt(String book, int x, int y) async =>
+      await (db.delete(db.placements)
+            ..where((t) => t.book.equals(book) & t.x.equals(x) & t.y.equals(y)))
+          .go() >
+      0;
+
+  /// Animais do jardim do livro e o companheiro (que visita todos).
+  Future<List<AnimalRow>> animalsFor(String book) => (db.select(
+    db.animals,
+  )..where((t) => t.garden.equals(book) | t.garden.equals('COMP'))).get();
+
+  Future<Set<String>> boughtCharacters() async => {
+    for (final r in await (db.select(
+      db.characters,
+    )..where((t) => t.boughtAt.isNotNull())).get())
+      r.characterId,
+  };
+
+  // ---------------------------------------------------------- pedidos
+
+  Future<int> addPrayerRequest(String body) => db
+      .into(db.prayerRequests)
+      .insert(
+        PrayerRequestsCompanion.insert(body: body.trim(), createdAt: now),
+      );
+
+  Stream<List<PrayerRequestRow>> watchPrayerRequests() => (db.select(
+    db.prayerRequests,
+  )..orderBy([(t) => OrderingTerm.desc(t.createdAt)])).watch();
+
+  /// "Foi respondida": ergue uma pedra de Ebenézer (1 Sm 7:12).
+  Future<void> answerPrayerRequest(int id, {String? note}) =>
+      (db.update(db.prayerRequests)..where((t) => t.id.equals(id))).write(
+        PrayerRequestsCompanion(
+          answeredAt: Value(now),
+          ebenezerNote: Value(note),
+        ),
+      );
+
+  Future<void> deletePrayerRequest(int id) =>
+      (db.delete(db.prayerRequests)..where((t) => t.id.equals(id))).go();
+
+  Future<int> ebenezerCount() async {
+    final c = db.prayerRequests.id.count();
+    final q = db.selectOnly(db.prayerRequests)
+      ..addColumns([c])
+      ..where(db.prayerRequests.answeredAt.isNotNull());
+    return (await q.map((r) => r.read(c)).getSingle()) ?? 0;
+  }
+
+  Stream<List<JournalRow>> watchJournal() => (db.select(
+    db.journalEntries,
+  )..orderBy([(t) => OrderingTerm.desc(t.createdAt)])).watch();
+
+  // ---------------------------------------------------------- volta
+
+  /// Registra a visita de hoje e devolve quantos dias a pessoa ficou longe
+  /// (nulo na primeira vez).
+  Future<int?> registerVisit() async {
+    final last = await setting('visita.ultima');
+    await setSetting('visita.ultima', today);
+    return diasDesde(last, today);
+  }
+
+  /// Avisa quando algo muda no banco (para o jardim se redesenhar).
+  Stream<void> get changes => db.tableUpdates();
+
   // ------------------------------------------------------------ preferências
 
   Future<String?> setting(String key) async => (await (db.select(

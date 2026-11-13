@@ -4,9 +4,14 @@ import 'package:bible_garden/app/flavor.dart';
 import 'package:bible_garden/app/providers.dart';
 import 'package:bible_garden/core/growth.dart';
 import 'package:bible_garden/core/reading.dart';
+import 'package:bible_garden/core/rules.dart';
+import 'package:bible_garden/data/content/content.dart';
 import 'package:bible_garden/data/repositories/garden_repository.dart';
 import 'package:bible_garden/features/common/labels.dart';
+import 'package:bible_garden/features/garden/garden_state.dart';
+import 'package:bible_garden/features/garden/garden_view.dart';
 import 'package:bible_garden/features/reading/reader_screen.dart';
+import 'package:bible_garden/game/logic/garden_layout.dart';
 import 'package:bible_garden/l10n/gen/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -26,10 +31,57 @@ class GardenScreen extends ConsumerStatefulWidget {
 }
 
 class _GardenScreenState extends ConsumerState<GardenScreen> {
+  bool _editing = false;
+  String? _selected;
+  Set<String> _owned = const {};
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _showOutcome());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showOutcome();
+      unawaited(_welcome());
+    });
+  }
+
+  /// Volta acolhedora: 3 dias ou mais longe → chuva e mensagem gentil.
+  Future<void> _welcome() async {
+    final days = await ref.read(gardenRepositoryProvider).registerVisit();
+    if (!mounted || days == null || days < Rules.welcomeBackDays) return;
+    ref.read(welcomeRainProvider.notifier).start();
+    final t = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(t.gardenWelcomeBack),
+        duration: const Duration(seconds: 8),
+      ),
+    );
+    await Future<void>.delayed(const Duration(seconds: 90));
+    if (mounted) ref.read(welcomeRainProvider.notifier).stop();
+  }
+
+  Future<void> _toggleEdit() async {
+    final owned = await ref.read(gardenRepositoryProvider).ownedItems();
+    if (!mounted) return;
+    setState(() {
+      _editing = !_editing;
+      _owned = owned;
+      _selected = null;
+    });
+  }
+
+  Future<void> _onTile(String book, Tile tile) async {
+    if (!_editing) return;
+    final repo = ref.read(gardenRepositoryProvider);
+    if (await repo.unplaceAt(book, tile.x, tile.y)) return;
+    final item = _selected;
+    if (item == null) return;
+    final occupied = {
+      for (final p in await repo.placements(book)) (x: p.x, y: p.y),
+    };
+    if (GardenLayout.canPlace(tile, occupied)) {
+      await repo.place(book, item, tile.x, tile.y);
+    }
   }
 
   void _showOutcome() {
@@ -60,6 +112,32 @@ class _GardenScreenState extends ConsumerState<GardenScreen> {
         content: Text(lines.join('\n')),
         duration: const Duration(seconds: 7),
       ),
+    );
+  }
+
+  Widget _tray(AppLocalizations t, GameContent content) {
+    final items = [
+      for (final d in content.decoracao)
+        if (_owned.contains(d.id)) d,
+    ];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(items.isEmpty ? t.gardenEditEmpty : t.gardenEditHint),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final d in items)
+              ChoiceChip(
+                label: Text(d.nome),
+                selected: _selected == d.id,
+                onSelected: (v) => setState(() => _selected = v ? d.id : null),
+              ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -102,8 +180,7 @@ class _GardenScreenState extends ConsumerState<GardenScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            Text(t.gardenPlaceholder, style: theme.textTheme.bodyLarge),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             Text(
               t.gardenStage(name, t.stage(stage)),
               style: theme.textTheme.titleMedium,
@@ -122,6 +199,23 @@ class _GardenScreenState extends ConsumerState<GardenScreen> {
               )
             else
               Text(t.gardenBookDone(name)),
+            const SizedBox(height: 16),
+            GardenView(
+              book: book,
+              editing: _editing,
+              onTileTap: (tile) => unawaited(_onTile(book, tile)),
+              semanticLabel: t.gardenSemanticLabel(name, t.stage(stage)),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton.icon(
+                onPressed: _toggleEdit,
+                icon: Icon(_editing ? Icons.check : Icons.edit_outlined),
+                label: Text(_editing ? t.gardenEditDone : t.gardenEdit),
+              ),
+            ),
+            if (_editing) _tray(t, content),
             const SizedBox(height: 8),
             TextButton(
               onPressed: () => context.push('/validacao'),

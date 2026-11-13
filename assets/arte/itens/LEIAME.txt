@@ -1,0 +1,1 @@
+Arte de itens chega aqui com os caminhos do manifesto (assets/data/sprites_manifest.json).

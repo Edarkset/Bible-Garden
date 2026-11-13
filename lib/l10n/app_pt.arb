@@ -423,5 +423,37 @@
         "type": "String"
       }
     }
+  },
+  "gardenEdit": "Editar jardim",
+  "@gardenEdit": {
+    "description": "Botão do modo de edição."
+  },
+  "gardenEditDone": "Pronto",
+  "@gardenEditDone": {
+    "description": "Sair do modo de edição."
+  },
+  "gardenEditHint": "Escolha um item e toque num espaço livre. Toque num item colocado para guardar.",
+  "@gardenEditHint": {
+    "description": "Ajuda do modo de edição."
+  },
+  "gardenEditEmpty": "Você ainda não tem decoração. Veja em Cuidar.",
+  "@gardenEditEmpty": {
+    "description": "Bandeja vazia."
+  },
+  "gardenWelcomeBack": "Seu jardim esperou por você. Nada se perdeu.",
+  "@gardenWelcomeBack": {
+    "description": "Volta acolhedora (3 dias ou mais)."
+  },
+  "gardenSemanticLabel": "Jardim de {book}: {stage}",
+  "@gardenSemanticLabel": {
+    "description": "Rótulo de acessibilidade do jardim.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      },
+      "stage": {
+        "type": "String"
+      }
+    }
   }
 }
