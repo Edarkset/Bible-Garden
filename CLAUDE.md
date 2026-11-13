@@ -46,3 +46,5 @@ App de celular (Android e iOS) de leitura bíblica gamificada. Cada livro da Bí
 - `dart format lib test tool` (o CI recusa código sem formatar) · `node --test docs/referencia/core.test.js` (gabarito JS)
 - Código só da versão mod: fica em `lib/features/debug/` e só entra por `if (isDev)` em `lib/app/router.dart`.
 - `dart run tool/import_blivre.dart` (importa a Bíblia Livre) · `dart run tool/check_assets.dart` (confere arte x manifesto)
+- `dart run tool/gerar_conteudo.dart` (gera conteudo.json do anexo) · `dart run build_runner build -d` (código do banco) · `tool/test_rls.sh` (RLS do Supabase)
+- Arte nova: basta colocar o PNG no caminho do manifesto em `assets/arte/...`; o jogo usa a arte no lugar do placeholder sem mudar código.
