@@ -6,7 +6,9 @@ plugins {
 
 android {
     namespace = "app.biblegarden"
-    compileSdk = flutter.compileSdkVersion
+    // flutter_local_notifications e androidx.core 1.19 exigem compilar
+    // contra a API 37. Só o compileSdk muda; targetSdk e minSdk seguem o Flutter.
+    compileSdk = maxOf(flutter.compileSdkVersion, 37)
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
