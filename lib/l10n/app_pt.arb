@@ -1,0 +1,1155 @@
+{
+  "@@locale": "pt",
+  "appTitle": "Bible Garden",
+  "@appTitle": {
+    "description": "Nome do app."
+  },
+  "gardenTitle": "Meu jardim",
+  "@gardenTitle": {
+    "description": "Título da tela do jardim."
+  },
+  "gardenPlaceholder": "Seu jardim vai crescer aqui com a leitura, a oração e o devocional.",
+  "@gardenPlaceholder": {
+    "description": "Texto provisório da tela inicial (M0)."
+  },
+  "devBadge": "MOD",
+  "@devBadge": {
+    "description": "Selo do flavor de testes. Curto."
+  },
+  "devToolsTitle": "Ferramentas da versão mod",
+  "@devToolsTitle": {
+    "description": "Título da tela de testes, só no flavor dev."
+  },
+  "devToolsOpen": "Abrir ferramentas de teste",
+  "@devToolsOpen": {
+    "description": "Botão que abre a tela de testes, só no flavor dev."
+  },
+  "devToolsEmpty": "As ferramentas de teste chegam junto com cada marco.",
+  "@devToolsEmpty": {
+    "description": "Texto provisório da tela de testes."
+  },
+  "bibleCredit": "Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018 — CC BY 4.0 Brasil.",
+  "@bibleCredit": {
+    "description": "Crédito obrigatório da tradução. Não traduzir."
+  },
+  "navGarden": "Jardim",
+  "@navGarden": {
+    "description": "Aba do jardim."
+  },
+  "navRead": "Ler",
+  "@navRead": {
+    "description": "Aba de leitura."
+  },
+  "navPray": "Orar",
+  "@navPray": {
+    "description": "Aba de oração."
+  },
+  "navForest": "Floresta",
+  "@navForest": {
+    "description": "Aba da floresta."
+  },
+  "navShop": "Cuidar",
+  "@navShop": {
+    "description": "Aba da loja (cuidar do jardim)."
+  },
+  "readTitle": "Ler a Bíblia",
+  "@readTitle": {
+    "description": "Título da lista de livros."
+  },
+  "readChaptersOf": "{read} de {total} capítulos",
+  "@readChaptersOf": {
+    "description": "Progresso de um livro.",
+    "placeholders": {
+      "read": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "readNoText": "Esta tradução não traz este livro. Escolha outra tradução quando houver uma com licença.",
+  "@readNoText": {
+    "description": "Livro deuterocanônico sem texto na Bíblia Livre."
+  },
+  "readChapterLabel": "Capítulo {n}",
+  "@readChapterLabel": {
+    "description": "Rótulo de capítulo.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readChapterRead": "Capítulo {n}, lido",
+  "@readChapterRead": {
+    "description": "Rótulo de leitor de tela para capítulo lido.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readMinutes": "~{n} min",
+  "@readMinutes": {
+    "description": "Estimativa de minutos.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readSection": "Canteiro {name}",
+  "@readSection": {
+    "description": "Nome do canteiro (unidade literária).",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "readFinish": "Concluir capítulo",
+  "@readFinish": {
+    "description": "Botão que valida a leitura."
+  },
+  "readPrinted": "Li na minha Bíblia",
+  "@readPrinted": {
+    "description": "Registrar leitura feita na Bíblia impressa."
+  },
+  "readPrintedConfirm": "Você leu {ref} na sua Bíblia impressa? O registro é por confiança.",
+  "@readPrintedConfirm": {
+    "description": "Confirmação da leitura impressa.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "readPrintedTooSoon": "Para registrar outro capítulo lido na Bíblia impressa, espere o tempo de uma leitura com calma.",
+  "@readPrintedTooSoon": {
+    "description": "Limite de ritmo da leitura impressa."
+  },
+  "readConfirm": "Confirmar",
+  "@readConfirm": {
+    "description": "Botão confirmar."
+  },
+  "readCancel": "Cancelar",
+  "@readCancel": {
+    "description": "Botão cancelar."
+  },
+  "readFontBigger": "Aumentar letra",
+  "@readFontBigger": {
+    "description": "Rótulo do botão de fonte maior."
+  },
+  "readFontSmaller": "Diminuir letra",
+  "@readFontSmaller": {
+    "description": "Rótulo do botão de fonte menor."
+  },
+  "readTheme": "Tema de leitura",
+  "@readTheme": {
+    "description": "Rótulo do botão de tema."
+  },
+  "readThemeLight": "Claro",
+  "@readThemeLight": {
+    "description": "Tema claro."
+  },
+  "readThemeSepia": "Sépia",
+  "@readThemeSepia": {
+    "description": "Tema sépia."
+  },
+  "readThemeNight": "Noturno",
+  "@readThemeNight": {
+    "description": "Tema noturno."
+  },
+  "readTranslation": "Tradução",
+  "@readTranslation": {
+    "description": "Seletor de tradução."
+  },
+  "readTranslationPending": "Licença aberta, ainda não importada. Por enquanto você lê na Bíblia Livre.",
+  "@readTranslationPending": {
+    "description": "Tradução aberta não importada."
+  },
+  "readTranslationLicense": "Esta tradução precisa de licença do detentor. Sua preferência foi salva e o texto continua na Bíblia Livre.",
+  "@readTranslationLicense": {
+    "description": "Tradução que exige contrato."
+  },
+  "readPaused": "Leitura pausada. Toque para continuar.",
+  "@readPaused": {
+    "description": "Aviso de pausa por inatividade."
+  },
+  "readRejectFast": "Parece que você passou rápido por alguns trechos, marcados com uma linha dourada ao lado. Que tal voltar a eles com calma? Não há pressa: o jardim espera.",
+  "@readRejectFast": {
+    "description": "Recusa: blocos rápidos demais."
+  },
+  "readRejectTime": "Fique mais um pouco com o texto. O capítulo conta quando o tempo de leitura combina com uma leitura atenta.",
+  "@readRejectTime": {
+    "description": "Recusa: tempo total curto."
+  },
+  "readRejectRhythm": "A rolagem pareceu automática: velocidade constante e nenhuma pausa. Se você estava lendo, role com o dedo no seu próprio ritmo.",
+  "@readRejectRhythm": {
+    "description": "Recusa: ritmo."
+  },
+  "readRejectPresence": "Não percebemos nenhum toque seu durante a leitura. Role o texto com o dedo e o capítulo vai contar normalmente.",
+  "@readRejectPresence": {
+    "description": "Recusa: presença."
+  },
+  "readSensorOn": "Sensor de movimento ligado · desligar",
+  "@readSensorOn": {
+    "description": "Sensor ligado."
+  },
+  "readSensorOff": "Usar sensor de movimento (opcional)",
+  "@readSensorOff": {
+    "description": "Ligar sensor."
+  },
+  "readSensorInfo": "Ele só percebe se o celular está na mão. Nada sai do aparelho.",
+  "@readSensorInfo": {
+    "description": "Explicação do sensor."
+  },
+  "readSimulate": "Simular leitura atenta (mod)",
+  "@readSimulate": {
+    "description": "Botão da versão mod."
+  },
+  "readNote": "Nota",
+  "@readNote": {
+    "description": "Rótulo de nota de rodapé."
+  },
+  "readQuote": "Citação de {ref}",
+  "@readQuote": {
+    "description": "Referência citada no versículo.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "readDone": "{ref} lido com calma.",
+  "@readDone": {
+    "description": "Mensagem de capítulo concluído.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "readSprouted": "Sua semente brotou. É assim que tudo começa.",
+  "@readSprouted": {
+    "description": "Primeiro capítulo de um livro."
+  },
+  "readNewLeaf": "Uma folha nova apareceu.",
+  "@readNewLeaf": {
+    "description": "Capítulo concluído."
+  },
+  "readStageReached": "Sua planta agora é: {stage}.",
+  "@readStageReached": {
+    "description": "Mudança de estágio.",
+    "placeholders": {
+      "stage": {
+        "type": "String"
+      }
+    }
+  },
+  "readOrvalho": "+{n} de orvalho",
+  "@readOrvalho": {
+    "description": "Orvalho ganho.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readCharacterUnlocked": "{name} pode morar no seu jardim. Veja em Cuidar.",
+  "@readCharacterUnlocked": {
+    "description": "Personagem liberado.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "readAnimalArrived": "{name} chegou ao seu jardim.",
+  "@readAnimalArrived": {
+    "description": "Animal do livro chegou.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "readCrownStone": "Você ganhou uma pedra da coroa.",
+  "@readCrownStone": {
+    "description": "Pedra da coroa."
+  },
+  "readBookDone": "Você concluiu {book}. Todos os seres do jardim fazem festa.",
+  "@readBookDone": {
+    "description": "Livro concluído.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      }
+    }
+  },
+  "readNextStage": "Próximo estágio em {n, plural, =1{1 capítulo} other{{n} capítulos}}",
+  "@readNextStage": {
+    "description": "Antecipação.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "readHowValidated": "Como sua última leitura foi validada",
+  "@readHowValidated": {
+    "description": "Título da tela de transparência."
+  },
+  "readValidationBody": "Tempo: {min} min · {ppm} palavras por minuto\nBlocos lidos com calma: {ok} de {total}\nTempo parado lendo: {pausas}%\nToques e rolagens: {toques}",
+  "@readValidationBody": {
+    "description": "Resumo da validação.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "ppm": {
+        "type": "int"
+      },
+      "ok": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "pausas": {
+        "type": "int"
+      },
+      "toques": {
+        "type": "int"
+      }
+    }
+  },
+  "readValidationHand": "Celular na mão: {pct}% do tempo",
+  "@readValidationHand": {
+    "description": "Sensor.",
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
+  "readValidationPrivacy": "Tudo isso é calculado e guardado só no seu aparelho.",
+  "@readValidationPrivacy": {
+    "description": "Privacidade da validação."
+  },
+  "readValidationNone": "Ainda não há leitura validada.",
+  "@readValidationNone": {
+    "description": "Sem validação."
+  },
+  "commonBack": "Voltar",
+  "@commonBack": {
+    "description": "Voltar."
+  },
+  "commonClose": "Fechar",
+  "@commonClose": {
+    "description": "Fechar."
+  },
+  "commonError": "Algo não saiu como esperado. Tente de novo.",
+  "@commonError": {
+    "description": "Erro genérico gentil."
+  },
+  "stageSemente": "Semente",
+  "@stageSemente": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageBroto": "Broto",
+  "@stageBroto": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageMuda": "Muda",
+  "@stageMuda": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageArvore": "Árvore",
+  "@stageArvore": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageFrutifera": "Árvore frutífera",
+  "@stageFrutifera": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stageFlorida": "Árvore florida",
+  "@stageFlorida": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "stagePlena": "Árvore plena",
+  "@stagePlena": {
+    "description": "Nome de estágio de crescimento."
+  },
+  "gardenOrvalho": "{n} de orvalho",
+  "@gardenOrvalho": {
+    "description": "Saldo de orvalho.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "gardenReadNext": "Ler {ref} · ~{min} min",
+  "@gardenReadNext": {
+    "description": "Botão principal.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      },
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "gardenBookDone": "Você leu {book} inteiro. Escolha outro livro em Ler.",
+  "@gardenBookDone": {
+    "description": "Livro completo.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenStage": "{book}: {stage}",
+  "@gardenStage": {
+    "description": "Estágio da planta do livro.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      },
+      "stage": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenEdit": "Editar jardim",
+  "@gardenEdit": {
+    "description": "Botão do modo de edição."
+  },
+  "gardenEditDone": "Pronto",
+  "@gardenEditDone": {
+    "description": "Sair do modo de edição."
+  },
+  "gardenEditHint": "Escolha um item e toque num espaço livre. Toque num item colocado para guardar.",
+  "@gardenEditHint": {
+    "description": "Ajuda do modo de edição."
+  },
+  "gardenEditEmpty": "Você ainda não tem decoração. Veja em Cuidar.",
+  "@gardenEditEmpty": {
+    "description": "Bandeja vazia."
+  },
+  "gardenWelcomeBack": "Seu jardim esperou por você. Nada se perdeu.",
+  "@gardenWelcomeBack": {
+    "description": "Volta acolhedora (3 dias ou mais)."
+  },
+  "gardenSemanticLabel": "Jardim de {book}: {stage}",
+  "@gardenSemanticLabel": {
+    "description": "Rótulo de acessibilidade do jardim.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      },
+      "stage": {
+        "type": "String"
+      }
+    }
+  },
+  "prayTitle": "Orar",
+  "@prayTitle": {
+    "description": "Título da tela de oração."
+  },
+  "prayIntro": "Escolha um tempo. A recompensa é do ato de orar, não dos minutos.",
+  "@prayIntro": {
+    "description": "Introdução da oração."
+  },
+  "prayMinutes": "{n} min",
+  "@prayMinutes": {
+    "description": "Duração.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "prayGuided": "Modo guiado (adoração, confissão, gratidão, súplica)",
+  "@prayGuided": {
+    "description": "Opção de modo guiado."
+  },
+  "prayStart": "Começar",
+  "@prayStart": {
+    "description": "Começar oração."
+  },
+  "prayGiveUp": "Encerrar",
+  "@prayGiveUp": {
+    "description": "Desistir da oração (não registra)."
+  },
+  "prayPaused": "Você saiu por um tempo. Quer continuar a oração?",
+  "@prayPaused": {
+    "description": "Pausa após 15 s fora."
+  },
+  "prayResume": "Continuar",
+  "@prayResume": {
+    "description": "Retomar a oração."
+  },
+  "prayDone": "Oração concluída. As raízes do seu jardim ficaram mais fortes.",
+  "@prayDone": {
+    "description": "Oração concluída."
+  },
+  "prayRemaining": "{min}:{sec}",
+  "@prayRemaining": {
+    "description": "Tempo restante.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "sec": {
+        "type": "String"
+      }
+    }
+  },
+  "prayStepAdoracao": "Adoração: diga a Deus quem Ele é para você.",
+  "@prayStepAdoracao": {
+    "description": "Etapa guiada."
+  },
+  "prayStepConfissao": "Confissão: entregue o que pesa no coração.",
+  "@prayStepConfissao": {
+    "description": "Etapa guiada."
+  },
+  "prayStepGratidao": "Gratidão: lembre o que você recebeu hoje.",
+  "@prayStepGratidao": {
+    "description": "Etapa guiada."
+  },
+  "prayStepSuplica": "Súplica: apresente seus pedidos e os de outras pessoas.",
+  "@prayStepSuplica": {
+    "description": "Etapa guiada."
+  },
+  "prayRequests": "Pedidos de oração",
+  "@prayRequests": {
+    "description": "Seção de pedidos."
+  },
+  "prayRequestsPrivacy": "Seus pedidos ficam cifrados só neste aparelho.",
+  "@prayRequestsPrivacy": {
+    "description": "Privacidade dos pedidos."
+  },
+  "prayRequestAdd": "Novo pedido",
+  "@prayRequestAdd": {
+    "description": "Adicionar pedido."
+  },
+  "prayRequestHint": "Pelo que você quer orar?",
+  "@prayRequestHint": {
+    "description": "Dica do campo."
+  },
+  "prayRequestSave": "Guardar",
+  "@prayRequestSave": {
+    "description": "Salvar pedido."
+  },
+  "prayRequestAnswered": "Foi respondida",
+  "@prayRequestAnswered": {
+    "description": "Marcar pedido respondido."
+  },
+  "prayRequestEbenezer": "Até aqui nos ajudou o Senhor (1 Sm 7:12). Uma pedra de Ebenézer foi erguida no seu jardim.",
+  "@prayRequestEbenezer": {
+    "description": "Pedido respondido."
+  },
+  "prayRequestDelete": "Apagar",
+  "@prayRequestDelete": {
+    "description": "Apagar pedido."
+  },
+  "prayRequestAnsweredOn": "Respondida",
+  "@prayRequestAnsweredOn": {
+    "description": "Rótulo de pedido respondido."
+  },
+  "devTitle": "Devocional do dia",
+  "@devTitle": {
+    "description": "Título do devocional."
+  },
+  "devQuestion": "Para pensar",
+  "@devQuestion": {
+    "description": "Seção de reflexão."
+  },
+  "devApply": "Para viver hoje",
+  "@devApply": {
+    "description": "Seção de aplicação."
+  },
+  "devNote": "Anotar no baú",
+  "@devNote": {
+    "description": "Campo de anotação."
+  },
+  "devNoteHint": "O que este texto diz para você hoje?",
+  "@devNoteHint": {
+    "description": "Dica do campo."
+  },
+  "devNotePrivacy": "Suas anotações ficam cifradas só neste aparelho.",
+  "@devNotePrivacy": {
+    "description": "Privacidade do baú."
+  },
+  "devDone": "Concluir devocional",
+  "@devDone": {
+    "description": "Botão concluir."
+  },
+  "devCompleted": "Devocional concluído. Novas gavinhas e flores no seu jardim.",
+  "@devCompleted": {
+    "description": "Devocional concluído."
+  },
+  "devAlready": "Você já fez o devocional de hoje. Volte amanhã para um novo.",
+  "@devAlready": {
+    "description": "Devocional já feito."
+  },
+  "devChest": "Baú do diário",
+  "@devChest": {
+    "description": "Lista de anotações."
+  },
+  "devChestEmpty": "Ainda não há anotações.",
+  "@devChestEmpty": {
+    "description": "Baú vazio."
+  },
+  "todayTitle": "Hoje no jardim",
+  "@todayTitle": {
+    "description": "Cartão do dia."
+  },
+  "todayRead": "Ler",
+  "@todayRead": {
+    "description": "Atividade ler."
+  },
+  "todayPray": "Orar",
+  "@todayPray": {
+    "description": "Atividade orar."
+  },
+  "todayDevotional": "Devocional",
+  "@todayDevotional": {
+    "description": "Atividade devocional."
+  },
+  "todayPortion": "Porção de hoje: {n} de {max}",
+  "@todayPortion": {
+    "description": "Barra da porção.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "todayWeek": "Ritmo da semana",
+  "@todayWeek": {
+    "description": "Ritmo de 7 dias (sem sequência)."
+  },
+  "todayNextGoal": "Próxima conquista: {name}",
+  "@todayNextGoal": {
+    "description": "Próxima conquista.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "todayNextGoalLeft": "Faltam {n} de orvalho",
+  "@todayNextGoalLeft": {
+    "description": "Quanto falta.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "todayNextGoalReady": "Já dá para liberar",
+  "@todayNextGoalReady": {
+    "description": "Conquista alcançável."
+  },
+  "shopTitle": "Cuidar do jardim",
+  "@shopTitle": {
+    "description": "Título da loja."
+  },
+  "shopIntro": "Tudo aqui é conseguido com orvalho, que vem da leitura, da oração e do devocional. Nada aqui faz a árvore crescer: isso só a leitura faz.",
+  "@shopIntro": {
+    "description": "Introdução da loja."
+  },
+  "shopUpgrades": "Melhorias",
+  "@shopUpgrades": {
+    "description": "Seção."
+  },
+  "shopAnimals": "Animais",
+  "@shopAnimals": {
+    "description": "Seção."
+  },
+  "shopDecor": "Decoração",
+  "@shopDecor": {
+    "description": "Seção."
+  },
+  "shopPlants": "Plantas",
+  "@shopPlants": {
+    "description": "Seção."
+  },
+  "shopCharacters": "Personagens",
+  "@shopCharacters": {
+    "description": "Seção."
+  },
+  "shopPacks": "Pacotes visuais",
+  "@shopPacks": {
+    "description": "Seção."
+  },
+  "shopPacksIntro": "Só mudam a aparência. Experimente antes de decidir. A compra é única e o pacote é seu para sempre.",
+  "@shopPacksIntro": {
+    "description": "Explicação dos pacotes."
+  },
+  "shopOrvalhoPacks": "Orvalho",
+  "@shopOrvalhoPacks": {
+    "description": "Seção de compra de orvalho (opcional)."
+  },
+  "shopOrvalhoIntro": "Opcional. Serve só para conseguir um item especial mais rápido. Tudo pode ser conseguido de graça com leitura, oração e devocional.",
+  "@shopOrvalhoIntro": {
+    "description": "Explicação da compra de orvalho."
+  },
+  "shopBuy": "Liberar · {price}",
+  "@shopBuy": {
+    "description": "Comprar com orvalho.",
+    "placeholders": {
+      "price": {
+        "type": "int"
+      }
+    }
+  },
+  "shopOwned": "Você tem",
+  "@shopOwned": {
+    "description": "Item já comprado."
+  },
+  "shopNotEnough": "Faltam {n} de orvalho. Ele vem da leitura, da oração e do devocional.",
+  "@shopNotEnough": {
+    "description": "Orvalho insuficiente.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "shopBought": "{name} agora é seu.",
+  "@shopBought": {
+    "description": "Compra concluída.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "shopLockedRead": "Leia {ref} para liberar",
+  "@shopLockedRead": {
+    "description": "Personagem bloqueado.",
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "shopTry": "Experimentar",
+  "@shopTry": {
+    "description": "Provador gratuito."
+  },
+  "shopTrying": "Experimentando",
+  "@shopTrying": {
+    "description": "Provador ativo."
+  },
+  "shopBuyMoney": "Comprar · {price}",
+  "@shopBuyMoney": {
+    "description": "Comprar com dinheiro.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "shopOrUseOrvalho": "ou {n} de orvalho",
+  "@shopOrUseOrvalho": {
+    "description": "Alternativa grátis.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "shopMinorBlocked": "Compras com dinheiro estão desligadas nesta conta. Um responsável pode ligá-las em Ajustes.",
+  "@shopMinorBlocked": {
+    "description": "Bloqueio para menores."
+  },
+  "shopMonthlyLimit": "Limite do mês atingido. Ele pode ser ajustado em Ajustes.",
+  "@shopMonthlyLimit": {
+    "description": "Limite mensal."
+  },
+  "shopConfirmTitle": "Confirmar compra",
+  "@shopConfirmTitle": {
+    "description": "Confirmação."
+  },
+  "shopConfirmBody": "{name} por {price}. O valor é cobrado pela loja do seu celular.",
+  "@shopConfirmBody": {
+    "description": "Confirmação de compra com dinheiro.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "shopStoreUnavailable": "A loja do celular não está disponível agora. Tente mais tarde.",
+  "@shopStoreUnavailable": {
+    "description": "Loja indisponível."
+  },
+  "shopPurchasePending": "Compra em andamento. Assim que a loja confirmar, o item aparece aqui.",
+  "@shopPurchasePending": {
+    "description": "Compra pendente."
+  },
+  "shopRestore": "Restaurar compras",
+  "@shopRestore": {
+    "description": "Restaurar compras."
+  },
+  "shopArrivesIn": "Chega no jardim de {book}",
+  "@shopArrivesIn": {
+    "description": "Animal vai para o jardim atual.",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      }
+    }
+  },
+  "onbWelcome": "Bem-vindo ao Bible Garden",
+  "@onbWelcome": {
+    "description": "Título do cadastro."
+  },
+  "onbIntro": "Cada livro da Bíblia é um pequeno jardim que cresce com a sua leitura.",
+  "@onbIntro": {
+    "description": "Introdução."
+  },
+  "onbStep": "Passo {n} de 5",
+  "@onbStep": {
+    "description": "Progresso.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "onbName": "Dê um nome ao seu jardim",
+  "@onbName": {
+    "description": "Passo 1."
+  },
+  "onbNameHint": "Ex.: Jardim da Ana",
+  "@onbNameHint": {
+    "description": "Dica."
+  },
+  "onbTradition": "Sua tradição",
+  "@onbTradition": {
+    "description": "Passo 2."
+  },
+  "onbCanon66": "Protestante (66 livros)",
+  "@onbCanon66": {
+    "description": "Cânon 66."
+  },
+  "onbCanon73": "Católica (73 livros)",
+  "@onbCanon73": {
+    "description": "Cânon 73."
+  },
+  "onbCanon73Note": "A Bíblia Livre não traz os 7 livros deuterocanônicos. Os jardins deles aparecem e serão liberados quando houver uma tradução com licença.",
+  "@onbCanon73Note": {
+    "description": "Aviso deuterocanônicos."
+  },
+  "onbTree": "Escolha a árvore de Gênesis",
+  "@onbTree": {
+    "description": "Passo 3."
+  },
+  "onbCompanion": "Escolha um companheiro",
+  "@onbCompanion": {
+    "description": "Passo 4."
+  },
+  "onbFlowers": "Cor das flores",
+  "@onbFlowers": {
+    "description": "Escolha de cor."
+  },
+  "onbReminder": "Quer um lembrete por dia?",
+  "@onbReminder": {
+    "description": "Passo 5."
+  },
+  "onbReminderNote": "Um único lembrete gentil, no horário que você escolher. Pode mudar ou desligar quando quiser.",
+  "@onbReminderNote": {
+    "description": "Explicação do lembrete."
+  },
+  "onbNoReminder": "Sem lembrete",
+  "@onbNoReminder": {
+    "description": "Opção sem lembrete."
+  },
+  "onbNext": "Continuar",
+  "@onbNext": {
+    "description": "Próximo passo."
+  },
+  "onbBack": "Voltar",
+  "@onbBack": {
+    "description": "Passo anterior."
+  },
+  "onbStart": "Ler Gênesis 1",
+  "@onbStart": {
+    "description": "Terminar cadastro."
+  },
+  "setTitle": "Ajustes",
+  "@setTitle": {
+    "description": "Título."
+  },
+  "setAppearance": "Aparência",
+  "@setAppearance": {
+    "description": "Seção."
+  },
+  "setThemeSystem": "Igual ao celular",
+  "@setThemeSystem": {
+    "description": "Tema do sistema."
+  },
+  "setThemeLight": "Claro",
+  "@setThemeLight": {
+    "description": "Tema claro."
+  },
+  "setThemeDark": "Escuro",
+  "@setThemeDark": {
+    "description": "Tema escuro."
+  },
+  "setReminder": "Lembrete diário",
+  "@setReminder": {
+    "description": "Seção."
+  },
+  "setReminderOff": "Desligado",
+  "@setReminderOff": {
+    "description": "Lembrete desligado."
+  },
+  "setReminderAt": "Às {time}",
+  "@setReminderAt": {
+    "description": "Horário.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "setCanon": "Cânon",
+  "@setCanon": {
+    "description": "Seção."
+  },
+  "setSensor": "Sensor de movimento na leitura",
+  "@setSensor": {
+    "description": "Opção."
+  },
+  "setPrivacy": "Privacidade",
+  "@setPrivacy": {
+    "description": "Seção."
+  },
+  "setAnalytics": "Enviar estatísticas de uso anônimas",
+  "@setAnalytics": {
+    "description": "Consentimento de análise."
+  },
+  "setAnalyticsNote": "Nunca inclui oração, diário, pedidos ou horários. Desligado por padrão.",
+  "@setAnalyticsNote": {
+    "description": "Explicação."
+  },
+  "setExport": "Exportar meus dados",
+  "@setExport": {
+    "description": "Exportar."
+  },
+  "setExportDone": "Seus dados foram preparados para salvar ou compartilhar.",
+  "@setExportDone": {
+    "description": "Exportação pronta."
+  },
+  "setErase": "Apagar todos os meus dados",
+  "@setErase": {
+    "description": "Apagar."
+  },
+  "setEraseConfirm": "Isto apaga leitura, jardim, orações, pedidos e anotações deste aparelho. Não dá para desfazer.",
+  "@setEraseConfirm": {
+    "description": "Confirmação de apagar."
+  },
+  "setErased": "Tudo foi apagado. O app vai recomeçar.",
+  "@setErased": {
+    "description": "Dados apagados."
+  },
+  "setPurchases": "Compras",
+  "@setPurchases": {
+    "description": "Seção."
+  },
+  "setMinor": "Conta de menor de idade (compras bloqueadas)",
+  "@setMinor": {
+    "description": "Proteção de menores."
+  },
+  "setMonthlyLimit": "Limite mensal de compras",
+  "@setMonthlyLimit": {
+    "description": "Limite."
+  },
+  "setAbout": "Sobre",
+  "@setAbout": {
+    "description": "Seção."
+  },
+  "setLicenses": "Licenças",
+  "@setLicenses": {
+    "description": "Licenças de terceiros."
+  },
+  "setBibleCredit": "Texto bíblico",
+  "@setBibleCredit": {
+    "description": "Crédito da Bíblia."
+  },
+  "setAccount": "Conta e sincronização",
+  "@setAccount": {
+    "description": "Seção."
+  },
+  "setAccountNote": "Opcional. Sincroniza leitura e jardim entre aparelhos. Oração, diário e pedidos nunca saem do aparelho.",
+  "@setAccountNote": {
+    "description": "Explicação."
+  },
+  "setAccountUnavailable": "A sincronização ainda não está ativa nesta versão.",
+  "@setAccountUnavailable": {
+    "description": "Sync desligado."
+  },
+  "forestTitle": "Floresta",
+  "@forestTitle": {
+    "description": "Título."
+  },
+  "forestIntro": "Os jardins se encaixam e formam uma floresta. Ao ler a Bíblia inteira, um rio atravessa todos eles até a árvore da vida.",
+  "@forestIntro": {
+    "description": "Introdução."
+  },
+  "forestRiver": "Rio: {n} de {total} jardins",
+  "@forestRiver": {
+    "description": "Progresso do rio.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "forestHerbarium": "Herbário",
+  "@forestHerbarium": {
+    "description": "Abrir herbário."
+  },
+  "forestOpenGarden": "Abrir jardim",
+  "@forestOpenGarden": {
+    "description": "Ir ao jardim."
+  },
+  "forestNoText": "Sem texto nesta tradução",
+  "@forestNoText": {
+    "description": "Jardim sem texto."
+  },
+  "herbTitle": "Herbário",
+  "@herbTitle": {
+    "description": "Título."
+  },
+  "herbPlants": "Plantas",
+  "@herbPlants": {
+    "description": "Aba."
+  },
+  "herbAnimals": "Animais",
+  "@herbAnimals": {
+    "description": "Aba."
+  },
+  "herbLocked": "Ainda não encontrado",
+  "@herbLocked": {
+    "description": "Ficha bloqueada."
+  },
+  "herbOrigin": "Origem: {o}",
+  "@herbOrigin": {
+    "description": "Origem.",
+    "placeholders": {
+      "o": {
+        "type": "String"
+      }
+    }
+  },
+  "herbRef": "Referência: {r}",
+  "@herbRef": {
+    "description": "Referência.",
+    "placeholders": {
+      "r": {
+        "type": "String"
+      }
+    }
+  },
+  "herbCount": "{n} de {total}",
+  "@herbCount": {
+    "description": "Contagem.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "custTitle": "Personalizar",
+  "@custTitle": {
+    "description": "Título."
+  },
+  "custSpecies": "Espécie da árvore de {book}",
+  "@custSpecies": {
+    "description": "Troca de espécie (cosmética).",
+    "placeholders": {
+      "book": {
+        "type": "String"
+      }
+    }
+  },
+  "custSpeciesNote": "Trocar a espécie é só aparência: o crescimento continua igual.",
+  "@custSpeciesNote": {
+    "description": "Explicação."
+  },
+  "custName": "Nome do jardim",
+  "@custName": {
+    "description": "Nome."
+  },
+  "custMotto": "Lema",
+  "@custMotto": {
+    "description": "Lema."
+  },
+  "custSave": "Salvar",
+  "@custSave": {
+    "description": "Salvar."
+  },
+  "custCompanion": "Companheiro",
+  "@custCompanion": {
+    "description": "Companheiro."
+  },
+  "devAddOrvalho": "+300 de orvalho",
+  "@devAddOrvalho": {
+    "description": "Ferramenta mod."
+  },
+  "devAdvanceDay": "Avançar um dia",
+  "@devAdvanceDay": {
+    "description": "Ferramenta mod."
+  },
+  "devSimulateReturn": "Simular volta após 4 dias",
+  "@devSimulateReturn": {
+    "description": "Ferramenta mod."
+  },
+  "devClockOffset": "Dias adiantados: {n}",
+  "@devClockOffset": {
+    "description": "Relógio mod.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "devUnlockAll": "Ler Gênesis 1 a 15 (simulado)",
+  "@devUnlockAll": {
+    "description": "Ferramenta mod."
+  },
+  "reminderBody": "Seu jardim está aqui quando você quiser. Um capítulo de cada vez.",
+  "@reminderBody": {
+    "description": "Texto do lembrete diário. Gentil, nunca culpa."
+  },
+  "navSettings": "Ajustes",
+  "@navSettings": {
+    "description": "Abrir ajustes."
+  },
+  "navCustomize": "Personalizar",
+  "@navCustomize": {
+    "description": "Abrir personalizar."
+  }
+}
